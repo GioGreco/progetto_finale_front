@@ -1,12 +1,16 @@
 <template>
     <div>
-
+        <MapComponent/>
     </div>
 </template>
 
 <script>
+import MapComponent from '@/components/Map/MapComponent.vue'
     export default {
-        name: 'NotFound'
+        name: 'NotFound',
+        components: {
+            MapComponent
+        }
     }
 </script>
 

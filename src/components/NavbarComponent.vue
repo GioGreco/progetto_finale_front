@@ -2,7 +2,7 @@
     <nav class="d-flex flex-column align-items-center">
         <TransitionGroup name="navMobileFX" tag="ul" class="d-flex flex-column">
             <li v-for="(navItem, index) in navItems" :key="index" v-show="showNav">
-                <RouterLink active-class="is-active" class="navLink" :to="navItem.path" v-html="navItem.icon"></RouterLink>
+                <RouterLink active-class="is-active" class="d-flex justify-content-center align-items-center" :to="navItem.path" v-html="navItem.html"></RouterLink>
             </li>
         </TransitionGroup>
         <div @click="showNav = !showNav" class="navToggler">
@@ -21,22 +21,23 @@
                     {
                         name: 'home',
                         path: '/',
-                        icon: '<i class="fa-solid fa-house"></i>'
+                        html: '<i class="fa-solid fa-house"></i>'
                     },
                     {
                         name: 'search',
                         path: '/',
-                        icon: '<i class="fa-solid fa-magnifying-glass"></i>'
+                        html: '<i class="fa-solid fa-magnifying-glass"></i>'
                     },
                     {
                         name: 'messages',
                         path: '/',
-                        icon: '<i class="fa-solid fa-comment"></i>' 
+                        html: '<i class="fa-solid fa-comment"></i>' 
                     },
                     {
                         name: 'profile',
                         path: '/',
-                        icon: '<i class="fa-solid fa-user"></i>'
+                        // icon: '<i class="fa-solid fa-user"></i>',
+                        html: '<img src="https://static.ohga.it/wp-content/uploads/sites/24/2018/10/istock-882495390.jpg" class="w-75 h-75 rounded-circle"></img>'
                     }
                 ],
                 showNav: false
@@ -50,6 +51,7 @@
 <style lang="scss" scoped>
 nav{
     position: fixed;
+    z-index: 500;
     bottom: 0;
     right: 0;
     min-width: 50px;
@@ -91,6 +93,7 @@ nav{
                 line-height: 50px;
                 border-radius: 50%;
                 background-color: salmon;
+                text-decoration: none;
                 color: white;
             }
         }
