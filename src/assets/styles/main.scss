@@ -3,6 +3,7 @@
 $fa-font-path: '../webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/regular.scss';
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
 @import 'bootstrap/scss/bootstrap';
 
@@ -10,4 +11,26 @@ $fa-font-path: '../webfonts';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body{
+    color: $dark;
+    font-family: $main-font;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+img{
+    max-width: 100%;
 }

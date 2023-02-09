@@ -1,6 +1,6 @@
 <template>
   <header>
-    <NavbarComponent/>
+    <NavbarComponent></NavbarComponent>
   </header>
   <main>
     <RouterView/>
@@ -8,6 +8,8 @@
   <footer>
     <FooterComponent/>
   </footer>
+
+
 </template>
 
 <script>
