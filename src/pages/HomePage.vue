@@ -15,6 +15,11 @@
       <div class="logo">
         <strong>BoolBnb</strong>
       </div>
+
+      <div class="nav-btns d-none d-md-block d-flex">
+        <button class="me-3">Login</button>
+        <button>Diventa un host</button>
+      </div>
     </nav>
 
     <div class="claim d-block d-md-none">A casa. Ovunque.</div>
@@ -162,6 +167,21 @@ export default {
   position: relative;
 }
 
+.nav-btns {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+
+  button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-style: none;
+    border-radius: 20px;
+    padding: 5px 14px;
+    color: $white;
+    font-weight: bold;
+  }
+}
+
 .logo {
   font-size: 2.5rem;
   letter-spacing: 0.2rem;
@@ -246,7 +266,7 @@ p {
 
 @media (min-width: 600px) {
   section {
-    padding: 5rem 0;
+    padding: 3rem 0;
   }
 
   .jumbo {
@@ -270,7 +290,7 @@ p {
   }
 
   .my-container {
-    width: 60%;
+    width: 50%;
     margin: auto;
   }
 
