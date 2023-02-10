@@ -156,8 +156,8 @@ export default {
         letter-spacing: 0.2rem;
       }
       p {
-        text-align: justify;
-        font-size: 2rem;
+        text-align: left;
+        font-size: 1.7rem;
       }
     }
   }
@@ -174,7 +174,7 @@ export default {
         top: 25%;
         left: 6%;
         p {
-          font-size: 1.5rem;
+          font-size: 1.6rem;
         }
       }
     }

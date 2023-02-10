@@ -94,8 +94,7 @@
             </h1>
             <p class="p-bottom">
               Lorem ipsum dolor sit amet. Sed tempore cupiditate aut rerum sequi
-              et minima ducimus. Sed quis quae sit doloremque rerum et error qui
-              minus incidunt.
+              et minima ducimus. Sed quis quae sit doloremque minus incidunt.
             </p>
           </div>
         </div>
@@ -108,9 +107,8 @@
             </h1>
             <p class="white p-bottom">
               Lorem ipsum dolor sit amet. Sed tempore cupiditate aut rerum sequi
-              et minima ducimus. Sed quis quae sit doloremque rerum et error
-              laborum qui neque pariatur est praesentium minus et fugiat nostrum
-              qui minus incidunt.
+              et minima ducimus. Sed quis quae sit doloremque rerum et error qui
+              minus incidunt.
             </p>
           </div>
         </div>
@@ -316,7 +314,7 @@ p {
   }
   .img-last-sect {
     width: 100%;
-    max-height: 100%;
+    height: 100%;
   }
 }
 </style>
