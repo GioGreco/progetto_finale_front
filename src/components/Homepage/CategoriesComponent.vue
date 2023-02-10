@@ -146,18 +146,33 @@ export default {
     .categoryInfo {
       display: none;
       z-index: 1000;
-      width: 30%;
+      width: 80%;
       color: $white;
       position: absolute;
-      top: 25%;
+      top: 12%;
       left: 6%;
       h3 {
-        font-size: 2.4rem;
+        font-size: 5vh;
         letter-spacing: 0.2rem;
       }
       p {
         text-align: justify;
-        font-size: 1.5rem;
+        font-size: 3vh;
+      }
+    }
+  }
+}
+
+// media queries:
+
+@media (min-width: 600px) {
+  #categoriesWrapper {
+    .category {
+      .categoryInfo {
+        width: 30%;
+        position: absolute;
+        top: 25%;
+        left: 6%;
       }
     }
   }

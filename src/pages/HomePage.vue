@@ -136,7 +136,7 @@ export default {
 }
 
 section {
-  padding: 7rem 0;
+  padding: 5rem 0;
 }
 
 h1 {
@@ -147,5 +147,13 @@ h1 {
 
 p {
   font-size: 1.5rem;
+}
+
+// media queries:
+
+@media (min-width: 600px) {
+  section {
+    padding: 7rem 0;
+  }
 }
 </style>
