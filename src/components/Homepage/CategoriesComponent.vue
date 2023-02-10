@@ -96,7 +96,7 @@ export default {
       z-index: 250;
       padding: 14px 24px;
       transition: opacity 0.5s ease-out;
-      font-size: 2.3rem;
+      font-size: 2.5rem;
       letter-spacing: 0.4rem;
       font-weight: bold;
     }
@@ -157,7 +157,7 @@ export default {
       }
       p {
         text-align: justify;
-        font-size: 3vh;
+        font-size: 2rem;
       }
     }
   }
@@ -173,6 +173,9 @@ export default {
         position: absolute;
         top: 25%;
         left: 6%;
+        p {
+          font-size: 1.5rem;
+        }
       }
     }
   }
