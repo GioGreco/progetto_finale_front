@@ -12,7 +12,7 @@
 
 </template>
 
-<script>
+<script> 
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 
@@ -25,5 +25,5 @@ import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <style lang="scss" scoped>
-
+@use './assets/styles/partials/variables' as *;
 </style>
