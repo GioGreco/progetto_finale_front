@@ -33,7 +33,7 @@ export default {
         {
           name: "Open space",
           path: "#",
-          url: "/public/img/openspace.jpg",
+          url: "/img/openspace.jpg",
           title: "Spazi infiniti",
           description:
             "Aeque altera intellegam te sea, est torquatos incorrupte te. Tantas virtute appareat no mei. Justo legimus has ne, an mei eripuit fierent. Suscipit percipit persecuti ex eam, vim ad quaeque repudiandae. Sit labores luptatum dissentias cu, summo alienum recteque te sed.",
@@ -41,7 +41,7 @@ export default {
         {
           name: "Intere case",
           path: "#",
-          url: "/public/img/intera-casa.jpg",
+          url: "/img/intera-casa.jpg",
           title: "Come a casa tua",
           description:
             "Aeque altera intellegam te sea, est torquatos incorrupte te. Tantas virtute appareat no mei. Justo legimus has ne, an mei eripuit fierent. Suscipit percipit persecuti ex eam, vim ad quaeque repudiandae. Sit labores luptatum dissentias cu, summo alienum recteque te sed.",
@@ -49,7 +49,7 @@ export default {
         {
           name: "Attici",
           path: "#",
-          url: "/public/img/attico.jpg",
+          url: "/img/attico.jpg",
           title: "Viste incredibili",
           description:
             "Aeque altera intellegam te sea, est torquatos incorrupte te. Tantas virtute appareat no mei. Justo legimus has ne, an mei eripuit fierent. Suscipit percipit persecuti ex eam, vim ad quaeque repudiandae. Sit labores luptatum dissentias cu, summo alienum recteque te sed.",

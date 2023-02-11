@@ -28,7 +28,8 @@
     <div class="searchbar">
       <input
         type="text"
-        v-model="address"
+        v-model.trim="store.searchedCity"
+        @keyup.enter="search"
         placeholder="Inserisci una destinazione..."
       />
     </div>
@@ -120,6 +121,7 @@
 <script>
 import HighlightCarouselComponent from "@/components/Homepage/HighlightCarouselComponent.vue";
 import CategoriesComponent from "@/components/Homepage/CategoriesComponent.vue";
+import { store } from "../store";
 
 // import axios from "axios";
 
@@ -129,27 +131,31 @@ export default {
     HighlightCarouselComponent,
     CategoriesComponent,
   },
-  //   data() {
-  //     return {
-  //       address: "",
-  //       addressEndpoint:
-  //         "https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&view=Unified&key=*****",
-  //       key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
-  //     };
-  //   },
-  //   methods: {
-  //     searchAddress() {
-  //       const encodedAddress = encodeURIComponent(this.address);
-  //       axios
-  //         .get(`https://api.tomtom.com/search/2/geocode/${encodedAddress}.json`, {
-  //           params: { key: this.key },
-  //         })
-  //         .then((response) => {
-  //           console.log(response.data);
-  //         });
-  //       this.address = "";
-  //     },
-  //   },
+  data() {
+    return {
+      // address: "",
+      // addressEndpoint:
+      //   "https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&view=Unified&key=*****",
+      // key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+      store,
+    };
+  },
+  methods: {
+    // searchAddress() {
+    //   const encodedAddress = encodeURIComponent(this.address);
+    //   axios
+    //     .get(`https://api.tomtom.com/search/2/geocode/${encodedAddress}.json`, {
+    //       params: { key: this.key },
+    //     })
+    //     .then((response) => {
+    //       console.log(response.data);
+    //     });
+    //   this.address = "";
+    // },
+    search() {
+      this.$emit("filteredApartments");
+    },
+  },
 };
 </script>
 
@@ -288,7 +294,7 @@ p {
   }
 
   .my-container {
-    width: 50%;
+    width: 55%;
     margin: auto;
   }
 
