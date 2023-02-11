@@ -8,8 +8,6 @@
   <footer>
     <FooterComponent/>
   </footer>
-
-
 </template>
 
 <script> 

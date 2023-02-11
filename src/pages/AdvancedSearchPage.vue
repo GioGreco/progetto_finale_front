@@ -1,11 +1,9 @@
 <template>
 
 <div class="allcont">
-
     <header>
         <HeaderComponent></HeaderComponent>
     </header>
-
     <div class="navholder">
         <div class="search">
                 <div class="row">
@@ -273,7 +271,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
     <div class="container maincont">
@@ -297,65 +294,27 @@
                 </div>
             </div>
             
-            <div class="col-6">
-                <a class="card_apartment">
-                    <div class="img_case">
-                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-
-                </a>
-            </div>
-            <div class="col-6">
-                <a class="card_apartment">
-                    <div class="img_case">
-                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-
-                </a>
-            </div>
-            <div class="col-6">
-                <a class="card_apartment">
-                    <div class="img_case">
-                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-
-                </a>
-            </div>
-            <div class="col-6">
-                <a class="card_apartment">
-                    <div class="img_case">
-                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-
-                </a>
-            </div>
-            <div class="col-6">
-                <a class="card_apartment">
-                    <div class="img_case">
-                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-
-                </a>
-            </div>
-            <div class="col-6">
-                <a class="card_apartment">
-                    <div class="img_case">
-                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-
-                </a>
+            <div v-for="n in 10" class="col-6 card_apartment">
+                <div class="imgcont">
+                    <a class="">
+                            <img src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text_infob">
+                                        <h1>Villa in Campagna con piano  dedicatyo</h1>
+                                        <h4>descrizione generica di una villa in campagna</h4>
+                                    </div>
+                                </div>
+                            </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-
-    
-
-
     <!-- <div>
         <CardComponent></CardComponent>
     </div> -->
-
 
 </template>
 
@@ -368,7 +327,7 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
         name: 'AdvancedSearchPage',
         components: {
         HeaderComponent,
-        CardComponent
+        CardComponent,
         },
         data(){
             return{
@@ -402,6 +361,10 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
   }
 }
 
+footer{
+    z-index: 1;
+}
+
 .text_infoa{
     padding: 10px 15px;
     color: $darkgrey;
@@ -421,24 +384,28 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 5px;
-
         font-weight: 800;
-
     }
 }
 .text_infob{
-    padding: 5px 20px;
+    padding: 10px 5px;
     color: $darkgrey;
-    span {
-    display: block;
+    h1 {
+    width: 100%;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 800;
+    }
+    h4 {
+    font-size: .8rem;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 10px;
     font-weight: 800;
-    text-transform: uppercase;
-        background-color: aqua;
+    margin: 0;
     }
 }
 .allcont{
@@ -448,7 +415,11 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
     width: 100%;
 }
 .maincont{
-    margin-top: 170px;
+    z-index: 50;
+    margin-top: 128px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    overflow-y: scroll;
     .card_sponsored_apartment{
         .imgcont{
             position: relative;
@@ -466,7 +437,7 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
                 box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
             }
             .row{
-                background-color: $lightgrey;
+                background-color: $white;
             }
             img{
                 border-radius: 20px 20px 0px 0px;
@@ -477,6 +448,22 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
         }
     }
     .card_apartment{
+
+        .imgcont{
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            .row{
+                background-color: $lightgrey;
+            }
+            img{
+                // border-radius: 20px 20px 0px 0px;
+                object-fit: cover;
+                height: 170px;
+                width: 100%;
+            }
+        }
         .img_case{
             height: 250px;
             overflow: hidden;
@@ -499,6 +486,7 @@ header{
     border-radius: 0px 0px 20px 20px ;
     transition: all 200ms;
     overflow: hidden;
+    background-color: rgba(255, 255, 255, 0);
     a{
         color: $grey;
         width: 100%;
@@ -588,8 +576,8 @@ header{
   position: absolute;
   left: auto;
   top:-2px;
-color: $white;
-transition: all 200ms;
+    color: $white;
+    transition: all 200ms;
 }
 .checkmark3upper {
   position: absolute;
@@ -676,10 +664,6 @@ transition: all 200ms;
             // oro colato
 
             li{
-
-                // align-items: center;
-                // font-weight: 600;
-                // font-size: 1.1rem;
                 input{
                 }
                 .checkmark {
@@ -695,20 +679,22 @@ transition: all 200ms;
     background-color: $emerald;
     #cerca{
         width: 100%;
-        height: 50px;
+        height: 46px;
         border: 2px solid $grey;
-        border-radius: 20px;
-        padding: 0px 15px;
+        border-radius: 50px;
+        padding: 0px 20px;
         font-size: 1.5rem;
         outline: none;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
     }
 }
 
+
 #smartnavop{
-    background-color: rgba(255, 255, 255, 0.801);
+    background-color: rgba(255, 255, 255, 0.85);
     overflow: hidden;
-    height: 0px;
-    // height: 269px;
+    // height: 0px;
+    height: 269px;
     transition: ease-in-out 250ms all;
 }
 
