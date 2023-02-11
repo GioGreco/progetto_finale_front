@@ -1,7 +1,11 @@
 <template>
 
+<header>
+    <HeaderComponent></HeaderComponent>
+</header>
+
 <div class="navholder">
-    <div class="search container">
+    <div class="search">
             <div class="row">
                 <div class="col">
                     <input type="search" name="cerca" id="cerca" placeholder="Località">
@@ -9,7 +13,7 @@
             </div>
         </div>
     <div id="smartnavop">
-        <div class="smartnav categorie container">
+        <div class="smartnav categorie ">
             <ul>
                 <li class=" contain emerald">
                     <input type="radio" name="categoria" id="open_space" checked>
@@ -76,7 +80,7 @@
                 </li>
             </ul>
         </div>
-        <div class="smartnav servizi container">
+        <div class="smartnav servizi ">
             <ul>
                 <li class=" contain sangria">
                     <input type="checkbox" name="wifi" id="wifi">
@@ -179,11 +183,11 @@
             </ul>
         </div>
         <div class="smartnav altri_filtri">
-            <div class="row container">
+            <div class="row ">
                 <div class="col-6 labels">Numero mimimo stanze</div>
                 <div class="col-6 lineasinistra labels">Posti letto</div>
             </div>
-            <div class="row container">
+            <div class="row ">
                 <div class="col-6">
                     <ul>
                         <li class="rosegold">
@@ -250,7 +254,7 @@
                 </div>
             </div>
         </div>
-        <div class="smartnav categorie container">
+        <div class="smartnav categorie ">
             <ul>
                 <li class="">
                     <h3>slider controllo distanza da aggiungere</h3>
@@ -269,10 +273,10 @@
 </div>
 
 
-    <header>
-        <HeaderComponent></HeaderComponent>
-    </header>
+
     
+
+
     <!-- <div>
         <CardComponent></CardComponent>
     </div> -->
@@ -300,11 +304,11 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
                 document.getElementById("filter_open_closer").onchange = (e) => {
                     let checked = e.target.checked;
                     if (checked) {
-                        document.getElementById("smartnavop").style.height = "100%";
                         document.getElementById("smartnavop").style.opacity = "1";
+                        document.getElementById("smartnavop").style.height = "269px";
                     } else {
-                        document.getElementById("smartnavop").style.height = "0";
                         document.getElementById("smartnavop").style.opacity = "0";
+                        document.getElementById("smartnavop").style.height = "0px";
                      }
                 }
             }
@@ -324,6 +328,9 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
 }
 
 
+header{
+    z-index: 100;
+}
 .btnopen{
     height: 20px;
     width: 300px;
@@ -435,7 +442,7 @@ transition: all 200ms;
 .checkmark3upper {
   position: absolute;
   left: auto;
-  top:-2px;
+  top:-2;
 opacity: 0;
 color: $white;
 transition: all 200ms;
@@ -512,6 +519,7 @@ transition: all 200ms;
 }
 
 .smartnav{
+    padding: 0px 10px;
     overflow-x: scroll;
     border-bottom: 2px solid $raindrop;
         ul{
@@ -554,6 +562,7 @@ transition: all 200ms;
 
 #smartnavop{
     overflow: hidden;
+    height: 269px;
     transition: ease-in-out 250ms all;
 }
 

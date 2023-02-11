@@ -19,26 +19,20 @@
             return {
                 navItems: [
                     {
+                        name: 'search',
+                        path: '/search',
+                        html: '<i class="fa-solid fa-magnifying-glass"></i>'
+                    },
+                    {
                         name: 'home',
                         path: '/',
                         html: '<i class="fa-solid fa-house"></i>'
                     },
                     {
-                        name: 'search',
-                        path: '/',
-                        html: '<i class="fa-solid fa-magnifying-glass"></i>'
+                        name: 'user',
+                        path: 'redirect to laravel',
+                        html: '<i class="fa-solid fa-user"></i>'
                     },
-                    {
-                        name: 'messages',
-                        path: '/',
-                        html: '<i class="fa-solid fa-comment"></i>' 
-                    },
-                    {
-                        name: 'profile',
-                        path: '/',
-                        // icon: '<i class="fa-solid fa-user"></i>',
-                        html: '<img src="https://static.ohga.it/wp-content/uploads/sites/24/2018/10/istock-882495390.jpg" class="w-75 h-75 rounded-circle"></img>'
-                    }
                 ],
                 showNav: false
             }
@@ -49,6 +43,9 @@
 </script>
 
 <style lang="scss" scoped>
+
+@use '../assets/styles/partials/variables' as *;
+
 nav{
     position: fixed;
     z-index: 500;
@@ -56,45 +53,49 @@ nav{
     right: 0;
     min-width: 50px;
     margin: 0 20px 20px 0;
+    font-size: 2rem;
     .navToggler{
-        height: 40px;
-        width: 40px;
+        height: 60px;
+        width: 60px;
         border-radius: 50%;
         text-align: center;
-        background-color: sandybrown;
-        line-height: 40px;
+        outline: 4px solid $raindrop;
+        background-color: $emerald;
+        line-height: 60px;
         margin-top: 10px;
-        color: white
+        color: $white;
     }
     ul{
         list-style: none;
         padding: 0;
         margin: 0;
         li{
-            margin-top: 5px;
+            margin-top: 10px;
             &:first-of-type{
                 transition: all .2s 0s;
             }
             &:nth-of-type(2){
                 transition: all .2s .1s;
             }
-            &:nth-of-type(3){
-                transition: all .2s .2s;
-            }
-            &:nth-of-type(4){
-                transition: all .2s .3s;
-            }
+            // &:nth-of-type(3){
+            //     transition: all .2s .2s;
+            // }
+            // &:nth-of-type(4){
+            //     transition: all .2s .3s;
+            // }
             a{
                 display: block;
                 text-align: center;
-                height: 50px;
-                width: 50px;
+                height: 60px;
+                width: 60px;
+                font-size: 1.5rem;
                 text-align: center;
                 line-height: 50px;
                 border-radius: 50%;
-                background-color: salmon;
+                outline: 4px solid $sangria;
+                background-color: $raindrop;
                 text-decoration: none;
-                color: white;
+                color: $sangria;
             }
         }
     }
