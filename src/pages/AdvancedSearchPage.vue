@@ -1,277 +1,352 @@
 <template>
 
-<header>
-    <HeaderComponent></HeaderComponent>
-</header>
+<div class="allcont">
 
-<div class="navholder">
-    <div class="search">
-            <div class="row">
-                <div class="col">
-                    <input type="search" name="cerca" id="cerca" placeholder="Località">
+    <header>
+        <HeaderComponent></HeaderComponent>
+    </header>
+
+    <div class="navholder">
+        <div class="search">
+                <div class="row">
+                    <div class="col">
+                        <input type="search" name="cerca" id="cerca" placeholder="Località">
+                    </div>
                 </div>
             </div>
-        </div>
-    <div id="smartnavop">
-        <div class="smartnav categorie ">
-            <ul>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="open_space" checked>
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-person-shelter"></i>
+        <div id="smartnavop">
+            <div class="smartnav categorie ">
+                <ul>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="open_space" checked>
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-person-shelter"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="case_intere">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-house"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="case_intere">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-house"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="appartamento">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-city"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="appartamento">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-city"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="attico">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-people-roof"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="attico">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-people-roof"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="villa_campagna">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-tree-city"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="villa_campagna">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-tree-city"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="villa_mare">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-house-flood-water"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="villa_mare">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-house-flood-water"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="industriale">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-warehouse"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="industriale">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-warehouse"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="contemporaneo">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-building"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="contemporaneo">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-building"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-                <li class=" contain emerald">
-                    <input type="radio" name="categoria" id="romano">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-building-columns"></i>
+                    </li>
+                    <li class=" contain emerald">
+                        <input type="radio" name="categoria" id="romano">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-building-columns"></i>
+                            </span>
                         </span>
-                    </span>
-                </li>
-            </ul>
-        </div>
-        <div class="smartnav servizi ">
-            <ul>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="wifi" id="wifi">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-wifi"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="fan" id="fan">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-fan"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="garage" id="garage">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-square-parking"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="piscina" id="piscina">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-person-swimming"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="idromassaggio" id="idromassaggio">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-water-ladder"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="portineria" id="portineria">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-bell-concierge"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="sauna" id="sauna">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-spa"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="palestra" id="palestra">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-dumbbell"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="tennis" id="tennis">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-table-tennis-paddle-ball"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="golf" id="golf">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-golf-ball-tee"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="giardino" id="giardino">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-brands fa-pagelines"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="patio" id="patio">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-shop"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="mare" id="mare">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-water"></i>
-                        </span>
-                    </span>
-                </li>
-                <li class=" contain sangria">
-                    <input type="checkbox" name="security" id="security">
-                    <span class="checkmark">
-                        <span class="checkedicon"><i class="fa-solid fa-person-military-pointing"></i>
-                        </span>
-                    </span>
-                </li>
-            </ul>
-        </div>
-        <div class="smartnav altri_filtri">
-            <div class="row ">
-                <div class="col-6 labels">Numero mimimo stanze</div>
-                <div class="col-6 lineasinistra labels">Posti letto</div>
+                    </li>
+                </ul>
             </div>
-            <div class="row ">
-                <div class="col-6">
-                    <ul>
-                        <li class="rosegold">
-                            <input type="radio" name="stanze" id="" checked>
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-3"></i>
-                                </span>
+            <div class="smartnav servizi ">
+                <ul>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="wifi" id="wifi">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-wifi"></i>
                             </span>
-                        </li>
-                        <li class="rosegold">
-                            <input type="radio" name="stanze" id="">
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-6"></i>
-                                </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="fan" id="fan">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-fan"></i>
                             </span>
-                        </li>
-                        <li class="rosegold">
-                            <input type="radio" name="stanze" id="">
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-9"></i>
-                                </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="garage" id="garage">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-square-parking"></i>
                             </span>
-                        </li>
-                        <li class="rosegold">
-                            <input type="radio" name="stanze" id="">
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-plus"></i>
-                                </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="piscina" id="piscina">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-person-swimming"></i>
                             </span>
-                        </li>
-                    </ul>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="idromassaggio" id="idromassaggio">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-water-ladder"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="portineria" id="portineria">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-bell-concierge"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="sauna" id="sauna">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-spa"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="palestra" id="palestra">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-dumbbell"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="tennis" id="tennis">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="golf" id="golf">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-golf-ball-tee"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="giardino" id="giardino">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-brands fa-pagelines"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="patio" id="patio">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-shop"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="mare" id="mare">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-water"></i>
+                            </span>
+                        </span>
+                    </li>
+                    <li class=" contain sangria">
+                        <input type="checkbox" name="security" id="security">
+                        <span class="checkmark">
+                            <span class="checkedicon"><i class="fa-solid fa-person-military-pointing"></i>
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="smartnav altri_filtri">
+                <div class="row ">
+                    <div class="col-6 labels">Numero mimimo stanze</div>
+                    <div class="col-6 lineasinistra labels">Posti letto</div>
                 </div>
-                <div class="col-6 lineasinistra">
-                    <ul>
-                        <li class="rosegold">
-                            <input type="radio" name="letti" id="" checked>
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-2"></i>
+                <div class="row ">
+                    <div class="col-6">
+                        <ul>
+                            <li class="rosegold">
+                                <input type="radio" name="stanze" id="" checked>
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-3"></i>
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
-                        <li class="rosegold">
-                            <input type="radio" name="letti" id="">
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-4"></i>
+                            </li>
+                            <li class="rosegold">
+                                <input type="radio" name="stanze" id="">
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-6"></i>
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
-                        <li class="rosegold">
-                            <input type="radio" name="letti" id="">
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-6"></i>
+                            </li>
+                            <li class="rosegold">
+                                <input type="radio" name="stanze" id="">
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-9"></i>
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
-                        <li class="rosegold">
-                            <input type="radio" name="letti" id="">
-                            <span class="checkmark2">
-                                <span class="checkedicon"><i class="fa-solid fa-plus"></i>
+                            </li>
+                            <li class="rosegold">
+                                <input type="radio" name="stanze" id="">
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-plus"></i>
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 lineasinistra">
+                        <ul>
+                            <li class="rosegold">
+                                <input type="radio" name="letti" id="" checked>
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-2"></i>
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="rosegold">
+                                <input type="radio" name="letti" id="">
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-4"></i>
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="rosegold">
+                                <input type="radio" name="letti" id="">
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-6"></i>
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="rosegold">
+                                <input type="radio" name="letti" id="">
+                                <span class="checkmark2">
+                                    <span class="checkedicon"><i class="fa-solid fa-plus"></i>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <div class="smartnav categorie ">
+                <ul>
+                    <li class="">
+                        <h3>slider controllo distanza da aggiungere</h3>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="smartnav categorie ">
-            <ul>
-                <li class="">
-                    <h3>slider controllo distanza da aggiungere</h3>
-                </li>
-            </ul>
+        <div class="btnopen">
+            <div class="contain3">
+                <input @click="functionOpener()" type="checkbox" name="filter_open_closer" id="filter_open_closer" checked>
+                    <span class="checkmark3down"><i class="fa-solid fa-chevron-down"></i></span>
+                    <span class="checkmark3upper"><i class="fa-solid fa-chevron-up"></i></span>
+                    
+            </div>
         </div>
     </div>
-    <div class="btnopen">
-        <div class="contain3">
-            <input @click="functionOpener()" type="checkbox" name="filter_open_closer" id="filter_open_closer" checked>
-                <span class="checkmark3down"><i class="fa-solid fa-chevron-down"></i></span>
-                <span class="checkmark3upper"><i class="fa-solid fa-chevron-up"></i></span>
-                
-        </div>
-    </div>
+
 </div>
 
+    <div class="container maincont">
+        <div class="row gy-4">
+            <div class="col-12 card_sponsored_apartment">
+                <div class="imgcont">
+                    <div class="sponsored_txt">
+                        sponsorizzato
+                    </div>
+                    <a class="">
+                            <img src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text_infoa">
+                                        <h1>Villa in Campagna con piano  dedicatyo</h1>
+                                        <h4>descrizione generica di una villa in campagna</h4>
+                                    </div>
+                                </div>
+                            </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <a class="card_apartment">
+                    <div class="img_case">
+                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+
+                </a>
+            </div>
+            <div class="col-6">
+                <a class="card_apartment">
+                    <div class="img_case">
+                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+
+                </a>
+            </div>
+            <div class="col-6">
+                <a class="card_apartment">
+                    <div class="img_case">
+                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+
+                </a>
+            </div>
+            <div class="col-6">
+                <a class="card_apartment">
+                    <div class="img_case">
+                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+
+                </a>
+            </div>
+            <div class="col-6">
+                <a class="card_apartment">
+                    <div class="img_case">
+                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+
+                </a>
+            </div>
+            <div class="col-6">
+                <a class="card_apartment">
+                    <div class="img_case">
+                        <img class="img-fluid" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+
+                </a>
+            </div>
+        </div>
+    </div>
 
 
     
@@ -327,6 +402,91 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
   }
 }
 
+.text_infoa{
+    padding: 10px 15px;
+    color: $darkgrey;
+    h1 {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    }
+    h4 {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+
+        font-weight: 800;
+
+    }
+}
+.text_infob{
+    padding: 5px 20px;
+    color: $darkgrey;
+    span {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+        background-color: aqua;
+    }
+}
+.allcont{
+    top: -1px;
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+}
+.maincont{
+    margin-top: 170px;
+    .card_sponsored_apartment{
+        .imgcont{
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            .sponsored_txt{
+                background-color: rgba(255, 255, 255, 0.61);
+                border-radius: 50px;
+                padding: 2px 15px;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                text-transform: uppercase;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+            }
+            .row{
+                background-color: $lightgrey;
+            }
+            img{
+                border-radius: 20px 20px 0px 0px;
+                object-fit: cover;
+                height: 280px;
+                width: 100%;
+            }
+        }
+    }
+    .card_apartment{
+        .img_case{
+            height: 250px;
+            overflow: hidden;
+            border-radius: 20px;
+            img{
+            }
+        }
+    }
+}
+
 
 header{
     z-index: 100;
@@ -350,7 +510,6 @@ header{
 .labels{
     font-weight: 700;
 }
-
 .contain3 {
     justify-content: center;
     height: 20px;
@@ -375,12 +534,10 @@ header{
                         width: 300px;
   }
 }
-
 .contain{
     justify-content: center;
     height: 40px;
     width: 50px;
-    padding: 0px 5px;
     display: flex;
     position: relative;
   cursor: pointer;
@@ -390,8 +547,6 @@ header{
   user-select: none;
 
 }
-
-
 .rosegold{
     height: 30px;
     width: 40px;
@@ -408,7 +563,6 @@ header{
   -ms-user-select: none;
   user-select: none;
 }
-
 /* Hide the browser's default checkbox */
 .contain input {
   position: absolute;
@@ -420,7 +574,6 @@ header{
   width: 40px;
   border-radius: 50%;
 }
-
 .rosegold input {
   position: absolute;
   opacity: 0;
@@ -431,7 +584,6 @@ header{
   width: 30px;
   border-radius: 10px;
 }
-
 .checkmark3down {
   position: absolute;
   left: auto;
@@ -460,7 +612,6 @@ transition: all 200ms;
   background-color: $white;
   border: 4px solid $grey;
 }
-
 /* Create a custom checkbox */
 .checkmark2 {
   position: absolute;
@@ -475,10 +626,8 @@ transition: all 200ms;
   background-color: $white;
   border: 4px solid $grey;
 }
-
 .checkedicon{
-    top: 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
     // display: none;
     color: $grey;
     text-align: center;
@@ -492,8 +641,6 @@ transition: all 200ms;
 .contain3 input:checked ~ .checkmark3down {
     opacity: 0;
 }
-
-
 /* When the checkbox is checked, add a blue background */
 .emerald input:checked ~ .checkmark {
   background-color: $emerald;
@@ -507,7 +654,6 @@ transition: all 200ms;
   background-color: $rosegold;
   border: 4px solid $rosegold;
 }
-
 /* Show the checkmark when checked */
 .contain input:checked ~ .checkmark > .checkedicon {
     display: block;
@@ -517,7 +663,6 @@ transition: all 200ms;
     display: block;
     color: $white;
 }
-
 .smartnav{
     padding: 0px 10px;
     overflow-x: scroll;
@@ -545,7 +690,6 @@ transition: all 200ms;
 .smartnav::-webkit-scrollbar {
     display: none;
 }
-
 .search{
     padding: 10px 10px;
     background-color: $emerald;
@@ -561,8 +705,10 @@ transition: all 200ms;
 }
 
 #smartnavop{
+    background-color: rgba(255, 255, 255, 0.801);
     overflow: hidden;
-    height: 269px;
+    height: 0px;
+    // height: 269px;
     transition: ease-in-out 250ms all;
 }
 

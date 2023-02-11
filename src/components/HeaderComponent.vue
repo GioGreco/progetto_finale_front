@@ -23,6 +23,7 @@
     
 .allm{
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.150);
+    background-color: $white;
 }
 .container{
         display: flex;
