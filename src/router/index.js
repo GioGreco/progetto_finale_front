@@ -16,7 +16,7 @@ const routes = [
     component: AdvancedSearchPage,
   },
   {
-    path: "/apartment",
+    path: "/apartment/:slug",
     name: "apartment",
     component: SingleApartmentPage,
   },

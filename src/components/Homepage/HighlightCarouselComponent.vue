@@ -99,9 +99,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.outer-box {
-  flex-wrap: nowrap;
-}
+@use "../../assets/styles/main.scss" as *;
 
 #highlight-carousel {
   flex-wrap: nowrap;
@@ -111,11 +109,12 @@ export default {
   &::-webkit-scrollbar {
     display: none;
   }
+
+  //da spostare in component CardCarousel
   .car-item {
     height: 400px;
     width: 60%;
     .item-inner {
-      background-color: green;
       height: 100%;
       border-radius: 25px;
       overflow: hidden;
@@ -139,13 +138,13 @@ export default {
         right: 10px;
         background-color: bisque;
         padding: 4px 8px;
-        color: white;
+        color: $white;
       }
       .info {
         position: absolute;
         bottom: 15px;
         left: 15px;
-        color: white;
+        color: $white;
         font-weight: bolder;
         font-size: larger;
       }

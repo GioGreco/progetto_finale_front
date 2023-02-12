@@ -183,6 +183,10 @@ export default {
     padding: 5px 14px;
     color: $white;
     font-weight: bold;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }
 
