@@ -82,7 +82,7 @@
         <div class="col-12 col-md-8">
           <img
             class="img-last-sect"
-            src="/public/img/last-section.jpg"
+            src="/img/last-section.jpg"
             alt="Interior design"
           />
         </div>
