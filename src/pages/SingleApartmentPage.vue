@@ -2,14 +2,14 @@
     <header>
         <HeaderComponent></HeaderComponent>
     </header>
-    <div id="show-mobile">
+    <div v-if="success" id="show-mobile">
         <div>
             <div class="cover-img">
                 <img src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg" alt="">
             </div>
             <div class="address">
-                <h2>Appartamento 3</h2>
-                <div><i class="fa-solid fa-location-dot"></i> 5 via Torino, Roma</div>
+                <h2>{{ apartment.title }}</h2>
+                <div><i class="fa-solid fa-location-dot"></i> {{ apartment.address }}</div>
             </div>
         </div>
         <div>
@@ -66,7 +66,7 @@
         </div>
         <div class="price"></div>
     </div>
-    <div id="show-desktop">
+    <div v-if="success" id="show-desktop">
         <div class="photo-album">
             <div class="pic-row d-flex justify-content-between">
                 <div class="pic-wrap">
@@ -86,52 +86,40 @@
         </div>
         <div class="apartment-info row g-0 fs-5">
             <div class="info-left col-12 col-md-6">
-                <h2>Nome appartamento bellissimo super lusso</h2>
+                <h2>{{ apartment.title }}</h2>
                 <p class="utilities fs-5">
-                    <span>2 stanze da letto</span>
-                    <span>2 bagni</span>
-                    <span>5 posti letto</span>
+                    <span>{{ apartment.room_number }} camere</span>
+                    <span>{{ apartment.bath_number }} bagni</span>
+                    <span>{{ apartment.bed_number }} posti letto</span>
                 </p>
                 <div class="description">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nihil. Ab odit voluptatem, tenetur corporis repellat quis rerum maxime fuga quibusdam, temporibus quisquam labore, impedit molestiae eaque recusandae. Sit, quae delectus sint repellendus explicabo rerum necessitatibus nemo similique suscipit provident.
                 </div>
             </div>
             <div class="info-right col-12 col-md-6 d-flex flex-column align-items-end justify-content-between">
-                <h2 class="price"><span>900</span> € / notte</h2>
+                <h2 class="price"><span>{{ apartment.price }}</span> € / notte</h2>
                 <div class="specs">
                     <div class="category">
-                        <i class="fa-solid fa-city me-2 fs-4"></i> <span>Appartamento</span>
+                        <i class="fa-solid fa-city me-2 fs-4"></i> <span>{{ apartment.category.name }}</span>
                     </div>
                     <div class="rating my-2">
                         <i class="fa-solid fa-star me-2 fs-4"></i> <span>5 recensioni</span>
                     </div>
                     <div class="address">
-                        <i class="fa-solid fa-location-dot me-2 fs-4"></i> <span>Via Strada Romana 13, 12448 Roma</span>
+                        <i class="fa-solid fa-location-dot me-2 fs-4"></i> <span>{{ apartment.address }}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="map-position">
-            <MapComponent/>
+            <MapComponent :apartmentLocation="apartment"/>
         </div>
         <div class="row g-0">
             <div class="services col-12 col-md-6">
                 <h3 class="mb-5">A tua disposizione :</h3>
                 <div class="row">
-                    <div class="col-6">
-                        <i class="fa-solid fa-wifi"></i>  Wi-Fi
-                    </div>
-                    <div class="col-6">
-                        <i class="fa-solid fa-wifi"></i> Wi-Fi
-                    </div>
-                    <div class="col-6">
-                        <i class="fa-solid fa-wifi"></i> Wi-Fi
-                    </div>
-                    <div class="col-6">
-                        <i class="fa-solid fa-wifi"></i> Wi-Fi
-                    </div>
-                    <div class="col-6">
-                        <i class="fa-solid fa-wifi"></i> Wi-Fi
+                    <div v-for="(service, index) in apartment.services" :key="index" class="col-6">
+                        <i class="fa-solid fa-wifi"></i>  {{ service.title }}
                     </div>
                 </div>
             </div>
@@ -161,16 +149,26 @@ import MapComponent from '@/components/Map/MapComponent.vue';
         },
         data(){
             return{
-                store
+                store,
+                apartment: {},
+                success: false
             }
         },
         methods: {
-            // getProduct(){
-            //     axios.get(``);
-            // }
+            getProduct(){
+                axios.get(`${store.apiBaseUrl}/${this.$route.params.slug}`).then((response)=>{
+                    if (response.data.success) {
+                        this.apartment = response.data.results;
+                        this.success = true;
+                        console.log(this.apartment)
+                    } else {
+                        this.$router.push({ name: "not-found" });
+                    }
+                });
+            }
         },
         mounted(){
-
+            this.getProduct();
         }
     }
 </script>
