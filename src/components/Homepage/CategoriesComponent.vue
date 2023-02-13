@@ -12,7 +12,6 @@
         <div class="categoryPic">
           <img :src="category.url" :alt="category.name" />
         </div>
-        <!-- <div class="layoverFull"></div> -->
         <div class="layoverPartial"></div>
         <div class="categoryInfo">
           <h3>{{ category.title }}</h3>
@@ -68,11 +67,6 @@ export default {
     height: 70vh;
     position: relative;
     cursor: pointer;
-
-    // &:hover .layoverFull {
-    //   opacity: 0;
-    // }
-
     &:hover .layoverPartial {
       opacity: 1;
     }
@@ -113,21 +107,6 @@ export default {
         object-fit: cover;
       }
     }
-    // .layoverFull {
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   height: 100%;
-    //   background-image: linear-gradient(
-    //     0deg,
-    //     rgba(0, 0, 0, 0.45) 100%,
-    //     rgba(0, 0, 0, 0.45) 100%
-    //   );
-    //   z-index: 245;
-    //   transition: opacity 0.5s ease-out;
-    // }
-
     .layoverPartial {
       position: absolute;
       top: 0;
