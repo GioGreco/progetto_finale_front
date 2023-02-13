@@ -10,7 +10,7 @@
                 <div class="col-12 col-md-6 col-lg-3 text-center">
                     <div class="creators">
                         <div class="creator">
-                            <a href="https://github.com/GioGreco">
+                            <a target="_blank" href="https://github.com/GioGreco">
                                 <img src="https://avatars.githubusercontent.com/u/108538293?v=4" alt="">
                                 GitHub <i class="fa-brands fa-github"></i>
                             </a>
@@ -20,7 +20,7 @@
                 <div class="col-12 col-md-6 col-lg-3 text-center">
                     <div class="creators">
                         <div class="creator">
-                            <a href="https://github.com/AndreaGallini">
+                            <a target="_blank" href="https://github.com/AndreaGallini">
                                 <img src="https://avatars.githubusercontent.com/u/75275610?v=4" alt="">
                                 GitHub <i class="fa-brands fa-github"></i>
                             </a>
@@ -30,7 +30,7 @@
                 <div class="col-12 col-md-6 col-lg-3 text-center">
                     <div class="creators">
                         <div class="creator">
-                            <a href="https://github.com/Roberta-Colombo">
+                            <a target="_blank" href="https://github.com/Roberta-Colombo">
                                 <img src="https://avatars.githubusercontent.com/u/108630368?v=4" alt="">
                                 GitHub <i class="fa-brands fa-github"></i>
                             </a>
@@ -40,7 +40,7 @@
                 <div class="col-12 col-md-6 col-lg-3 text-center">
                     <div class="creators">
                         <div class="creator">
-                            <a href="https://github.com/FrancescolaPiana">
+                            <a target="_blank" href="https://github.com/FrancescolaPiana">
                                 <img src="https://avatars.githubusercontent.com/u/109112620?s=400&u=7b06baa474e925a91d92f3f88b2f81915d19d06e&v=4" alt="">
                                 GitHub <i class="fa-brands fa-github"></i>
                             </a>

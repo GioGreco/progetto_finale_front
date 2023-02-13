@@ -300,7 +300,7 @@
                 <div class="imgcont">
                     <a href="#" class="cardapartments row">
                             <div class="col-12 col-md-6">
-                                <img  src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                                <img id="imgeneric" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
                             </div>
                             
                             <div class="col-12 col-md-6">
@@ -379,6 +379,12 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
     .maincont {
     display: flex;
   }
+}
+
+@media screen and (max-width: 800px) {
+    #imgeneric{
+        height: 160px;
+    }
 }
 
 // @media screen and (min-width: 800px) {
