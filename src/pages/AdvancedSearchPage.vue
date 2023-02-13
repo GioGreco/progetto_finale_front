@@ -8,7 +8,8 @@
         <div class="search">
                 <div class="row">
                     <div class="col">
-                        <input type="search" name="cerca" id="cerca" placeholder="Località">
+                        <div id="searchsmart">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -277,28 +278,7 @@
         <div class="row">
             <div class="col-12 col-md-8">
                 <div class="row gy-4">
-                    <!-- <div v-for="n in 2" class="col-6 col-md-12 card_sponsored_apartment">
-                <div class="imgcont">
-                    <a href="#" class="cardapartments row">
-                            <div class="col-12 col-md-6">
-                                <img id="imgeneric" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                            </div>
-                            
-                            <div class="col-12 col-md-6">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="text_infob">
-                                            <h1>Villa in Campagna con piano  dedicatyo</h1>
-                                            <h4>descrizione generica di una villa in campagna</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </a>
-                </div>
-                    </div> -->
-            
-            <div v-for="(apartment, index) in array1" :key="index"  class="col-6 col-md-12 card_apartment">
+            <div v-for="(apartment, index) in array2" :key="index"  class="col-6 col-md-12 card_apartment">
                 <div class="imgcont">
                     <a href="#" class="cardapartments row">
                             <div class="col-12 col-md-6">
@@ -328,60 +308,51 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="wholefilter">
-            
-            <div id="search">
-                
-            </div>
-            <!-- <input placeholder="inserisci una destinazione" type="search" name="location" id="location"> -->
+                        <div id="search">
+                        </div>
+                        <div class="category">
+                            <label for="openspace">open space</label>
+                            <input type="radio" name="categoria" id="openspace">
+                            <label for="appartamento">appartamento</label>
+                            <input type="radio" name="categoria" id="appartamento">
+                            <label for="attico">attico</label>
+                            <input type="radio" name="categoria" id="attico">
+                        </div>
 
-            <div class="category">
-                <label for="openspace">open space</label>
-                <input type="radio" name="categoria" id="openspace">
-                <label for="appartamento">appartamento</label>
-                <input type="radio" name="categoria" id="appartamento">
-                <label for="attico">attico</label>
-                <input type="radio" name="categoria" id="attico">
-            </div>
+                        <div class="services">
+                            <label for="wifi">Wi-Fi</label>
+                            <input type="checkbox" name="wi-fi" id="wifi">
+                            <label for="ariacondizionata">aria_condizionata</label>
+                            <input type="checkbox" name="aria_condizionata" id="ariacondizionata">
+                            <label for="piscina">piscina</label>
+                            <input type="checkbox" name="piscina" id="piscina">
+                        </div>
 
-            <div class="services">
-                <label for="wifi">Wi-Fi</label>
-                <input type="checkbox" name="wi-fi" id="wifi">
-                <label for="ariacondizionata">aria_condizionata</label>
-                <input type="checkbox" name="aria_condizionata" id="ariacondizionata">
-                <label for="piscina">piscina</label>
-                <input type="checkbox" name="piscina" id="piscina">
-            </div>
+                        <div class="stanze">
+                            <label for="tre">3</label>
+                            <input type="checkbox" name="tre" id="tre">
+                            <label for="seii">6</label>
+                            <input type="checkbox" name="seii" id="seii">
+                            <label for="nove">9</label>
+                            <input type="checkbox" name="nove" id="nove">
+                            <label for="moltii">more</label>
+                            <input type="checkbox" name="moltii" id="moltii">
+                        </div>
 
-            <div class="stanze">
-                <label for="tre">3</label>
-                <input type="checkbox" name="tre" id="tre">
-                <label for="seii">6</label>
-                <input type="checkbox" name="seii" id="seii">
-                <label for="nove">9</label>
-                <input type="checkbox" name="nove" id="nove">
-                <label for="moltii">more</label>
-                <input type="checkbox" name="moltii" id="moltii">
-            </div>
-
-            <div class="beds">
-                <label for="due">2</label>
-                <input type="checkbox" name="due" id="due">
-                <label for="quattro">4</label>
-                <input type="checkbox" name="quattro" id="quattro">
-                <label for="sei">6</label>
-                <input type="checkbox" name="sei" id="sei">
-                <label for="molti">more</label>
-                <input type="checkbox" name="molti" id="molti">
-            </div>
-    </div>
+                        <div class="beds">
+                            <label for="due">2</label>
+                            <input type="checkbox" name="due" id="due">
+                            <label for="quattro">4</label>
+                            <input type="checkbox" name="quattro" id="quattro">
+                            <label for="sei">6</label>
+                            <input type="checkbox" name="sei" id="sei">
+                            <label for="molti">more</label>
+                            <input type="checkbox" name="molti" id="molti">
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
-
-    <!-- <div>
-        <CardComponent></CardComponent>
-    </div> -->
-
 </template>
 
 <script>
@@ -467,25 +438,76 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
                     console.log('longitudine',this.longitudine);
 
                     this.getProducts();
+                    this.array2 = [];
+                })
+            },
+            initSearchBoxsmart(){
+                // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+                let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+                // console.log(ttSearchBox);
+
+                let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+                document.getElementById('searchsmart').appendChild(searchBoxHTML);
+                // console.log(searchBoxHTML);
+
+                ttSearchBox.on('tomtom.searchbox.resultsfound', function(data){
+                    // console.log(data);
+                })
+
+                ttSearchBox.on('tomtom.searchbox.resultselected', (data)=>{
+                    console.log(data);
+                    let lat = data.data.result.position.lat;
+                    this.latitudine = lat;
+                    console.log('latitudine',this.latitudine);
+
+                    let lng = data.data.result.position.lng;
+                    this.longitudine = lng;
+                    console.log('longitudine',this.longitudine);
+
+                    this.getProducts();
+                    this.array2 = [];
                 })
             },
             getProducts() {
                 axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
-                this.array1 = res.data.results;
+                this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
                 console.log(this.array1);
                 this.array1.forEach((item) => {
-                    if ((Math.sqrt(Math.pow(res.data.results.lat - this.latitudine,2)) + (Math.pow(res.data.results.lng - this.longitudine,2))) <= 100){
+
+                    // test per verificare tramite due coordinate a che valore corrispondesse 10km ovvero 0.7
+
+                    // let testlat = (45.468039324959975 - 45.4066846709084);
+                    // console.log('testlat',testlat);
+                    // let testlong = (9.181929807610116 - 9.275641476217764);
+                    // console.log('testlong',testlong);
+                    // let km10 = (Math.sqrt(Math.pow(testlat,2)) + (Math.pow(testlong,2)))
+                    // console.log('10kmvalue',km10);
+
+                    //
+
+                    let calclat = (item.lat - this.latitudine); //item.lat è la latitudine di ogni singolo appartamento ciclato //this.latitude è la latitudine del luogo selezionato
+                    // console.log('calcminus lat',calclat);   
+
+                    let calclong = (item.long - this.longitudine); //item.long è la latitudine di ogni singolo appartamento ciclato //this.latitude è la latitudine del luogo selezionato
+                    // console.log('calcminus long',calclong);
+
+                    if ((Math.sqrt (Math.pow(calclat,2)) + (Math.pow(calclong,2)) ) <= 1.4){ // 1.4 è il valore di raggio corrispondente a 20km
+                        console.log('sono ENTRO di 20km');
                         this.array2.push(item);
                         }
+                        else{
+                            console.log('sono OLTRE di 20km');
+                        }
                     });
-                console.log('array filtrato', this.array2);
                 this.loading = false;
+                console.log('array filtrato', this.array2);
             });
             },
         },
         mounted() {
             this.getProducts();
             this.initSearchBox();
+            this.initSearchBoxsmart();
             },
     }
 </script>
@@ -498,6 +520,13 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
     height: 800px;
     background-color: aqua;
     width: 500px;
+}
+
+@media screen and (max-width: 800px) {
+    .wholefilter{
+    display: none;
+    opacity: 0;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -518,16 +547,6 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
         height: 160px;
     }
 }
-
-// @media screen and (min-width: 800px) {
-//         .cardapartments{
-//         display: flex;
-//         img{
-//             width: 400px;
-//         }
-//     }
-// }
-
 
 
 .maincont::-webkit-scrollbar {
@@ -605,31 +624,6 @@ footer{
     padding-top: 40px;
     padding-bottom: 10px;
     overflow-y: scroll;
-    .card_sponsored_apartment{
-        .imgcont{
-            
-            position: relative;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            .sponsored_txt{
-                background-color: rgba(255, 255, 255, 0.61);
-                padding: 2px 15px;
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                text-transform: uppercase;
-                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-            }
-            .row{
-                background-color: $white;
-            }
-            img{
-                object-fit: cover;
-                height: 280px;
-                width: 100%;
-            }
-        }
-    }
     .card_apartment{
 
         .imgcont{
