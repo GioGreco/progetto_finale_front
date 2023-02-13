@@ -5,24 +5,18 @@
 <script>
     export default {
         name: 'MapComponent',
+        props: {
+            apartmentLocation: {
+                type: Object,
+                // required: true
+            }
+        },
         data(){
             return{
                 locations: [
                     {
-                        lat: 45.07,
-                        lng: 7.684
-                    },
-                    {
-                        lat: 45.38,
-                        lng: 9.32
-                    },
-                    {
-                        lat: 40.85,
-                        lng: 14.27
-                    },
-                    {
-                        lat: 41.89,
-                        lng: 12.50
+                        lat: this.$props.apartmentLocation.lat,
+                        lng: this.$props.apartmentLocation.long
                     }
                 ]
             }
@@ -43,7 +37,7 @@
             ,
             initMap(){
                 const tt = window.tt;
-                const focus = { lat: 41.89, lng: 12.50 }
+                const focus = { lat: this.$props.apartmentLocation.lat, lng: this.$props.apartmentLocation.long }
     
                 var map = tt.map({
                     key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
