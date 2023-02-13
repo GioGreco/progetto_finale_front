@@ -277,18 +277,20 @@
         <div class="row">
             <div class="col-12 col-md-8">
                 <div class="row gy-4">
-            <div v-for="n in 2" class="col-12 col-md-12 card_sponsored_apartment">
+                    <div v-for="n in 2" class="col-6 col-md-12 card_sponsored_apartment">
                 <div class="imgcont">
-                    <div class="sponsored_txt">
-                        sponsorizzato
-                    </div>
-                    <a href="#" class="">
-                            <img src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="text_infoa">
-                                        <h1>Villa in Campagna con piano  dedicato</h1>
-                                        <h4>descrizione generica di una villa in campagna</h4>
+                    <a href="#" class="cardapartments row">
+                            <div class="col-12 col-md-6">
+                                <img id="imgeneric" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                            </div>
+                            
+                            <div class="col-12 col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="text_infob">
+                                            <h1>Villa in Campagna con piano  dedicatyo</h1>
+                                            <h4>descrizione generica di una villa in campagna</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +302,7 @@
                 <div class="imgcont">
                     <a href="#" class="cardapartments row">
                             <div class="col-12 col-md-6">
-                                <img  src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                                <img id="imgeneric" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
                             </div>
                             
                             <div class="col-12 col-md-6">
@@ -379,6 +381,12 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
     .maincont {
     display: flex;
   }
+}
+
+@media screen and (max-width: 800px) {
+    #imgeneric{
+        height: 160px;
+    }
 }
 
 // @media screen and (min-width: 800px) {
@@ -460,12 +468,10 @@ footer{
         .imgcont{
             
             position: relative;
-            border-radius: 20px;
             box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             .sponsored_txt{
                 background-color: rgba(255, 255, 255, 0.61);
-                border-radius: 50px;
                 padding: 2px 15px;
                 position: absolute;
                 left: 10px;
@@ -477,7 +483,6 @@ footer{
                 background-color: $white;
             }
             img{
-                border-radius: 20px 20px 0px 0px;
                 object-fit: cover;
                 height: 280px;
                 width: 100%;
