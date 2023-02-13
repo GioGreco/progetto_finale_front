@@ -277,7 +277,7 @@
         <div class="row">
             <div class="col-12 col-md-8">
                 <div class="row gy-4">
-                    <div v-for="n in 2" class="col-6 col-md-12 card_sponsored_apartment">
+                    <!-- <div v-for="n in 2" class="col-6 col-md-12 card_sponsored_apartment">
                 <div class="imgcont">
                     <a href="#" class="cardapartments row">
                             <div class="col-12 col-md-6">
@@ -296,21 +296,27 @@
                             </div>
                     </a>
                 </div>
-            </div>
+                    </div> -->
             
-            <div v-for="n in 9" class="col-6 col-md-12 card_apartment">
+            <div v-for="(apartment, index) in array1" :key="index"  class="col-6 col-md-12 card_apartment">
                 <div class="imgcont">
                     <a href="#" class="cardapartments row">
                             <div class="col-12 col-md-6">
-                                <img id="imgeneric" src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                                <img id="imgeneric" src="{{apartment.cover_img}}" alt="">
                             </div>
                             
                             <div class="col-12 col-md-6">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="text_infob">
-                                            <h1>Villa in Campagna con piano  dedicatyo</h1>
-                                            <h4>descrizione generica di una villa in campagna</h4>
+                                            <h1>{{apartment.title}}</h1>
+                                            <h3><i class="fa-solid fa-location-dot"></i> {{apartment.address}}</h3>
+                                            <h3><i class="fa-solid fa-euro-sign"></i> {{apartment.price}}/Notte</h3>
+                                            <div class="d-flex">
+                                                <h4><i class="fa-solid fa-bed"></i> {{apartment.bed_number}}</h4>
+                                            <h4><i class="fa-solid fa-door-open"></i> {{apartment.room_number}}</h4>
+                                            <h4><i class="fa-solid fa-toilet"></i> {{apartment.bath_number}}</h4>
+                                            <h4><i class="fa-brands fa-codepen"></i> {{apartment.mq_value}}</h4></div>
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +327,53 @@
         </div>
             </div>
             <div class="col-12 col-md-4">
-                <FilterLargeComponent></FilterLargeComponent>
+                <div class="wholefilter">
+            
+            <div id="search">
+                
+            </div>
+            <!-- <input placeholder="inserisci una destinazione" type="search" name="location" id="location"> -->
+
+            <div class="category">
+                <label for="openspace">open space</label>
+                <input type="radio" name="categoria" id="openspace">
+                <label for="appartamento">appartamento</label>
+                <input type="radio" name="categoria" id="appartamento">
+                <label for="attico">attico</label>
+                <input type="radio" name="categoria" id="attico">
+            </div>
+
+            <div class="services">
+                <label for="wifi">Wi-Fi</label>
+                <input type="checkbox" name="wi-fi" id="wifi">
+                <label for="ariacondizionata">aria_condizionata</label>
+                <input type="checkbox" name="aria_condizionata" id="ariacondizionata">
+                <label for="piscina">piscina</label>
+                <input type="checkbox" name="piscina" id="piscina">
+            </div>
+
+            <div class="stanze">
+                <label for="tre">3</label>
+                <input type="checkbox" name="tre" id="tre">
+                <label for="seii">6</label>
+                <input type="checkbox" name="seii" id="seii">
+                <label for="nove">9</label>
+                <input type="checkbox" name="nove" id="nove">
+                <label for="moltii">more</label>
+                <input type="checkbox" name="moltii" id="moltii">
+            </div>
+
+            <div class="beds">
+                <label for="due">2</label>
+                <input type="checkbox" name="due" id="due">
+                <label for="quattro">4</label>
+                <input type="checkbox" name="quattro" id="quattro">
+                <label for="sei">6</label>
+                <input type="checkbox" name="sei" id="sei">
+                <label for="molti">more</label>
+                <input type="checkbox" name="molti" id="molti">
+            </div>
+    </div>
             </div>
         </div>
     </div>
@@ -333,6 +385,7 @@
 </template>
 
 <script>
+import {store} from '../store';
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
@@ -347,6 +400,34 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
 },
         data(){
             return{
+                store,
+                array1: [],
+                array2: [],
+                loading: true,
+                latitudine: "",
+                longitudine: "",
+                options: {
+                    idleTimePress: 100,
+                    minNumberOfCharacters: 0,
+                    searchOptions: {
+                        key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
+                        language: 'it-IT',
+                        limit: 5
+                    },
+                    autocompleteOptions: {
+                        key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
+                        language: 'it-IT'
+                    },
+                    noResultsMessage: 'No results found.'
+                },
+            }
+        },
+        watch: {
+            // whenever question changes, this function will run
+            question(newQuestion, oldQuestion) {
+            if (newQuestion.includes('?')) {
+                this.getAnswer()
+            }
             }
         },
         methods: {
@@ -361,14 +442,56 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
                         document.getElementById("smartnavop").style.height = "0px";
                      }
                 }
-            }
-        }
+            },
+            initSearchBox(){
+                // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+                let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+                // console.log(ttSearchBox);
+
+                let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+                document.getElementById('search').appendChild(searchBoxHTML);
+                // console.log(searchBoxHTML);
+
+                ttSearchBox.on('tomtom.searchbox.resultsfound', function(data){
+                    // console.log(data);
+                })
+
+                ttSearchBox.on('tomtom.searchbox.resultselected', (data)=>{
+                    console.log(data);
+                    let lat = data.data.result.position.lat;
+                    this.latitudine = lat;
+                    console.log(this.latitudine);
+
+                    let lng = data.data.result.position.lng;
+                    this.longitudine = lng;
+                    console.log(this.longitudine);
+
+                })
+            },
+            getProducts() {
+                axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
+                this.array1 = res.data.results;
+                console.log(this.array1);
+                this.loading = false;
+            });
+            },
+        },
+        mounted() {
+            this.getProducts();
+            this.initSearchBox();
+            },
     }
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/styles/partials/variables' as *;
 
+
+.wholefilter{
+    height: 800px;
+    background-color: aqua;
+    width: 500px;
+}
 
 @media screen and (min-width: 800px) {
     .navholder {
@@ -432,18 +555,29 @@ footer{
     }
 }
 .text_infob{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 10px 5px;
     color: $darkgrey;
     h1 {
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 800;
+    }
+    h3 {
+    width: 100%;
+    font-size: 1.3rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 800;
     }
     h4 {
-    font-size: .8rem;
+    font-size: .9rem;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -495,7 +629,6 @@ footer{
             transition: all 250ms;
             filter: brightness(.8);
                 &:hover{
-                    transform: scale(1.1);
                     filter: brightness(1.1);
                 }  
             position: relative;
@@ -505,7 +638,7 @@ footer{
             img{
                 // border-radius: 20px 20px 0px 0px;
                 object-fit: cover;
-                height: 300px;
+                height: 250px;
                 width: 100%;
             }
         }
