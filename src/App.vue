@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="navsmart">
     <NavbarComponent></NavbarComponent>
   </header>
   <main>
@@ -11,11 +11,12 @@
   </footer>
 </template>
 
-<script>
+<script> 
 import { store } from "./store";
 import NavbarComponent from "@/components/NavbarComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import axios from "axios";
+import FilterLargeComponent from './components/FilterLargeComponent.vue';
 
 export default {
   components: {
@@ -54,4 +55,24 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use './assets/styles/partials/variables' as *;
+
+@media screen and (min-width: 800px) {
+    .navsmart {
+    display: none;
+    opacity: 0;
+  }
+}
+@media screen and (max-width: 800px) {
+    .filterlarge {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.filterlarge{
+
+}
+
+</style>
