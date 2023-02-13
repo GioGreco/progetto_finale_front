@@ -164,7 +164,7 @@ export default {
 
 .jumbo {
   height: 300px;
-  background-image: url("/public/img/jumbo-small.jpg");
+  background-image: url("/img/jumbo-small.jpg");
   background-size: cover;
   background-position: center;
   color: $white;
@@ -279,7 +279,7 @@ p {
 
   .jumbo {
     height: 500px;
-    background-image: url("/public/img/jumbo-cut.jpg");
+    background-image: url("/img/jumbo-cut.jpg");
   }
 
   .claim {
