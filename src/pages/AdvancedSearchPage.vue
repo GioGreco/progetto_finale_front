@@ -274,18 +274,20 @@
 </div>
 
     <div class="container maincont">
-        <div class="row gy-4">
-            <div class="col-12 card_sponsored_apartment">
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <div class="row gy-4">
+            <div v-for="n in 2" class="col-12 col-md-12 card_sponsored_apartment">
                 <div class="imgcont">
                     <div class="sponsored_txt">
                         sponsorizzato
                     </div>
-                    <a class="">
+                    <a href="#" class="">
                             <img src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="text_infoa">
-                                        <h1>Villa in Campagna con piano  dedicatyo</h1>
+                                        <h1>Villa in Campagna con piano  dedicato</h1>
                                         <h4>descrizione generica di una villa in campagna</h4>
                                     </div>
                                 </div>
@@ -294,20 +296,30 @@
                 </div>
             </div>
             
-            <div v-for="n in 10" class="col-6 card_apartment">
+            <div v-for="n in 9" class="col-6 col-md-12 card_apartment">
                 <div class="imgcont">
-                    <a class="">
-                            <img src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="text_infob">
-                                        <h1>Villa in Campagna con piano  dedicatyo</h1>
-                                        <h4>descrizione generica di una villa in campagna</h4>
+                    <a href="#" class="cardapartments row">
+                            <div class="col-12 col-md-6">
+                                <img  src="https://images.pexels.com/photos/7595109/pexels-photo-7595109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                            </div>
+                            
+                            <div class="col-12 col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="text_infob">
+                                            <h1>Villa in Campagna con piano  dedicatyo</h1>
+                                            <h4>descrizione generica di una villa in campagna</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                     </a>
                 </div>
+            </div>
+        </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <FilterLargeComponent></FilterLargeComponent>
             </div>
         </div>
     </div>
@@ -322,13 +334,15 @@
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
+import FilterLargeComponent from '../components/FilterLargeComponent.vue';
 
     export default {
         name: 'AdvancedSearchPage',
         components: {
-        HeaderComponent,
-        CardComponent,
-        },
+    HeaderComponent,
+    CardComponent,
+    FilterLargeComponent
+},
         data(){
             return{
             }
@@ -361,6 +375,27 @@ import CardComponent from '../components/AdvancedSearch/CardComponent.vue';
   }
 }
 
+@media screen and (min-width: 800px) {
+    .maincont {
+    display: flex;
+  }
+}
+
+// @media screen and (min-width: 800px) {
+//         .cardapartments{
+//         display: flex;
+//         img{
+//             width: 400px;
+//         }
+//     }
+// }
+
+
+
+.maincont::-webkit-scrollbar {
+  display: none;
+}
+
 footer{
     z-index: 1;
 }
@@ -372,10 +407,11 @@ footer{
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
+    font-size: 1.6rem;
     text-overflow: ellipsis;
-    margin-bottom: 10px;
     font-weight: 800;
     text-transform: uppercase;
+    margin-bottom: 0;
 
     }
     h4 {
@@ -383,8 +419,8 @@ footer{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 5px;
-        font-weight: 800;
+        margin-bottom: 0;
+
     }
 }
 .text_infob{
@@ -422,6 +458,7 @@ footer{
     overflow-y: scroll;
     .card_sponsored_apartment{
         .imgcont{
+            
             position: relative;
             border-radius: 20px;
             box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
@@ -450,17 +487,20 @@ footer{
     .card_apartment{
 
         .imgcont{
+            transition: all 250ms;
+            filter: brightness(.8);
+                &:hover{
+                    transform: scale(1.1);
+                    filter: brightness(1.1);
+                }  
             position: relative;
-            border-radius: 10px;
             box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
             .row{
-                background-color: $lightgrey;
             }
             img{
                 // border-radius: 20px 20px 0px 0px;
                 object-fit: cover;
-                height: 170px;
+                height: 300px;
                 width: 100%;
             }
         }

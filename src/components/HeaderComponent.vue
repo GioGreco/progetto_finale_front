@@ -3,9 +3,9 @@
     <div class="container">
         <Router-link class="title" :to="'/'">BoolBnB</Router-link> 
         <!-- <a class="title" href="#">BoolBnB</a> -->
-
         <ul class="">
-            <li><a href="http://127.0.0.1:8000/">Account</a></li>
+            <li><a href="http://127.0.0.1:8000/">Log in</a></li>
+            <li><a href="http://127.0.0.1:8000/register">Registrati</a></li>
         </ul>
     </div>
 </div>
@@ -20,7 +20,15 @@
 <style lang="scss" scoped>
 
 @use '../assets/styles/partials/variables' as *;
-    
+
+
+@media screen and (min-width: 800px) {
+    .allm {
+    height: 80px;
+    display: flex;
+  }
+}
+
 .allm{
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.150);
     background-color: $white;

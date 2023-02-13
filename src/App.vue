@@ -13,12 +13,14 @@
 <script> 
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
+import FilterLargeComponent from './components/FilterLargeComponent.vue';
 
   export default {
     components: {
-      NavbarComponent,
-      FooterComponent
-    }
+    NavbarComponent,
+    FooterComponent,
+    FilterLargeComponent
+}
   }
 </script>
 
@@ -31,4 +33,15 @@ import FooterComponent from '@/components/FooterComponent.vue';
     opacity: 0;
   }
 }
+@media screen and (max-width: 800px) {
+    .filterlarge {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.filterlarge{
+
+}
+
 </style>
