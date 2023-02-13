@@ -460,23 +460,25 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
                     console.log(data);
                     let lat = data.data.result.position.lat;
                     this.latitudine = lat;
-                    console.log(this.latitudine);
+                    console.log('latitudine',this.latitudine);
 
                     let lng = data.data.result.position.lng;
                     this.longitudine = lng;
-                    console.log(this.longitudine);
+                    console.log('longitudine',this.longitudine);
 
+                    this.getProducts();
                 })
             },
             getProducts() {
                 axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
                 this.array1 = res.data.results;
                 console.log(this.array1);
-                this.products.forEach((item) => {
-                    if ((res.data.results.lat)){
+                this.array1.forEach((item) => {
+                    if ((Math.sqrt(Math.pow(res.data.results.lat - this.latitudine,2)) + (Math.pow(res.data.results.lng - this.longitudine,2))) <= 100){
                         this.array2.push(item);
                         }
                     });
+                console.log('array filtrato', this.array2);
                 this.loading = false;
             });
             },
