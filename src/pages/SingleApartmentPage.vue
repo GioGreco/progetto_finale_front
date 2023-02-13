@@ -2,6 +2,23 @@
     <header>
         <HeaderComponentVue></HeaderComponentVue>
     </header>
+    <div id="show-mobile">
+        <div>
+            <div class="cover-img"></div>
+            <div>
+                <h2></h2>
+                <div class="address"></div>
+            </div>
+        </div>
+        <div>
+            <div class="gallery"></div>
+            <div class="details"></div>
+            <div class="description"></div>
+            <div class="services"></div>
+            <div class="location"></div>
+        </div>
+        <div class="price"></div>
+    </div>
     <div class="photo-album">
         <div class="pic-row d-flex justify-content-between">
             <div class="pic-wrap">
@@ -19,10 +36,10 @@
         </div>
         <div class="bottom-layer"></div>
     </div>
-    <div class="apartment-info row g-0">
+    <div class="apartment-info row g-0 fs-5">
         <div class="info-left col-12 col-md-6">
-            <h4>Nome Appartamento</h4>
-            <p class="utilities">
+            <h2>Nome appartamento bellissimo super lusso</h2>
+            <p class="utilities fs-5">
                 <span>2 stanze da letto</span>
                 <span>2 bagni</span>
                 <span>5 posti letto</span>
@@ -31,51 +48,51 @@
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, nihil. Ab odit voluptatem, tenetur corporis repellat quis rerum maxime fuga quibusdam, temporibus quisquam labore, impedit molestiae eaque recusandae. Sit, quae delectus sint repellendus explicabo rerum necessitatibus nemo similique suscipit provident.
             </div>
         </div>
-        <div class="info-right col-12 col-md-6">
-            <h3 class="price"><span>900</span> € / notte</h3>
-            <div>
+        <div class="info-right col-12 col-md-6 d-flex flex-column align-items-end justify-content-between">
+            <h2 class="price"><span>900</span> € / notte</h2>
+            <div class="specs">
                 <div class="category">
-                    <i class="fa-solid fa-building"></i> <span>Appartamento</span>
+                    <i class="fa-solid fa-city me-2 fs-4"></i> <span>Appartamento</span>
                 </div>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i> <span>5 recensioni</span>
+                <div class="rating my-2">
+                    <i class="fa-solid fa-star me-2 fs-4"></i> <span>5 recensioni</span>
                 </div>
                 <div class="address">
-                    <i class="fa-solid fa-marker"></i> <span>Via Strada Romana 13, 12448 Roma</span>
+                    <i class="fa-solid fa-location-dot me-2 fs-4"></i> <span>Via Strada Romana 13, 12448 Roma</span>
                 </div>
             </div>
         </div>
     </div>
     <div class="map-position">
-    
+        <MapComponent/>
     </div>
-    <div class="row g-0 container mx-auto">
+    <div class="row g-0">
         <div class="services col-12 col-md-6">
-            <h4>A tua Disposizione</h4>
+            <h3 class="mb-5">A tua disposizione :</h3>
             <div class="row">
                 <div class="col-6">
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-wifi"></i>  Wi-Fi
                 </div>
                 <div class="col-6">
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-wifi"></i> Wi-Fi
                 </div>
                 <div class="col-6">
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-wifi"></i> Wi-Fi
                 </div>
                 <div class="col-6">
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-wifi"></i> Wi-Fi
                 </div>
                 <div class="col-6">
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-wifi"></i> Wi-Fi
                 </div>
             </div>
         </div>
-        <div class="contact-form col-12 col-md-6 d-flex justify-content-center align-items-center">
+        <div class="contact-form col-12 col-md-6">
             <div class="contact-inner d-flex flex-column justify-content-between align-items-center">
-                <h5>Necessiti di più informazioni?</h5>
-                <p>None esitare a contattare l'host nel caso tu abbia domande sull'alloggio, la zona o i servizi offerti.</p>
+                <h5 class="text-white">Necessiti di più informazioni?</h5>
+                <p class='m-0'>None esitare a contattare l'host nel caso tu abbia domande sull'alloggio, la zona o i servizi offerti.</p>
                 <span>Clicca qui per inviare un messaggio</span>
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-regular fa-envelope fs-2 text-white"></i>
             </div>
         </div>
     </div>
@@ -84,11 +101,13 @@
 <script>
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent.vue';
+import MapComponent from '@/components/Map/MapComponent.vue';
 
     export default {
         name: 'SingleApartmentPage',
         components: {
-            HeaderComponent
+            HeaderComponent,
+            MapComponent
         },
         data(){
             return{
@@ -109,7 +128,7 @@ import HeaderComponent from '../components/HeaderComponent.vue';
     .photo-album{
         height: 400px;
         position: relative;
-        margin-bottom: 50px;
+        margin-bottom: 15px;
         .pic-row{
             height: 100%;
             padding: 0 50px;
@@ -143,32 +162,93 @@ import HeaderComponent from '../components/HeaderComponent.vue';
 
     .apartment-info{
         .info-left{
-            background-color: wheat;
-            height: 200px;
-
+            padding: 60px 100px;
+            h2{
+                color: $sangria;
+                font-weight: bolder;
+            }
             .utilities{
                 span{
                     &:not(:last-of-type)::after{
-                        content: '\2022';
-                        margin: 0 5px;
+                        content: '';
+                        display: inline-block;
+                        height: 5px;
+                        width: 5px;
+                        border-radius: 50%;
+                        background-color: $sangria;
+                        margin: 0 5px 2px;
                     }
                 }
             }
         }
         .info-right{
-            background-color: firebrick;
-            height: 200px;
+            padding: 60px 100px;
+            i{
+                color: $emerald;
+            }
+            .price{
+                color: $emerald;
+                font-weight: bolder;
+                font-size: 2.3rem;
+            }
+            .specs{
+                text-align: end;
+            }
         }
     }
 
     .services{
-
+        padding: 60px 100px;
+        h3{
+            color: $sangria;
+            font-weight: bolder;
+        }
+        i{
+            border: 2px solid $mauve;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: .9rem;
+            color: $mauve;
+            height: 30px;
+            width: 30px;
+            margin-right: 3px;
+        }
+        .col-6{
+            margin-bottom: 16px;
+        }
     }
     .contact-form{
+        padding: 60px 100px;
+
         .contact-inner{
-            background-color: sandybrown;
+            background-color: $mauve;
             padding: 20px;
+            height: 100%;
             border-radius: 20px;
+            text-align: center;
+            color: $sangria;
+            h5{
+                border-bottom: 1px solid white;
+                padding-bottom: 3px;
+                width: 85%;
+            }
         }
+    }
+
+    @media screen and (max-width: 1200px) {
+        
+    }
+
+    @media screen and (max-width: 992px) {
+        
+    }
+
+    @media screen and (max-width: 768px) {
+        
+    }
+
+    @media screen and (max-width: 576px) {
+        
     }
 </style>
