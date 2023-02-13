@@ -22,6 +22,7 @@ export default {
   components: {
     NavbarComponent,
     FooterComponent,
+    FilterLargeComponent
   },
   data() {
     return {
