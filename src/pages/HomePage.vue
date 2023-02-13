@@ -1,6 +1,7 @@
 <template>
 
     homepage
+    <RouterLink :to="'/apartment'">appartamento singolo</RouterLink>
 
     <!-- <div>
         <div>
