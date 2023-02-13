@@ -44,7 +44,7 @@ export default {
   height: 400px;
   width: 80%;
   .item-inner {
-    width: 700px;
+    width: 280px;
     height: 100%;
     border-radius: 25px;
     overflow: hidden;
@@ -73,6 +73,14 @@ export default {
       font-size: larger;
       background-color: rgba(0, 0, 0, 0.5);
       text-align: left;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .card-item {
+    .item-inner {
+      width: 600px;
     }
   }
 }

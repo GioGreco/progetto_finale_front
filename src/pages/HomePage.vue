@@ -17,8 +17,10 @@
       </div>
 
       <div class="nav-btns d-none d-md-block d-flex">
-        <button class="me-3">Login</button>
-        <button>Diventa un host</button>
+        <button class="me-3"><a href="http://127.0.0.1:8000/">Login</a></button>
+        <button>
+          <a href="http://127.0.0.1:8000/register">Diventa un host</a>
+        </button>
       </div>
     </nav>
 
@@ -26,12 +28,17 @@
     <div class="claim d-none d-md-block">Sentiti a casa. Ovunque tu sia.</div>
 
     <div class="searchbar">
-      <input
+      <!-- <input
         type="text"
         v-model.trim="store.searchedCity"
         @keyup.enter="search"
         placeholder="Inserisci una destinazione..."
-      />
+      /> -->
+      <router-link class="btn ps-0" :to="{ name: 'search' }">
+        <button class="btn-search">
+          <strong>Cerca un appartamento</strong>
+        </button>
+      </router-link>
     </div>
   </div>
 
@@ -187,6 +194,10 @@ export default {
     &:hover {
       scale: 1.1;
     }
+
+    a {
+      color: $white;
+    }
   }
 }
 
@@ -213,11 +224,19 @@ export default {
   transform: translate(-50%, -90%);
   width: 50%;
 
-  input {
+  input,
+  button {
     width: 100%;
     padding: 9px 13px;
     border-radius: 10px;
     border-style: none;
+  }
+
+  button {
+    position: absolute;
+    font-size: 1.3rem;
+    color: $dark;
+    bottom: 10px;
   }
 }
 
@@ -295,6 +314,13 @@ p {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
+
+    button {
+      left: 15%;
+      width: 70%;
+      font-size: 1.4rem;
+      bottom: -30px;
+    }
   }
 
   .my-container {
