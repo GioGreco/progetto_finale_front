@@ -472,6 +472,11 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
                 axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
                 this.array1 = res.data.results;
                 console.log(this.array1);
+                this.products.forEach((item) => {
+                    if ((res.data.results.lat)){
+                        this.array2.push(item);
+                        }
+                    });
                 this.loading = false;
             });
             },
