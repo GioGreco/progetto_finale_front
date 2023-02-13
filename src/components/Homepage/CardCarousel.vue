@@ -45,42 +45,41 @@ export default {
 @use "../../assets/styles/main.scss" as *;
 
 .card-item {
-    height: 400px;
-    width: 60%;
-    .item-inner {
+  height: 400px;
+  width: 60%;
+  .item-inner {
+    height: 100%;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    .layover {
       height: 100%;
-      border-radius: 25px;
-      overflow: hidden;
-      position: relative;
-      .layover {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.206);
-      }
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-      .paid-content {
-        position: absolute;
-        top: 15px;
-        right: 10px;
-        background-color: bisque;
-        padding: 4px 8px;
-        color: $white;
-      }
-      .info {
-        position: absolute;
-        bottom: 15px;
-        left: 15px;
-        color: $white;
-        font-weight: bolder;
-        font-size: larger;
-      }
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.206);
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    .paid-content {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      background-color: bisque;
+      padding: 4px 8px;
+      color: $white;
+    }
+    .info {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      color: $white;
+      font-weight: bolder;
+      font-size: larger;
     }
   }
 }
