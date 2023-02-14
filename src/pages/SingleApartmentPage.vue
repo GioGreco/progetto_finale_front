@@ -102,9 +102,9 @@
                     <div class="category">
                         <i class="fa-solid fa-city me-2 fs-4"></i> <span>{{ apartment.category.name }}</span>
                     </div>
-                    <div class="rating my-2">
+                    <!-- <div class="rating my-2">
                         <i class="fa-solid fa-star me-2 fs-4"></i> <span>5 recensioni</span>
-                    </div>
+                    </div> -->
                     <div class="address">
                         <i class="fa-solid fa-location-dot me-2 fs-4"></i> <span>{{ apartment.address }}</span>
                     </div>
@@ -116,7 +116,7 @@
         </div>
         <div class="row g-0">
             <div class="services col-12 col-md-6">
-                <h3 class="mb-5">A tua disposizione :</h3>
+                <h3 class="mb-4">A tua disposizione :</h3>
                 <div class="row">
                     <div v-for="(service, index) in apartment.services" :key="index" class="col-6">
                         <i class="fa-solid fa-wifi"></i>  {{ service.title }}
@@ -125,7 +125,7 @@
             </div>
             <div class="contact-form col-12 col-md-6">
                 <div class="contact-inner d-flex flex-column justify-content-between align-items-center">
-                    <h5 class="text-white">Necessiti di più informazioni?</h5>
+                    <h3 class="text-white">Necessiti di più informazioni?</h3>
                     <p class='m-0'>Non esitare a contattare l'host nel caso tu abbia domande sull'alloggio, la zona o i servizi offerti.</p>
                     <span>Clicca qui per inviare un messaggio</span>
                     <Transition name="contactFX">

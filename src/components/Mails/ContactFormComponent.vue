@@ -8,19 +8,19 @@
             <input id="apartment_id" class="border-0 border-bottom" name="apartment_id" type="text" disabled :value="apartmentId">
         </div>
         <div class="mb-3">
-            <input class="border-0 border-bottom w-100 d-block" type="text" name="name" id="name" placeholder="Name" v-model="formData.name" :class="{ 'is-invalid': formData.errors.name }" required/>
+            <input class="border-0 border-bottom w-100 d-block" type="text" name="name" id="name" placeholder="Il tuo nome" v-model="formData.name" :class="{ 'is-invalid': formData.errors.name }" required/>
             <p v-for="(error, index) in formData.errors.name" :key="index" class="invalid-feedback">
                 {{ error }}
             </p>
         </div>
         <div class="mb-3">
-            <input class="border-0 border-bottom w-100 d-block" type="email" name="email" id="email" placeholder="Email" v-model="formData.email" :class="{ 'is-invalid': formData.errors.email }" required/>
+            <input class="border-0 border-bottom w-100 d-block" type="email" name="email" id="email" placeholder="Il tuo indirizzo email" v-model="formData.email" :class="{ 'is-invalid': formData.errors.email }" required/>
             <p v-for="(error, index) in formData.errors.email" :key="index" class="invalid-feedback">
                 {{ error }}
             </p>
         </div>
         <div class="mb-3">
-            <textarea class="border-0 border-bottom w-100 d-block" name="message" id="message" cols="30" rows="5" placeholder="Message" v-model="formData.message" :class="{ 'is-invalid': formData.errors.message }" required></textarea>
+            <textarea class="border-0 border-bottom w-100 d-block" name="message" id="message" cols="30" rows="5" placeholder="Messaggio" v-model="formData.message" :class="{ 'is-invalid': formData.errors.message }" required></textarea>
             <p v-for="(error, index) in formData.errors.message" :key="index" class="invalid-feedback">
                 {{ error }}
             </p>
@@ -100,9 +100,10 @@ form{
     button{
         border-color: $sangria;
         color: $sangria;
-        &:hover{
-            background-color: $sangria;
-            color: $white
+        &:hover, &:active, &:focus{
+            background-color: $sangria !important;
+            color: $white !important;
+            border: 1px solid $sangria !important;
         }
     }
 }
