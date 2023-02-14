@@ -377,58 +377,125 @@
                 <div class="wholefilter">
                         <div id="search">
                         </div>
-                        <div class="category d-flex gap-3">
-                            <label for="openspace">open space</label>
-                            <input type="radio" name="categoria" id="openspace">
-                            <label for="appartamento">appartamento</label>
+                        <h2>categorie:</h2>
+                        <ul class="category d-flex flex-wrap gap-3">
+                            <li>
+                                <label for="open_space">open space</label>
+                            <input type="radio" name="categoria" id="open_space">
+                            </li>
+                            <li>
+                                <label for="intera_casa">intera casa</label>
+                            <input type="radio" name="categoria" id="intera_casa">
+                            </li>
+                            <li>
+                            
+                                <label for="appartamento">appartamento</label>
                             <input type="radio" name="categoria" id="appartamento">
-                            <label for="attico">attico</label>
+                            </li>
+                            <li>
+                            
+                                <label for="attico">attico</label>
                             <input type="radio" name="categoria" id="attico">
-                        </div>
+                            </li>
+                            <li>
+                                <label for="villa_in_campagna">villa in campagna</label>
+                            <input type="radio" name="categoria" id="villa_in_campagna">
+                            </li>
+                            <li>
+                                <label for="villa_al_mare">villa al mare</label>
+                            <input type="radio" name="categoria" id="villa_al_mare">
+                            </li>
+                            <li>
+                                <label for="industriale">industriale</label>
+                            <input type="radio" name="categoria" id="industriale">
+                            </li>
+                            <li>
+                            
+                                <label for="contemporaneo">contemporaneo</label>
+                            <input type="radio" name="categoria" id="contemporaneo">
+                            </li>
+                            <li>
+                            
+                                <label for="Villa_in_stile_romano">Villa in stile Romano</label>
+                            <input type="radio" name="categoria" id="Villa_in_stile_romano">
+                            </li>
+                        </ul>
 
-                        <div class="services d-flex gap-3">
-                            <label for="wifi">Wi-Fi</label>
-                            <input type="checkbox" name="wi-fi" id="wifi">
-                            <label for="ariacondizionata">aria_condizionata</label>
-                            <input type="checkbox" name="aria_condizionata" id="ariacondizionata">
-                            <label for="piscina">piscina</label>
-                            <input type="checkbox" name="piscina" id="piscina">
-                        </div>
+                        <hr>
+                        <h2>servizi:</h2>
+                        <ul class="services d-flex flex-wrap gap-3">
+                            <li>
+                                <label for="wifi">Wi-Fi</label>
+                                <input type="checkbox" name="wi-fi" id="wifi">
+                            </li>
+                        </ul>
 
-                        <div class="stanze d-flex gap-3">
-                            <label for="tre">3</label>
+                        <hr>
+                        <h2>stanze:</h2>
+                        <ul class="stanze d-flex gap-3">
+                            <li>
+                                <label for="tre">3</label>
                             <input type="radio" name="stanze" id="tre">
-                            <label for="seii">6</label>
+                            </li>
+                            <li>
+                                <label for="seii">6</label>
                             <input type="radio" name="stanze" id="seii">
-                            <label for="nove">9</label>
+                            </li>
+                            <li>
+                                <label for="nove">9</label>
                             <input type="radio" name="stanze" id="nove">
-                            <label for="moltii">more</label>
+                            </li>
+                            <li>
+                                <label for="moltii">più</label>
                             <input type="radio" name="stanze" id="moltii">
-                        </div>
+                            </li>
+                        </ul>
 
-                        <div class="beds d-flex gap-3">
-                            <label for="due">2</label>
+                        <hr>  
+                        <h2>letti:</h2>
+                        <ul class="beds d-flex gap-3"> 
+                            <li>
+                                <label for="due">2</label>
                             <input type="radio" name="beds" id="due">
-                            <label for="quattro">4</label>
+                            </li>
+                            <li>
+                                <label for="quattro">4</label>
                             <input type="radio" name="beds" id="quattro">
-                            <label for="sei">6</label>
+                            </li>
+                            <li>
+                                <label for="sei">6</label>
                             <input type="radio" name="beds" id="sei">
-                            <label for="molti">more</label>
+                            </li>
+                            <li>
+                                <label for="molti">più</label>
                             <input type="radio" name="beds" id="molti">
-                        </div>
-                        
-                        <div class="kmrange d-flex gap-3">
-                            <label for="five">5km</label>
-                            <input @click="setKilometers" type="radio" name="kmvar" id="five">
-                            <label for="ten">10km</label>
+                            </li>
+                        </ul>
+
+                        <hr>
+                        <h2>Raggio:</h2>
+                        <ul class="kmrange d-flex gap-3">
+                            <li>
+                                <label for="five">5km</label>
+                                <input @click="setKilometers" type="radio" name="kmvar" id="five">
+                            </li>  
+                            <li>
+                                <label for="ten">10km</label>
                             <input @click="setKilometers" type="radio" name="kmvar" id="ten">
-                            <label for="twenty">20km</label>
+                            </li>  
+                            <li>
+                                <label for="twenty">20km</label>
                             <input @click="setKilometers" type="radio" name="kmvar" id="twenty" checked>
-                            <label for="fifty">50km</label>
+                            </li>  
+                            <li>
+                                <label for="fifty">50km</label>
                             <input @click="setKilometers" type="radio" name="kmvar" id="fifty">
-                            <label for="hundred">100km</label>
+                            </li>  
+                            <li>
+                                <label for="hundred">100km</label>
                             <input @click="setKilometers" type="radio" name="kmvar" id="hundred">
-                        </div>
+                            </li>  
+                        </ul>
                     </div>
             </div>
         </div>
@@ -454,6 +521,8 @@ export default {
                 store,
                 varkm: "20",  //base 20km
                 distanza: "",
+                categories: [],
+                services: [],
                 array1: [],
                 array2: [],
                 loading: true,
@@ -560,8 +629,8 @@ export default {
         this.getProducts();
         this.array2 = [];
       });
-    },
-    initSearchBoxsmart() {
+            },
+            initSearchBoxsmart() {
       // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
       let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
       // console.log(ttSearchBox);
@@ -624,6 +693,7 @@ export default {
                     console.log('longitudine array item',lat2);
 
                         this.getLatLongDist(lat2, long2)
+
                         console.log('distanza dentro la funz',this.distanza);
                         if (this.distanza <= this.varkm){ 
                             console.log('sono ENTRO di 20km');
@@ -637,8 +707,15 @@ export default {
                 console.log('array filtrato', this.array2);
             });
             },
+            getServices(){
+                axios.get(`${this.store.apiBaseUrl}/services`).then((res) => {
+                this.services= res.data.results; //array 1 chiamata tutti gli appartamenti axios
+                console.log(this.services);
+            })
+            }
         },
         mounted() {
+            this.getServices();
             this.getProducts();
             this.initSearchBox();
             this.initSearchBoxsmart();
@@ -651,9 +728,22 @@ export default {
 
 
 .wholefilter{
-    height: 800px;
+    height: 900px;
     background-color: rgb(204, 221, 221);
-    width: 500px;
+    width: 400px;
+    padding: 20px 40px;
+    h2{
+        margin-top: 10px;
+        text-transform: capitalize;
+    }
+    li{
+    label{
+        font-size: 1.1rem;
+    }
+    input{
+        margin: 0px 5px;
+    }
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -673,6 +763,7 @@ export default {
 @media screen and (min-width: 800px) {
   .maincont {
     display: flex;
+    margin-top: 70px !important;
   }
 }
 
