@@ -310,7 +310,7 @@
                 <div class="wholefilter">
                         <div id="search">
                         </div>
-                        <div class="category">
+                        <div class="category d-flex gap-3">
                             <label for="openspace">open space</label>
                             <input type="radio" name="categoria" id="openspace">
                             <label for="appartamento">appartamento</label>
@@ -319,7 +319,7 @@
                             <input type="radio" name="categoria" id="attico">
                         </div>
 
-                        <div class="services">
+                        <div class="services d-flex gap-3">
                             <label for="wifi">Wi-Fi</label>
                             <input type="checkbox" name="wi-fi" id="wifi">
                             <label for="ariacondizionata">aria_condizionata</label>
@@ -328,26 +328,39 @@
                             <input type="checkbox" name="piscina" id="piscina">
                         </div>
 
-                        <div class="stanze">
+                        <div class="stanze d-flex gap-3">
                             <label for="tre">3</label>
-                            <input type="checkbox" name="tre" id="tre">
+                            <input type="radio" name="stanze" id="tre">
                             <label for="seii">6</label>
-                            <input type="checkbox" name="seii" id="seii">
+                            <input type="radio" name="stanze" id="seii">
                             <label for="nove">9</label>
-                            <input type="checkbox" name="nove" id="nove">
+                            <input type="radio" name="stanze" id="nove">
                             <label for="moltii">more</label>
-                            <input type="checkbox" name="moltii" id="moltii">
+                            <input type="radio" name="stanze" id="moltii">
                         </div>
 
-                        <div class="beds">
+                        <div class="beds d-flex gap-3">
                             <label for="due">2</label>
-                            <input type="checkbox" name="due" id="due">
+                            <input type="radio" name="beds" id="due">
                             <label for="quattro">4</label>
-                            <input type="checkbox" name="quattro" id="quattro">
+                            <input type="radio" name="beds" id="quattro">
                             <label for="sei">6</label>
-                            <input type="checkbox" name="sei" id="sei">
+                            <input type="radio" name="beds" id="sei">
                             <label for="molti">more</label>
-                            <input type="checkbox" name="molti" id="molti">
+                            <input type="radio" name="beds" id="molti">
+                        </div>
+                        
+                        <div class="kmrange d-flex gap-3">
+                            <label for="five">5km</label>
+                            <input @click="setKilometers" type="radio" name="kmvar" id="five">
+                            <label for="ten">10km</label>
+                            <input @click="setKilometers" type="radio" name="kmvar" id="ten">
+                            <label for="twenty">20km</label>
+                            <input @click="setKilometers" type="radio" name="kmvar" id="twenty" checked>
+                            <label for="fifty">50km</label>
+                            <input @click="setKilometers" type="radio" name="kmvar" id="fifty">
+                            <label for="hundred">100km</label>
+                            <input @click="setKilometers" type="radio" name="kmvar" id="hundred">
                         </div>
                     </div>
             </div>
@@ -372,6 +385,8 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
         data(){
             return{
                 store,
+                varkm: "20",  //base 20km
+                distanza: "",
                 array1: [],
                 array2: [],
                 loading: true,
@@ -402,6 +417,44 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
             }
         },
         methods: {
+            setKilometers(){
+                let km5 = document.getElementById("five");
+                let km10 = document.getElementById("ten");
+                let km20 = document.getElementById("twenty");
+                let km50 = document.getElementById("fifty");
+                let km100 = document.getElementById("hundred");
+
+                if (km5.checked) {
+                    console.log('5km selected');
+                    this.varkm = 5;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km10.checked){
+                    console.log('10km selected');
+                    this.varkm = 10;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km20.checked){
+                    console.log('20km selected');
+                    this.varkm = 20;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km50.checked){
+                    console.log('50km selected');
+                    this.varkm = 50;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km100.checked){
+                    console.log('100km selected');
+                    this.varkm = 100;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+            },
             functionOpener () {
                 document.getElementById("filter_open_closer").onchange = (e) => {
                     let checked = e.target.checked;
@@ -468,36 +521,50 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
                     this.array2 = [];
                 })
             },
+            getLatLongDist(lat2,long2){
+                let unit = "K";
+                    var radlat1 = Math.PI * this.latitudine/180; //lat1 aka latitudine mappa
+                    console.log('radlat1',radlat1);
+
+                    var radlat2 = Math.PI * lat2/180; //lat2 aka latitudine di ogni singolo appartamento
+                    console.log('radlat2',radlat2);
+
+                    var theta = this.longitudine - long2; //long1(longitudine mappa) - long2(longitudine appartamento) 
+                    var radtheta = Math.PI * theta/180;
+                    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                    if (dist > 1) {
+                        dist = 1;
+                    }
+                    dist = Math.acos(dist);
+                    dist = dist * 180/Math.PI;
+                    dist = dist * 60 * 1.1515;
+                    if (unit=="K") { dist = dist * 1.609344 }
+
+                    this.distanza = "";
+                    this.distanza = dist;
+                    console.log('distanza variabile globale',this.distanza);
+                    return dist;
+            },
             getProducts() {
                 axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
                 this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
                 console.log(this.array1);
+                this.array2 = [];
                 this.array1.forEach((item) => {
+                    let lat2 = item.lat;
+                    console.log('latitudine array item',lat2);
+                    let long2 = item.long;
+                    console.log('longitudine array item',lat2);
 
-                    // test per verificare tramite due coordinate a che valore corrispondesse 10km ovvero 0.7
-
-                    // let testlat = (45.468039324959975 - 45.4066846709084);
-                    // console.log('testlat',testlat);
-                    // let testlong = (9.181929807610116 - 9.275641476217764);
-                    // console.log('testlong',testlong);
-                    // let km10 = (Math.sqrt(Math.pow(testlat,2)) + (Math.pow(testlong,2)))
-                    // console.log('10kmvalue',km10);
-
-                    //
-
-                    let calclat = (item.lat - this.latitudine); //item.lat è la latitudine di ogni singolo appartamento ciclato //this.latitude è la latitudine del luogo selezionato
-                    // console.log('calcminus lat',calclat);   
-
-                    let calclong = (item.long - this.longitudine); //item.long è la latitudine di ogni singolo appartamento ciclato //this.latitude è la latitudine del luogo selezionato
-                    // console.log('calcminus long',calclong);
-
-                    if ((Math.sqrt (Math.pow(calclat,2)) + (Math.pow(calclong,2)) ) <= 1.4){ // 1.4 è il valore di raggio corrispondente a 20km
-                        console.log('sono ENTRO di 20km');
-                        this.array2.push(item);
-                        }
-                        else{
-                            console.log('sono OLTRE di 20km');
-                        }
+                        this.getLatLongDist(lat2, long2)
+                        console.log('distanza dentro la funz',this.distanza);
+                        if (this.distanza <= this.varkm){ 
+                            console.log('sono ENTRO di 20km');
+                            this.array2.push(item);
+                            }
+                            else{
+                                console.log('sono OLTRE di 20km');
+                            }
                     });
                 this.loading = false;
                 console.log('array filtrato', this.array2);
@@ -518,7 +585,7 @@ import FilterLargeComponent from '../components/FilterLargeComponent.vue';
 
 .wholefilter{
     height: 800px;
-    background-color: aqua;
+    background-color: rgb(204, 221, 221);
     width: 500px;
 }
 
