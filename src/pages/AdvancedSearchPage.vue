@@ -321,53 +321,55 @@
             :key="index"
             class="col-6 col-md-12 card_apartment"
           >
-            <div class="imgcont">
-              <a href="#" class="cardapartments row">
-                <div class="col-12 col-md-6">
-                  <img
-                    id="imgeneric"
-                    :src="`${store.imgBasePath}${apartment.cover_img}`"
-                    alt=""
-                  />
-                </div>
+            <router-link :to="`/apartment/${apartment.slug}`">
+              <div class="imgcont">
+                <a href="#" class="cardapartments row">
+                  <div class="col-12 col-md-6">
+                    <img
+                      id="imgeneric"
+                      :src="`${store.imgBasePath}${apartment.cover_img}`"
+                      alt=""
+                    />
+                  </div>
 
-                <div class="col-12 col-md-6">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="text_infob">
-                        <h1>{{ apartment.title }}</h1>
-                        <h3>
-                          <i class="fa-solid fa-location-dot"></i>
-                          {{ apartment.address }}
-                        </h3>
-                        <h3>
-                          <i class="fa-solid fa-euro-sign"></i>
-                          {{ apartment.price }}/Notte
-                        </h3>
-                        <div class="d-flex">
-                          <h4>
-                            <i class="fa-solid fa-bed"></i>
-                            {{ apartment.bed_number }}
-                          </h4>
-                          <h4>
-                            <i class="fa-solid fa-door-open"></i>
-                            {{ apartment.room_number }}
-                          </h4>
-                          <h4>
-                            <i class="fa-solid fa-toilet"></i>
-                            {{ apartment.bath_number }}
-                          </h4>
-                          <h4>
-                            <i class="fa-brands fa-codepen"></i>
-                            {{ apartment.mq_value }}
-                          </h4>
+                  <div class="col-12 col-md-6">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="text_infob">
+                          <h1>{{ apartment.title }}</h1>
+                          <h3>
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ apartment.address }}
+                          </h3>
+                          <h3>
+                            <i class="fa-solid fa-euro-sign"></i>
+                            {{ apartment.price }}/Notte
+                          </h3>
+                          <div class="d-flex">
+                            <h4>
+                              <i class="fa-solid fa-bed"></i>
+                              {{ apartment.bed_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-solid fa-door-open"></i>
+                              {{ apartment.room_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-solid fa-toilet"></i>
+                              {{ apartment.bath_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-brands fa-codepen"></i>
+                              {{ apartment.mq_value }}
+                            </h4>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </div>
+                </a>
+              </div>
+            </router-link>
           </div>
         </div>
       </div>
