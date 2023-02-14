@@ -381,12 +381,14 @@
                         <div id="search">
                         </div>
                         <h2>categorie:</h2>
-                        <ul class="category d-flex flex-wrap gap-3">
+
+                        <ul v-for="(service, index) in services" :key="index" class="category d-flex flex-wrap gap-3">
                             <li>
                                 <label for="open_space">open space</label>
-                            <input type="radio" name="categoria" id="open_space">
+                                <input type="radio" name="categoria" :id="">
                             </li>
-                            <li>
+
+                            <!-- <li>
                                 <label for="intera_casa">intera casa</label>
                             <input type="radio" name="categoria" id="intera_casa">
                             </li>
@@ -421,7 +423,7 @@
                             
                                 <label for="Villa_in_stile_romano">Villa in stile Romano</label>
                             <input type="radio" name="categoria" id="Villa_in_stile_romano">
-                            </li>
+                            </li> -->
                         </ul>
 
                         <hr>
@@ -547,14 +549,14 @@ export default {
                 },
             }
         },
-        watch: {
-            // whenever question changes, this function will run
-            question(newQuestion, oldQuestion) {
-            if (newQuestion.includes('?')) {
-                this.getAnswer()
-            }
-            }
-        },
+        // watch: {
+        //     // whenever question changes, this function will run
+        //     question(newQuestion, oldQuestion) {
+        //     if (newQuestion.includes('?')) {
+        //         this.getAnswer()
+        //     }
+        //     }
+        // },
         methods: {
             setKilometers(){
                 let km5 = document.getElementById("five");
