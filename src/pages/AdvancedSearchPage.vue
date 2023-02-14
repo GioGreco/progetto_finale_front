@@ -316,8 +316,66 @@
     <div class="row">
       <div class="col-12 col-md-8">
         <div class="row gy-4">
-          <div
+          <div v-if="this.array3.length == 0"
             v-for="(apartment, index) in array2"
+            :key="index"
+            class="col-6 col-md-12 card_apartment"
+          >
+            <router-link :to="`/apartment/${apartment.slug}`">
+              <div class="imgcont">
+                <a href="#" class="cardapartments row">
+                  <div class="col-12 col-md-6">
+                    <img
+                      id="imgeneric"
+                      :src="`${store.imgBasePath}${apartment.cover_img}`"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="text_infob">
+                          <h1>{{ apartment.title }}</h1>
+                          <h3>
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ apartment.address }}
+                          </h3>
+                          <h3>
+                            <i class="fa-solid fa-euro-sign"></i>
+                            {{ apartment.price }}/Notte
+                          </h3>
+                          <div class="d-flex">
+                            <h4>
+                              <i class="fa-solid fa-bed"></i>
+                              {{ apartment.bed_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-solid fa-door-open"></i>
+                              {{ apartment.room_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-solid fa-toilet"></i>
+                              {{ apartment.bath_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-brands fa-codepen"></i>
+                              {{ apartment.mq_value }}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </router-link>
+          </div>
+
+
+          <!-- array mostrato se array filtri attivo -->
+          <div v-if="this.array3.length != 0"
+            v-for="(apartment, index) in array3"
             :key="index"
             class="col-6 col-md-12 card_apartment"
           >
@@ -494,6 +552,7 @@ export default {
                 services: [],
                 array1: [],
                 array2: [],
+                array3: [],
                 loading: true,
                 latitudine: "",
                 longitudine: "",
@@ -570,17 +629,59 @@ export default {
                 let Abitazioneinstileindustriale = document.getElementById("abitazione-in-stile-industriale");
                 let Abitazioneinstilecontemporaneo = document.getElementById("abitazione-in-stile-contemporaneo");
                 let villainstileromano = document.getElementById("villa-in-stile-romano");
-
+                
                 if (openspace.checked) {
+                    this.varcat = "";
                     console.log('openspace');
                     this.varcat = 1;
-                    this.array2 = [];
                     this.getProducts() 
                 }
                 else if(interacasa.checked){
+                    this.varcat = "";
                     console.log('interacasa');
                     this.varcat = 2;
-                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(appartamento.checked){
+                    this.varcat = "";
+                    console.log('appartamento');
+                    this.varcat = 3;
+                    this.getProducts() 
+                }
+                else if(attico.checked){
+                    this.varcat = "";
+                    console.log('attico');
+                    this.varcat = 4;
+                    this.getProducts() 
+                }
+                else if(villadicampagna.checked){
+                    this.varcat = "";
+                    console.log('villadicampagna');
+                    this.varcat = 5;
+                    this.getProducts() 
+                }
+                else if(villaalmare.checked){
+                    this.varcat = "";
+                    console.log('villaalmare');
+                    this.varcat = 6;
+                    this.getProducts() 
+                }
+                else if(Abitazioneinstileindustriale.checked){
+                    this.varcat = "";
+                    console.log('Abitazioneinstileindustriale');
+                    this.varcat = 7;
+                    this.getProducts() 
+                }
+                else if(Abitazioneinstilecontemporaneo.checked){
+                    this.varcat = "";
+                    console.log('Abitazioneinstilecontemporaneo');
+                    this.varcat = 8;
+                    this.getProducts() 
+                }
+                else if(villainstileromano.checked){
+                    this.varcat = "";
+                    console.log('villainstileromano');
+                    this.varcat = 9;
                     this.getProducts() 
                 }
             },
@@ -613,11 +714,11 @@ export default {
         console.log(data);
         let lat = data.data.result.position.lat;
         this.latitudine = lat;
-        console.log("latitudine", this.latitudine);
+        // console.log("latitudine", this.latitudine);
 
         let lng = data.data.result.position.lng;
         this.longitudine = lng;
-        console.log("longitudine", this.longitudine);
+        // console.log("longitudine", this.longitudine);
 
         this.getProducts();
         this.array2 = [];
@@ -677,32 +778,31 @@ export default {
             getProducts() {
                 axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
                 this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
-                console.log(this.array1);
+                // console.log(this.array1);
                 this.array2 = [];
                 this.array1.forEach((item) => {
                     let lat2 = item.lat;
-                    console.log('latitudine array item',lat2);
+                    // console.log('latitudine array item',lat2);
                     let long2 = item.long;
-                    console.log('longitudine array item',lat2);
+                    // console.log('longitudine array item',lat2);
 
                         this.getLatLongDist(lat2, long2)
 
-                        console.log('distanza dentro la funz',this.distanza);
+                        // console.log('distanza dentro la funz',this.distanza);
                         if (this.distanza <= this.varkm){ 
-                            // if (this.varc != "") {
-                            //     if (item.id = this.varc) {
-                            //     this.array2.push(item);
-                            //     }
-                            // }
-                            console.log('sono ENTRO di 20km');
+                            // console.log('sono ENTRO di 20km');
                             this.array2.push(item);
                             }
-                            else{
-                                console.log('sono OLTRE di 20km');
-                            }
-                    });
+                            this.array3 = [];
+                            console.log('categoria settata a:', this.varcat);
+                        });
+                        this.array2.forEach((item2) => {
+                               if (item2.category_id == this.varcat) {
+                                this.array3.push(item2);
+                               }
+                            })
+                        console.log('afterarray3',this.array3);
                 this.loading = false;
-                console.log('array filtrato', this.array2);
             });
             },
             getServices(){
@@ -721,7 +821,7 @@ export default {
         mounted() {
             this.getCategories();
             this.getServices();
-            this.getProducts();
+            // this.getProducts();
             this.initSearchBox();
             this.initSearchBoxsmart();
             },
