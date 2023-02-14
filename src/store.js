@@ -24,10 +24,7 @@ export const store = reactive({
         formData.success = response.data.success;
         console.log(response)
         if(!formData.success){
-            // formData.errors = response.data.errors;
-            console.log('errore')
-            console.log(formData);
-            console.log(data);
+            formData.errors = response.data.errors;
         } else {
             console.log('invio riuscito')
             formData.name = '';

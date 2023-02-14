@@ -24,6 +24,7 @@
             <p v-for="(error, index) in formData.errors.message" :key="index" class="invalid-feedback">
                 {{ error }}
             </p>
+            <small>* tutti i campi sono obbligatori</small>
         </div>
         <button class="btn btn-lg btn-outline-primary text-uppercase d-block" type="submit" :disabled="formData.loading">
             {{ formData.loading ? "Sto inviando..." : "Invia" }}
