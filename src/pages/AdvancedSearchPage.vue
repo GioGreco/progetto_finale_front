@@ -385,7 +385,7 @@
                         <ul class="category d-flex flex-wrap gap-3">
                             <li v-for="(category, index) in categories" :key="index">
                                 <label :for="category.slug">{{category.name}}</label>
-                                <input type="radio" name="categoria" :id="category.slug">
+                                <input @click="setCategories" type="radio" name="categoria" :id="category.slug">
                             </li>
                         </ul>
 
@@ -488,6 +488,7 @@ export default {
             return{
                 store,
                 varkm: "20",  //base 20km
+                varcat: "",
                 distanza: "",
                 categories: [],
                 services: [],
@@ -570,33 +571,15 @@ export default {
                 let Abitazioneinstilecontemporaneo = document.getElementById("abitazione-in-stile-contemporaneo");
                 let villainstileromano = document.getElementById("villa-in-stile-romano");
 
-                if (km5.checked) {
-                    console.log('5km selected');
-                    this.varkm = 5;
+                if (openspace.checked) {
+                    console.log('openspace');
+                    this.varcat = 1;
                     this.array2 = [];
                     this.getProducts() 
                 }
-                else if(km10.checked){
-                    console.log('10km selected');
-                    this.varkm = 10;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km20.checked){
-                    console.log('20km selected');
-                    this.varkm = 20;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km50.checked){
-                    console.log('50km selected');
-                    this.varkm = 50;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km100.checked){
-                    console.log('100km selected');
-                    this.varkm = 100;
+                else if(interacasa.checked){
+                    console.log('interacasa');
+                    this.varcat = 2;
                     this.array2 = [];
                     this.getProducts() 
                 }
@@ -706,6 +689,11 @@ export default {
 
                         console.log('distanza dentro la funz',this.distanza);
                         if (this.distanza <= this.varkm){ 
+                            // if (this.varc != "") {
+                            //     if (item.id = this.varc) {
+                            //     this.array2.push(item);
+                            //     }
+                            // }
                             console.log('sono ENTRO di 20km');
                             this.array2.push(item);
                             }
