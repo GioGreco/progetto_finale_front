@@ -44,9 +44,8 @@
                     key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
                     container: this.$refs.mapRef,
                     center: focus,
-                    zoom: 15
+                    zoom: 10
                 })
-    
                 map.addControl(new tt.FullscreenControl()); 
                 map.addControl(new tt.NavigationControl());
 
@@ -64,6 +63,7 @@
         },
         mounted(){
             this.initMap();
+            window.scrollTo(0,0);
         }
     }
 </script>
