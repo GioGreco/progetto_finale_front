@@ -559,6 +559,44 @@ export default {
                     this.getProducts() 
                 }
             },
+            setCategories(){
+                let openspace = document.getElementById("five");
+                let km10 = document.getElementById("ten");
+                let km20 = document.getElementById("twenty");
+                let km50 = document.getElementById("fifty");
+                let km100 = document.getElementById("hundred");
+
+                if (km5.checked) {
+                    console.log('5km selected');
+                    this.varkm = 5;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km10.checked){
+                    console.log('10km selected');
+                    this.varkm = 10;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km20.checked){
+                    console.log('20km selected');
+                    this.varkm = 20;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km50.checked){
+                    console.log('50km selected');
+                    this.varkm = 50;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+                else if(km100.checked){
+                    console.log('100km selected');
+                    this.varkm = 100;
+                    this.array2 = [];
+                    this.getProducts() 
+                }
+            },
             functionOpener () {
                 document.getElementById("filter_open_closer").onchange = (e) => {
                     let checked = e.target.checked;
@@ -737,7 +775,7 @@ export default {
 @media screen and (min-width: 800px) {
   .maincont {
     display: flex;
-    margin-top: 70px !important;
+    margin-top: 50px !important;
   }
 }
 
