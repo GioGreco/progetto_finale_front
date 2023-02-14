@@ -156,7 +156,7 @@ import MapComponent from '@/components/Map/MapComponent.vue';
         },
         methods: {
             getProduct(){
-                axios.get(`${store.apiBaseUrl}/${this.$route.params.slug}`).then((response)=>{
+                axios.get(`${store.apiBaseUrl}/apartments/${this.$route.params.slug}`).then((response)=>{
                     if (response.data.success) {
                         this.apartment = response.data.results;
                         this.success = true;
