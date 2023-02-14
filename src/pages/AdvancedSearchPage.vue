@@ -385,7 +385,7 @@
                         <ul v-for="(service, index) in services" :key="index" class="category d-flex flex-wrap gap-3">
                             <li>
                                 <label for="open_space">open space</label>
-                                <input type="radio" name="categoria" :id="">
+                                <input type="radio" name="categoria" >
                             </li>
 
                             <!-- <li>
