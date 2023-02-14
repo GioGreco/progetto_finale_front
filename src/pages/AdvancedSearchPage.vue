@@ -560,11 +560,15 @@ export default {
                 }
             },
             setCategories(){
-                let openspace = document.getElementById("five");
-                let km10 = document.getElementById("ten");
-                let km20 = document.getElementById("twenty");
-                let km50 = document.getElementById("fifty");
-                let km100 = document.getElementById("hundred");
+                let openspace = document.getElementById("open-space");
+                let interacasa = document.getElementById("intera-casa");
+                let appartamento = document.getElementById("appartamento");
+                let attico = document.getElementById("attico");
+                let villadicampagna = document.getElementById("villa-di-campagna");
+                let villaalmare = document.getElementById("villa-al-mare");
+                let Abitazioneinstileindustriale = document.getElementById("abitazione-in-stile-industriale");
+                let Abitazioneinstilecontemporaneo = document.getElementById("abitazione-in-stile-contemporaneo");
+                let villainstileromano = document.getElementById("villa-in-stile-romano");
 
                 if (km5.checked) {
                     console.log('5km selected');
