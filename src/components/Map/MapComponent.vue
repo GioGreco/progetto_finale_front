@@ -18,7 +18,8 @@
                         lat: this.$props.apartmentLocation.lat,
                         lng: this.$props.apartmentLocation.long
                     }
-                ]
+                ],
+                locationName: this.$props.apartmentLocation.title
             }
         },
         methods: {
@@ -43,9 +44,8 @@
                     key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
                     container: this.$refs.mapRef,
                     center: focus,
-                    zoom: 15
+                    zoom: 10
                 })
-    
                 map.addControl(new tt.FullscreenControl()); 
                 map.addControl(new tt.NavigationControl());
 
@@ -56,13 +56,14 @@
 
                 this.locations.forEach((location) => {
                     let marker = new tomtom.Marker().setLngLat(location).addTo(map);
-                    const popup = new tt.Popup({ anchor: 'top'}).setText('Forestopoli');
+                    const popup = new tt.Popup({ anchor: 'top'}).setText(this.locationName);
                     marker.setPopup(popup).togglePopup()
                 })
             }
         },
         mounted(){
             this.initMap();
+            window.scrollTo(0,0);
         }
     }
 </script>
