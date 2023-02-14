@@ -382,56 +382,19 @@
                         </div>
                         <h2>categorie:</h2>
 
-                        <ul v-for="(service, index) in services" :key="index" class="category d-flex flex-wrap gap-3">
-                            <li>
-                                <label for="open_space">open space</label>
-                                <input type="radio" name="categoria" >
+                        <ul class="category d-flex flex-wrap gap-3">
+                            <li v-for="(category, index) in categories" :key="index">
+                                <label :for="category.slug">{{category.name}}</label>
+                                <input type="radio" name="categoria" :id="category.slug">
                             </li>
-
-                            <!-- <li>
-                                <label for="intera_casa">intera casa</label>
-                            <input type="radio" name="categoria" id="intera_casa">
-                            </li>
-                            <li>
-                            
-                                <label for="appartamento">appartamento</label>
-                            <input type="radio" name="categoria" id="appartamento">
-                            </li>
-                            <li>
-                            
-                                <label for="attico">attico</label>
-                            <input type="radio" name="categoria" id="attico">
-                            </li>
-                            <li>
-                                <label for="villa_in_campagna">villa in campagna</label>
-                            <input type="radio" name="categoria" id="villa_in_campagna">
-                            </li>
-                            <li>
-                                <label for="villa_al_mare">villa al mare</label>
-                            <input type="radio" name="categoria" id="villa_al_mare">
-                            </li>
-                            <li>
-                                <label for="industriale">industriale</label>
-                            <input type="radio" name="categoria" id="industriale">
-                            </li>
-                            <li>
-                            
-                                <label for="contemporaneo">contemporaneo</label>
-                            <input type="radio" name="categoria" id="contemporaneo">
-                            </li>
-                            <li>
-                            
-                                <label for="Villa_in_stile_romano">Villa in stile Romano</label>
-                            <input type="radio" name="categoria" id="Villa_in_stile_romano">
-                            </li> -->
                         </ul>
 
                         <hr>
                         <h2>servizi:</h2>
                         <ul class="services d-flex flex-wrap gap-3">
-                            <li>
-                                <label for="wifi">Wi-Fi</label>
-                                <input type="checkbox" name="wi-fi" id="wifi">
+                            <li v-for="(service, index) in services">
+                                <label :for="service.slug">{{ service.title }}</label>
+                                <input type="checkbox" name="wi-fi" :id="service.slug">
                             </li>
                         </ul>
 
@@ -717,9 +680,16 @@ export default {
                 this.services= res.data.results; //array 1 chiamata tutti gli appartamenti axios
                 console.log(this.services);
             })
+            },
+            getCategories(){
+                axios.get(`${this.store.apiBaseUrl}/categories`).then((res) => {
+                this.categories= res.data.results; //array 1 chiamata tutti gli appartamenti axios
+                console.log(this.categories);
+            })
             }
         },
         mounted() {
+            this.getCategories();
             this.getServices();
             this.getProducts();
             this.initSearchBox();
@@ -734,7 +704,8 @@ export default {
 
 .wholefilter{
     background-color: rgb(204, 221, 221);
-    padding: 20px 40px;
+    padding: 5px 20px 20px 20px;
+    border-radius: 20px;
     h2{
         margin-top: 10px;
         text-transform: capitalize;
