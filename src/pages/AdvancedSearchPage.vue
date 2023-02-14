@@ -373,7 +373,10 @@
           </div>
         </div>
             </div>
-            <div class="col-12 col-md-4">
+    <div v-if="this.array2.length == 0" class="col-12 col-md-8">
+        <h1>Cerca un appartamento</h1>
+    </div>
+      <div class="col-12 col-md-4">
                 <div class="wholefilter">
                         <div id="search">
                         </div>
@@ -728,9 +731,7 @@ export default {
 
 
 .wholefilter{
-    height: 900px;
     background-color: rgb(204, 221, 221);
-    width: 400px;
     padding: 20px 40px;
     h2{
         margin-top: 10px;
@@ -846,7 +847,18 @@ footer {
   padding-top: 40px;
   padding-bottom: 10px;
   overflow-y: scroll;
+
+
+  @keyframes cardapartment {
+  0%   { opacity: 0; width: 500px;}
+  100%   { opacity: 1; width: 100%;}
+}
+
   .card_apartment {
+    transition: ease-in-out 200ms ;
+    animation-name: cardapartment;
+    animation-duration: 1s;
+    border-radius: 20px;
     .imgcont {
       transition: all 250ms;
       filter: brightness(0.8);
