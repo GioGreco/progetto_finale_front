@@ -18,7 +18,8 @@
                         lat: this.$props.apartmentLocation.lat,
                         lng: this.$props.apartmentLocation.long
                     }
-                ]
+                ],
+                locationName: this.$props.apartmentLocation.title
             }
         },
         methods: {
@@ -56,7 +57,7 @@
 
                 this.locations.forEach((location) => {
                     let marker = new tomtom.Marker().setLngLat(location).addTo(map);
-                    const popup = new tt.Popup({ anchor: 'top'}).setText('Forestopoli');
+                    const popup = new tt.Popup({ anchor: 'top'}).setText(this.locationName);
                     marker.setPopup(popup).togglePopup()
                 })
             }
