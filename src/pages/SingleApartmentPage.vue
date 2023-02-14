@@ -126,9 +126,17 @@
             <div class="contact-form col-12 col-md-6">
                 <div class="contact-inner d-flex flex-column justify-content-between align-items-center">
                     <h5 class="text-white">Necessiti di più informazioni?</h5>
-                    <p class='m-0'>None esitare a contattare l'host nel caso tu abbia domande sull'alloggio, la zona o i servizi offerti.</p>
+                    <p class='m-0'>Non esitare a contattare l'host nel caso tu abbia domande sull'alloggio, la zona o i servizi offerti.</p>
                     <span>Clicca qui per inviare un messaggio</span>
-                    <i class="fa-regular fa-envelope fs-2 text-white"></i>
+                    <Transition name="contactFX">
+                        <div class="mail-form my-3 w-100" v-if="showContactForm">
+                            <ContactFormComponent :apartmentId="apartment.id"/>
+                        </div>
+                    </Transition>
+                    <div @click="showContactForm = !showContactForm" class="showFormBtn">
+                        <i v-if="!showContactForm" class="fa-regular fa-envelope"></i>
+                        <i v-else class="fa-solid fa-angle-up"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,18 +148,21 @@ import { store } from '../store';
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import MapComponent from '@/components/Map/MapComponent.vue';
+import ContactFormComponent from '@/components/Mails/ContactFormComponent.vue';
 
     export default {
         name: 'SingleApartmentPage',
         components: {
             HeaderComponent,
-            MapComponent
+            MapComponent,
+            ContactFormComponent
         },
         data(){
             return{
                 store,
                 apartment: {},
-                success: false
+                success: false,
+                showContactForm: false
             }
         },
         methods: {
@@ -160,7 +171,6 @@ import MapComponent from '@/components/Map/MapComponent.vue';
                     if (response.data.success) {
                         this.apartment = response.data.results;
                         this.success = true;
-                        console.log(this.apartment)
                     } else {
                         this.$router.push({ name: "not-found" });
                     }
@@ -333,7 +343,6 @@ import MapComponent from '@/components/Map/MapComponent.vue';
     }
     .contact-form{
         padding: 60px 100px;
-
         .contact-inner{
             background-color: $mauve;
             padding: 20px;
@@ -341,10 +350,32 @@ import MapComponent from '@/components/Map/MapComponent.vue';
             border-radius: 20px;
             text-align: center;
             color: $sangria;
+            transition: all 5s ease;
+
             h5{
                 border-bottom: 1px solid white;
                 padding-bottom: 3px;
                 width: 85%;
+            }
+            span{
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+            .mail-form{
+                
+            }
+            .showFormBtn{
+                font-size: 2rem;
+                color: $sangria;
+                background-color: $rosegold;
+                margin-top: 15px;
+                padding: 2px 25px;
+                border-radius: 30px;
+                cursor: pointer;
+                &:hover{
+                        background-color: $sangria;
+                        color: $white;
+                    }
             }
         }
     }
@@ -368,5 +399,35 @@ import MapComponent from '@/components/Map/MapComponent.vue';
         #show-desktop{
             display: none;
         }
+    }
+
+
+    //Form animation
+
+    .contactFX-enter-from{
+        transform: scale(.3);
+        height: 10px;
+        opacity: 0;
+    }
+    .contactFX-enter-to{
+        transform: scale(1);
+        height: 385px;
+        opacity: 1;
+    }
+
+    .contactFX-leave-from{
+        transform: scale(1);
+        height: 385px;
+        opacity: 1;
+    }
+
+    .contactFX-leave-to{
+        transform: scale(.3);
+        height: 10px;
+        opacity: 0;
+    }
+
+    .contactFX-enter-active, .contactFX-leave-active{
+        transition: all .5s;
     }
 </style>
