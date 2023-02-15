@@ -658,8 +658,8 @@ export default {
         el.checked = false;
         console.log(el);
       });
-      this.filtriServizi();
-      this.setServices();
+      // this.filtriServizi();
+      // this.setServices();
       this.getProducts();
     },
     setKilometers() {
@@ -813,9 +813,9 @@ export default {
               this.array3 = [];
               this.array3.push(item);
               console.log(item);
-            } else if(!this.filteredServices.includes(serviceapart)){
+            } else if (!this.filteredServices.includes(serviceapart)) {
               console.log("nessun appartamento");
-              this.array3.splice(this.array3.indexOf(item), 1)
+              this.array3.splice(this.array3.indexOf(item), 1);
             }
           });
         });
@@ -942,7 +942,7 @@ export default {
           console.log("categoria settata a:", this.varcat);
         });
         this.array2.forEach((item2) => {
-          if ((item2.category_id == this.varcat)) {
+          if (item2.category_id == this.varcat) {
             // item2.services.forEach((ser)=>{
             //   if(this.filteredServices.includes(ser)){
             //       this.array3.push(item2);
