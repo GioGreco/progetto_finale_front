@@ -724,15 +724,15 @@ export default {
       console.log(addService);
       if(addService.checked){
         let serviceArr = {...this.services.filter(el=> el.id == service)};
-        console.log(serviceArr);
+        // console.log(serviceArr);
         let serviceObj = serviceArr[0];
-        console.log(serviceObj);
+        // console.log(serviceObj);
         this.filteredServices.push(serviceObj);
       }else if(!addService.checked){
         let serviceArr = {...this.services.filter(el=> el.id == service)};
-        console.log(serviceArr);
+        // console.log(serviceArr);
         let serviceObj = serviceArr[0];
-        console.log(serviceObj);
+        // console.log(serviceObj);
         this.filteredServices.splice(this.filteredServices.indexOf(serviceObj), 1);
       }
       console.log(this.filteredServices);
