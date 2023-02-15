@@ -372,7 +372,7 @@
               </div>
             </router-link>
           </div>
-          <div v-else>
+          <div v-else-if="this.array3.length == 0">
             <h4>Nessun risultato</h4>
           </div>
 
