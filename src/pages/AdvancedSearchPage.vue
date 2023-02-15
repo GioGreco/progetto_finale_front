@@ -744,7 +744,8 @@ export default {
           this.filteredServices.indexOf(serviceObj),
           1
         );
-        this.filtriServizi();
+        // this.filtriServizi();
+        this.getProducts();
       }
       console.log(this.filteredServices);
     },
