@@ -30,7 +30,7 @@
                 </span>
               </span>
             </li>
-            <li class="contain emerald">
+            <!-- <li class="contain emerald">
               <input type="radio" name="categoria" id="appartamento" />
               <span class="checkmark">
                 <span class="checkedicon"
@@ -45,7 +45,7 @@
                   ><i class="fa-solid fa-people-roof"></i>
                 </span>
               </span>
-            </li>
+            </li> -->
             <li class="contain emerald">
               <input type="radio" name="categoria" id="villa_campagna" />
               <span class="checkmark">
@@ -821,6 +821,9 @@ export default {
           }
         });
         console.log("afterarray3", this.array3);
+        if (this.array3.length == 0) {
+          console.log("no appartamenti");
+        }
         this.loading = false;
       });
     },
