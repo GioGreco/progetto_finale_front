@@ -719,6 +719,7 @@ export default {
       let vistaMare = document.getElementById("wi-fi");
       let vigilanzaNotturna = document.getElementById("wi-fi");
     },
+    test
     functionOpener() {
       document.getElementById("filter_open_closer").onchange = (e) => {
         let checked = e.target.checked;
