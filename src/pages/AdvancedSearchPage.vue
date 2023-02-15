@@ -450,7 +450,7 @@
                 @click="setCategories(category.id)"
                 type="radio"
                 name="categoria"
-                :id="'category_'+category.id"
+                :id="'category_' + category.id"
               />
             </li>
           </ul>
@@ -666,11 +666,10 @@ export default {
       let addCategory = document.getElementById(`category_${category}`);
       console.log(addCategory);
 
-      if(addCategory.checked){
+      if (addCategory.checked) {
         this.varcat = category;
         this.getProducts();
       }
-      
 
       // if (openspace.checked) {
       //   this.varcat = "";
@@ -768,11 +767,11 @@ export default {
             //    console.log(serviceapart);
             if (serviceapart.id == el.id) {
               this.array3 = [];
-              this.array3.push(item);
+              this.array2.push(item);
               console.log(item);
-            } else if(!this.filteredServices.includes(serviceapart)){
+            } else if (!this.filteredServices.includes(serviceapart)) {
               console.log("nessun appartamento");
-              this.array3.splice(this.array3.indexOf(item), 1)
+              this.array2.splice(this.array2.indexOf(item), 1);
             }
           });
         });
@@ -888,12 +887,14 @@ export default {
           }
         });
         console.log(this.array2);
-        if(!(this.varcat == null)){
-          this.array2 = this.array2.filter((item)=>item.category_id == this.varcat);
+        if (!(this.varcat == null)) {
+          this.array2 = this.array2.filter(
+            (item) => item.category_id == this.varcat
+          );
         }
-        // if(this.filteredServices.length > 0){
-        //   this.array2 = this.filterServices(this.array2, this.filteredServices);
-        // }
+        if (this.filteredServices.length > 0) {
+          this.array2 = this.filterServices(this.array2, this.filteredServices);
+        }
         console.log(this.array2);
         this.loading = false;
       });
@@ -910,14 +911,16 @@ export default {
         console.log(this.categories);
       });
     },
-    filterServices(apartments, requiredServices){
-        return apartments.filter(apartment => {
+    filterServices(apartments, requiredServices) {
+      apartments.filter((apartment) => {
         // Verifica se l'appartamento dispone di tutti i servizi richiesti
-        return requiredServices.every(requiredServiceId => {
-        return apartment.services.some(service => service.id === requiredServiceId);
-    });
-  });
-    }
+        requiredServices.every((requiredServiceId) => {
+          return apartment.services.some(
+            (service) => service.id === requiredServiceId
+          );
+        });
+      });
+    },
   },
   mounted() {
     this.getCategories();
