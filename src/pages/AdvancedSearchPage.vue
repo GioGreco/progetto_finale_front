@@ -851,7 +851,7 @@ export default {
       });
     },
     filterServices(apartments, requiredServices) {
-       this.filteredServices.forEach((el) => {
+      this.filteredServices.forEach((el) => {
         // console.log(el);
         this.array3.forEach((item) => {
           //   console.log(item);
@@ -871,13 +871,14 @@ export default {
       if (this.array3.length == 0) {
         console.log("no appartamenti con servizio ");
       }
-  },
-  mounted() {
-    this.getCategories();
-    this.getServices();
-    // this.getProducts();
-    this.initSearchBox();
-    // this.initSearchBoxsmart();
+    },
+    mounted() {
+      this.getCategories();
+      this.getServices();
+      // this.getProducts();
+      this.initSearchBox();
+      // this.initSearchBoxsmart();
+    },
   },
 };
 </script>
