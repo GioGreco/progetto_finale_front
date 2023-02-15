@@ -460,7 +460,7 @@
           <ul class="services d-flex flex-wrap gap-3">
             <li v-for="(service, index) in services">
               <label :for="service.slug">{{ service.title }}</label>
-              <input type="checkbox" name="wi-fi" :id="service.slug" />
+              <input @click="setServices(service.id)" type="checkbox" name="wi-fi" :id="'service_'+service.id" />
             </li>
           </ul>
 
@@ -584,6 +584,7 @@ export default {
       distanza: "",
       categories: [],
       services: [],
+      filteredServices: [],
       array1: [],
       array2: [],
       array3: [],
@@ -703,21 +704,38 @@ export default {
         this.getProducts();
       }
     },
-    setServices() {
-      let wifi = document.getElementById("wi-fi");
-      let ariaCondizionata = document.getElementById("aria-condizionata");
-      let garage = document.getElementById("garage");
-      let piscina = document.getElementById("piscina");
-      let idromassaggio = document.getElementById("idromassaggio");
-      let portineria = document.getElementById("portineria");
-      let sauna = document.getElementById("sauna");
-      let palestra = document.getElementById("palestra");
-      let campoDaTennis = document.getElementById("campo-da-tennis");
-      let campoDaGolf = document.getElementById("campo-da-golf");
-      let giardino = document.getElementById("giardino");
-      let patio = document.getElementById("patio");
-      let vistaMare = document.getElementById("wi-fi");
-      let vigilanzaNotturna = document.getElementById("wi-fi");
+    setServices(service) {
+      // let wifi = document.getElementById("wi-fi");
+      // let ariaCondizionata = document.getElementById("aria-condizionata");
+      // let garage = document.getElementById("garage");
+      // let piscina = document.getElementById("piscina");
+      // let idromassaggio = document.getElementById("idromassaggio");
+      // let portineria = document.getElementById("portineria");
+      // let sauna = document.getElementById("sauna");
+      // let palestra = document.getElementById("palestra");
+      // let campoDaTennis = document.getElementById("campo-da-tennis");
+      // let campoDaGolf = document.getElementById("campo-da-golf");
+      // let giardino = document.getElementById("giardino");
+      // let patio = document.getElementById("patio");
+      // let vistaMare = document.getElementById("wi-fi");
+      // let vigilanzaNotturna = document.getElementById("wi-fi");
+
+      let addService = document.getElementById(`service_${service}`);
+      console.log(addService);
+      if(addService.checked){
+        let serviceArr = {...this.services.filter(el=> el.id == service)};
+        console.log(serviceArr);
+        let serviceObj = serviceArr[0];
+        console.log(serviceObj);
+        this.filteredServices.push(serviceObj);
+      }else if(!addService.checked){
+        let serviceArr = {...this.services.filter(el=> el.id == service)};
+        console.log(serviceArr);
+        let serviceObj = serviceArr[0];
+        console.log(serviceObj);
+        this.filteredServices.splice(this.filteredServices.indexOf(serviceObj), 1);
+      }
+      console.log(this.filteredServices);
     },
     functionOpener() {
       document.getElementById("filter_open_closer").onchange = (e) => {
