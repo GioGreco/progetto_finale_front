@@ -943,12 +943,12 @@ export default {
         });
         this.array2.forEach((item2) => {
           if ((item2.category_id == this.varcat)) {
-            item2.services.forEach((ser)=>{
-              if(this.filteredServices.includes(ser)){
-                  this.array3.push(item2);
-              }
-            })
-            // this.array3.push(item2);
+            // item2.services.forEach((ser)=>{
+            //   if(this.filteredServices.includes(ser)){
+            //       this.array3.push(item2);
+            //   }
+            // })
+            this.array3.push(item2);
           }
         });
         console.log("afterarray3", this.array3);
