@@ -585,6 +585,7 @@ export default {
   data() {
     return {
       store,
+      varroom: "",
       varkm: "20", //base 20km
       varcat: null,
       distanza: "",
