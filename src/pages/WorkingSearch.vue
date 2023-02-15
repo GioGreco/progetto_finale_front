@@ -14,19 +14,34 @@
             <h1>Cerca un appartamento</h1>
           </div>
           <!-- risultati per solo filtro città: -->
-          <div
-            class="card-container"
-            v-if="this.array3.length == 0 && this.varcat == 0"
-            v-for="(item, index) in array2"
-            :key="index"
-          >
-            <CardComponent :apartament="item"></CardComponent>
-            <hr class="my-4" />
-          </div>
+          <div class="overflow-auto">
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="rows"
+              :per-page="perPage"
+              aria-controls="my-cards"
+            ></b-pagination>
 
-          <!-- se non ci sono risultati: -->
-          <div v-else-if="this.array3.length == 0">
-            <h4>Nessun risultato</h4>
+            <div
+              class="card-container"
+              v-if="this.array3.length == 0 && this.varcat == 0"
+              v-for="(item, index) in array2"
+              :key="index"
+            >
+              <CardComponent
+                id="my-cards"
+                :apartament="item"
+                :items="array2"
+                :per-page="perPage"
+                :current-page="currentPage"
+              ></CardComponent>
+              <hr class="my-4" />
+            </div>
+
+            <!-- se non ci sono risultati: -->
+            <div v-else-if="this.array3.length == 0">
+              <h4>Nessun risultato</h4>
+            </div>
           </div>
 
           <!-- array mostrato se array filtri categorie attivo -->
@@ -38,19 +53,21 @@
           >
             <CardComponent :apartament="item"></CardComponent>
           </div>
+
+          <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
         </div>
 
         <!-- colonna filtri -->
         <div class="filter-list col-12 col-md-4 pt-4">
-          <div class="page-title text-center">
+          <div class="d-none d-md-block page-title text-center">
             <h3>Ricerca avanzata</h3>
             <hr />
           </div>
 
-          <h4>Scegli una destinazione:</h4>
+          <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
           <div id="search" class="my-3"></div>
 
-          <h4>Distanza dal centro:</h4>
+          <h4 class="d-none d-md-block">Distanza dal centro:</h4>
           <ul class="kmrange d-flex gap-3">
             <li>
               <input
@@ -100,24 +117,43 @@
             </li>
           </ul>
 
-          <h4>Tipo di alloggio:</h4>
+          <h4 class="d-none d-md-block">Tipo di alloggio:</h4>
 
           <ul class="category d-flex flex-wrap gap-3">
             <li v-for="(category, index) in categories" :key="index">
-              <input type="radio" name="categoria" :id="category.slug" />
-              <label :for="category.slug">{{ category.name }}</label>
+              <input
+                type="radio"
+                name="categoria"
+                :id="category.slug"
+                @click="setCategories"
+              />
+              <label :for="category.slug" class="d-none d-md-inline-block">{{
+                category.name
+              }}</label>
+
+              <!-- versione mobile: -->
+              <span class="d-block d-md-none checkmark">
+                <span class="checkedicon" v-html="category.img"></span>
+              </span>
             </li>
           </ul>
 
-          <h4>Servizi aggiuntivi:</h4>
+          <h4 class="d-none d-md-block">Servizi aggiuntivi:</h4>
           <ul class="services d-flex flex-wrap gap-3">
             <li v-for="(service, index) in services">
               <input type="checkbox" :name="service.title" :id="service.slug" />
-              <label :for="service.slug">{{ service.title }}</label>
+              <label :for="service.slug" class="d-none d-md-inline-block">{{
+                service.title
+              }}</label>
+
+              <!-- versione mobile: -->
+              <span class="d-block d-md-none checkmark">
+                <span class="checkedicon" v-html="service.img"></span>
+              </span>
             </li>
           </ul>
 
-          <h4>Stanze:</h4>
+          <h4 class="d-none d-md-block">Stanze:</h4>
           <ul class="stanze d-flex gap-3">
             <li>
               <input type="radio" name="stanze" id="tre" />
@@ -137,7 +173,7 @@
             </li>
           </ul>
 
-          <h4>Letti:</h4>
+          <h4 class="d-none d-md-block">Letti:</h4>
           <ul class="beds d-flex gap-3">
             <li>
               <input type="radio" name="beds" id="due" />
@@ -195,16 +231,20 @@ export default {
         idleTimePress: 100,
         minNumberOfCharacters: 0,
         searchOptions: {
-          key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+          //   key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+          key: store.key,
           language: "it-IT",
           limit: 5,
         },
         autocompleteOptions: {
-          key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+          //   key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+          key: store.key,
           language: "it-IT",
         },
         noResultsMessage: "No results found.",
       },
+      perPage: 3,
+      currentPage: 1,
     };
   },
   methods: {
@@ -269,33 +309,6 @@ export default {
         this.array2 = [];
       });
     },
-    // initSearchBoxsmart() {
-    //   // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
-    //   let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
-    //   // console.log(ttSearchBox);
-
-    //   let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-    //   document.getElementById("searchsmart").appendChild(searchBoxHTML);
-    //   // console.log(searchBoxHTML);
-
-    //   ttSearchBox.on("tomtom.searchbox.resultsfound", function (data) {
-    //     // console.log(data);
-    //   });
-
-    //   ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
-    //     console.log(data);
-    //     let lat = data.data.result.position.lat;
-    //     this.latitudine = lat;
-    //     //      console.log("latitudine", this.latitudine);
-
-    //     let lng = data.data.result.position.lng;
-    //     this.longitudine = lng;
-    //     //     console.log("longitudine", this.longitudine);
-
-    //     this.getProducts();
-    //     this.array2 = [];
-    //   });
-    //},
     getLatLongDist(lat2, long2) {
       let unit = "K";
       var radlat1 = (Math.PI * this.latitudine) / 180; //lat1 aka latitudine mappa
@@ -368,12 +381,78 @@ export default {
         console.log(this.categories);
       });
     },
+    setCategories() {
+      let openspace = document.getElementById("open-space");
+      let interacasa = document.getElementById("intera-casa");
+      let appartamento = document.getElementById("appartamento");
+      let attico = document.getElementById("attico");
+      let villadicampagna = document.getElementById("villa-di-campagna");
+      let villaalmare = document.getElementById("villa-al-mare");
+      let Abitazioneinstileindustriale = document.getElementById(
+        "abitazione-in-stile-industriale"
+      );
+      let Abitazioneinstilecontemporaneo = document.getElementById(
+        "abitazione-in-stile-contemporaneo"
+      );
+      let villainstileromano = document.getElementById("villa-in-stile-romano");
+
+      if (openspace.checked) {
+        this.varcat = "";
+        console.log("openspace");
+        this.varcat = 1;
+        this.getProducts();
+      } else if (interacasa.checked) {
+        this.varcat = "";
+        console.log("interacasa");
+        this.varcat = 2;
+        this.getProducts();
+      } else if (appartamento.checked) {
+        this.varcat = "";
+        console.log("appartamento");
+        this.varcat = 3;
+        this.getProducts();
+      } else if (attico.checked) {
+        this.varcat = "";
+        console.log("attico");
+        this.varcat = 4;
+        this.getProducts();
+      } else if (villadicampagna.checked) {
+        this.varcat = "";
+        console.log("villadicampagna");
+        this.varcat = 5;
+        this.getProducts();
+      } else if (villaalmare.checked) {
+        this.varcat = "";
+        console.log("villaalmare");
+        this.varcat = 6;
+        this.getProducts();
+      } else if (Abitazioneinstileindustriale.checked) {
+        this.varcat = "";
+        console.log("Abitazioneinstileindustriale");
+        this.varcat = 7;
+        this.getProducts();
+      } else if (Abitazioneinstilecontemporaneo.checked) {
+        this.varcat = "";
+        console.log("Abitazioneinstilecontemporaneo");
+        this.varcat = 8;
+        this.getProducts();
+      } else if (villainstileromano.checked) {
+        this.varcat = "";
+        console.log("villainstileromano");
+        this.varcat = 9;
+        this.getProducts();
+      }
+    },
   },
   mounted() {
     this.getCategories();
     this.getServices();
     this.initSearchBox();
-    // this.initSearchBoxsmart();
+  },
+  computed: {
+    rows() {
+      return this.array2.length;
+    },
   },
 };
 </script>
@@ -458,5 +537,45 @@ input[type="radio"]:checked:after {
 input[type="checkbox"] {
   accent-color: $rosegold;
   margin-right: 8px;
+}
+
+@media (max-width: 600px) {
+  //   input {
+  //     position: absolute;
+  //     opacity: 0;
+  //     cursor: pointer;
+  //     z-index: 100;
+  //     left: 0;
+  //     height: 40px;
+  //     width: 40px;
+  //     border-radius: 50%;
+  //   }
+
+  // style navbar mobile
+  //   .checkmark {
+  //     position: absolute;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //     top: 0;
+  //     left: 0;
+  //     height: 40px;
+  //     width: 40px;
+  //     border-radius: 50%;
+  //     background-color: $white;
+  //     border: 4px solid $grey;
+  //   }
+  //   .checkedicon {
+  //     font-size: 1.2rem;
+  //     // display: none;
+  //     color: $grey;
+  //     text-align: center;
+  //     transition: all 200ms;
+  //   }
+
+  //   .emerald input:checked ~ .checkmark {
+  //     background-color: $emerald;
+  //     border: 4px solid $emerald;
+  //   }
 }
 </style>
