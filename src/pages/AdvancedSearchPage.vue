@@ -372,6 +372,9 @@
               </div>
             </router-link>
           </div>
+          <div v-else>
+            <h4>Nessun risultato</h4>
+          </div>
 
           <!-- array mostrato se array filtri attivo -->
           <div
