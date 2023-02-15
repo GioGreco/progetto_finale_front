@@ -737,7 +737,6 @@ export default {
       }
       console.log(this.filteredServices);
     },
-    test
     functionOpener() {
       document.getElementById("filter_open_closer").onchange = (e) => {
         let checked = e.target.checked;
