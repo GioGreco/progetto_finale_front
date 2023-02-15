@@ -448,6 +448,7 @@
               <label :for="category.slug">{{ category.name }}</label>
               <input
                 @click="setCategories"
+                class="categoria"
                 type="radio"
                 name="categoria"
                 :id="category.slug"
@@ -480,7 +481,7 @@
                 class="stanze"
                 name="stanze"
                 id="camere_tre"
-                @click="setRooms3()"
+                @click="setStanze()"
               />
             </li>
             <li>
@@ -490,7 +491,7 @@
                 class="stanze"
                 name="stanze"
                 id="camere_sei"
-                @click="setRooms6()"
+                @click="setStanze()"
               />
             </li>
             <li>
@@ -500,7 +501,7 @@
                 class="stanze"
                 name="stanze"
                 id="camere_nove"
-                @click="setRooms9()"
+                @click="setStanze()"
               />
             </li>
             <li>
@@ -510,11 +511,10 @@
                 class="stanze"
                 name="stanze"
                 id="camere_molti"
-                @click="setRoomsmore()"
+                @click="setStanze()"
               />
             </li>
           </ul>
-          <button @click="resetrooms()">reset</button>
 
           <hr />
           <h2>letti:</h2>
@@ -610,6 +610,7 @@ export default {
   data() {
     return {
       store,
+      varroom: "",
       varkm: "20", //base 20km
       varcat: "",
       distanza: "",
@@ -650,14 +651,15 @@ export default {
         this.filteredServices = [];
         console.log(el);
       });
+      let stanze = document.querySelectorAll(".stanze");
+      stanze.forEach((ele) => {
+        ele.checked = false;
+        console.log(ele);
+      });
+
       this.getProducts();
     },
     resetrooms() {
-      let stanze = document.querySelectorAll(".stanze");
-      stanze.forEach((el) => {
-        el.checked = false;
-        console.log(el);
-      });
       this.filtriServizi();
       this.setServices();
       this.getProducts();
@@ -781,24 +783,51 @@ export default {
       }
       console.log(this.filteredServices);
     },
+    setStanze() {
+      let room3 = document.getElementById("camere_tre");
+      let room6 = document.getElementById("camere_sei");
+      let room9 = document.getElementById("camere_nove");
+      let roomMore = document.getElementById("camere_molti");
+      if (room3.checked) {
+        //                    console.log('5km selected');
+        this.varrom = 3;
+
+        this.setRooms3();
+      } else if (room6.checked) {
+        //                   console.log('10km selected');
+        this.varrom = 6;
+
+        this.setRooms6();
+      } else if (room9.checked) {
+        //                   console.log('20km selected');
+        this.varrom = 9;
+
+        this.setRooms9();
+      } else if (roomMore.checked) {
+        //                    console.log('50km selected');
+        this.varrom = 9;
+
+        this.setRoomsmore();
+      }
+    },
     setRooms3() {
-      this.array3 = this.array3.filter((el) => el.room_number <= 3);
+      this.array3 = this.array3.filter((el) => el.room_number <= this.varrom);
       console.log(this.array3);
     },
     setRooms6() {
       this.array3 = this.array3.filter(
-        (el) => el.room_number <= 6 && el.room_number > 3
+        (el) => el.room_number <= this.varroom && el.room_number > 3
       );
       console.log(this.array3);
     },
     setRooms9() {
       this.array3 = this.array3.filter(
-        (el) => el.room_number <= 9 && el.room_number > 6
+        (el) => el.room_number <= this.varroom && el.room_number > 6
       );
       console.log(this.array3);
     },
     setRoomsmore() {
-      this.array3 = this.array3.filter((el) => el.room_number > 9);
+      this.array3 = this.array3.filter((el) => el.room_number > this.varroom);
       console.log(this.array3);
     },
     filtriServizi() {
