@@ -30,7 +30,7 @@
                 </span>
               </span>
             </li>
-            <li class="contain emerald">
+            <!-- <li class="contain emerald">
               <input type="radio" name="categoria" id="appartamento" />
               <span class="checkmark">
                 <span class="checkedicon"
@@ -45,7 +45,7 @@
                   ><i class="fa-solid fa-people-roof"></i>
                 </span>
               </span>
-            </li>
+            </li> -->
             <li class="contain emerald">
               <input type="radio" name="categoria" id="villa_campagna" />
               <span class="checkmark">
@@ -317,6 +317,7 @@
       <div class="col-12 col-md-8">
         <div class="row gy-4">
           <div
+            v-if="this.array3.length == 0"
             v-for="(apartment, index) in array2"
             :key="index"
             class="col-6 col-md-12 card_apartment"
@@ -371,140 +372,191 @@
               </div>
             </router-link>
           </div>
-        </div>
-            </div>
-    <div v-if="this.array2.length == 0" class="col-12 col-md-8">
-        <h1>Cerca un appartamento</h1>
-    </div>
-      <div class="col-12 col-md-4">
-                <div class="wholefilter">
-                        <div id="search">
+
+          <!-- array mostrato se array filtri attivo -->
+          <div
+            v-if="this.array3.length != 0"
+            v-for="(apartment, index) in array3"
+            :key="index"
+            class="col-6 col-md-12 card_apartment"
+          >
+            <router-link :to="`/apartment/${apartment.slug}`">
+              <div class="imgcont">
+                <a href="#" class="cardapartments row">
+                  <div class="col-12 col-md-6">
+                    <img
+                      id="imgeneric"
+                      :src="`${store.imgBasePath}${apartment.cover_img}`"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="text_infob">
+                          <h1>{{ apartment.title }}</h1>
+                          <h3>
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ apartment.address }}
+                          </h3>
+                          <h3>
+                            <i class="fa-solid fa-euro-sign"></i>
+                            {{ apartment.price }}/Notte
+                          </h3>
+                          <div class="d-flex">
+                            <h4>
+                              <i class="fa-solid fa-bed"></i>
+                              {{ apartment.bed_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-solid fa-door-open"></i>
+                              {{ apartment.room_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-solid fa-toilet"></i>
+                              {{ apartment.bath_number }}
+                            </h4>
+                            <h4>
+                              <i class="fa-brands fa-codepen"></i>
+                              {{ apartment.mq_value }}
+                            </h4>
+                          </div>
                         </div>
-                        <h2>categorie:</h2>
-
-                        <ul v-for="(service, index) in services" :key="index" class="category d-flex flex-wrap gap-3">
-                            <li>
-                                <label for="open_space">open space</label>
-                                <input type="radio" name="categoria" >
-                            </li>
-
-                            <!-- <li>
-                                <label for="intera_casa">intera casa</label>
-                            <input type="radio" name="categoria" id="intera_casa">
-                            </li>
-                            <li>
-                            
-                                <label for="appartamento">appartamento</label>
-                            <input type="radio" name="categoria" id="appartamento">
-                            </li>
-                            <li>
-                            
-                                <label for="attico">attico</label>
-                            <input type="radio" name="categoria" id="attico">
-                            </li>
-                            <li>
-                                <label for="villa_in_campagna">villa in campagna</label>
-                            <input type="radio" name="categoria" id="villa_in_campagna">
-                            </li>
-                            <li>
-                                <label for="villa_al_mare">villa al mare</label>
-                            <input type="radio" name="categoria" id="villa_al_mare">
-                            </li>
-                            <li>
-                                <label for="industriale">industriale</label>
-                            <input type="radio" name="categoria" id="industriale">
-                            </li>
-                            <li>
-                            
-                                <label for="contemporaneo">contemporaneo</label>
-                            <input type="radio" name="categoria" id="contemporaneo">
-                            </li>
-                            <li>
-                            
-                                <label for="Villa_in_stile_romano">Villa in stile Romano</label>
-                            <input type="radio" name="categoria" id="Villa_in_stile_romano">
-                            </li> -->
-                        </ul>
-
-                        <hr>
-                        <h2>servizi:</h2>
-                        <ul class="services d-flex flex-wrap gap-3">
-                            <li>
-                                <label for="wifi">Wi-Fi</label>
-                                <input type="checkbox" name="wi-fi" id="wifi">
-                            </li>
-                        </ul>
-
-                        <hr>
-                        <h2>stanze:</h2>
-                        <ul class="stanze d-flex gap-3">
-                            <li>
-                                <label for="tre">3</label>
-                            <input type="radio" name="stanze" id="tre">
-                            </li>
-                            <li>
-                                <label for="seii">6</label>
-                            <input type="radio" name="stanze" id="seii">
-                            </li>
-                            <li>
-                                <label for="nove">9</label>
-                            <input type="radio" name="stanze" id="nove">
-                            </li>
-                            <li>
-                                <label for="moltii">più</label>
-                            <input type="radio" name="stanze" id="moltii">
-                            </li>
-                        </ul>
-
-                        <hr>  
-                        <h2>letti:</h2>
-                        <ul class="beds d-flex gap-3"> 
-                            <li>
-                                <label for="due">2</label>
-                            <input type="radio" name="beds" id="due">
-                            </li>
-                            <li>
-                                <label for="quattro">4</label>
-                            <input type="radio" name="beds" id="quattro">
-                            </li>
-                            <li>
-                                <label for="sei">6</label>
-                            <input type="radio" name="beds" id="sei">
-                            </li>
-                            <li>
-                                <label for="molti">più</label>
-                            <input type="radio" name="beds" id="molti">
-                            </li>
-                        </ul>
-
-                        <hr>
-                        <h2>Raggio:</h2>
-                        <ul class="kmrange d-flex gap-3">
-                            <li>
-                                <label for="five">5km</label>
-                                <input @click="setKilometers" type="radio" name="kmvar" id="five">
-                            </li>  
-                            <li>
-                                <label for="ten">10km</label>
-                            <input @click="setKilometers" type="radio" name="kmvar" id="ten">
-                            </li>  
-                            <li>
-                                <label for="twenty">20km</label>
-                            <input @click="setKilometers" type="radio" name="kmvar" id="twenty" checked>
-                            </li>  
-                            <li>
-                                <label for="fifty">50km</label>
-                            <input @click="setKilometers" type="radio" name="kmvar" id="fifty">
-                            </li>  
-                            <li>
-                                <label for="hundred">100km</label>
-                            <input @click="setKilometers" type="radio" name="kmvar" id="hundred">
-                            </li>  
-                        </ul>
+                      </div>
                     </div>
-            </div>
+                  </div>
+                </a>
+              </div>
+            </router-link>
+          </div>
         </div>
+      </div>
+      <div v-if="this.array2.length == 0" class="col-12 col-md-8">
+        <h1>Cerca un appartamento</h1>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="wholefilter">
+          <div id="search"></div>
+          <h2>categorie:</h2>
+
+          <ul class="category d-flex flex-wrap gap-3">
+            <li v-for="(category, index) in categories" :key="index">
+              <label :for="category.slug">{{ category.name }}</label>
+              <input
+                @click="setCategories"
+                type="radio"
+                name="categoria"
+                :id="category.slug"
+              />
+            </li>
+          </ul>
+
+          <hr />
+          <h2>servizi:</h2>
+          <ul class="services d-flex flex-wrap gap-3">
+            <li v-for="(service, index) in services">
+              <label :for="service.slug">{{ service.title }}</label>
+              <input type="checkbox" name="wi-fi" :id="service.slug" />
+            </li>
+          </ul>
+
+          <hr />
+          <h2>stanze:</h2>
+          <ul class="stanze d-flex gap-3">
+            <li>
+              <label for="tre">3</label>
+              <input type="radio" name="stanze" id="tre" />
+            </li>
+            <li>
+              <label for="seii">6</label>
+              <input type="radio" name="stanze" id="seii" />
+            </li>
+            <li>
+              <label for="nove">9</label>
+              <input type="radio" name="stanze" id="nove" />
+            </li>
+            <li>
+              <label for="moltii">più</label>
+              <input type="radio" name="stanze" id="moltii" />
+            </li>
+          </ul>
+
+          <hr />
+          <h2>letti:</h2>
+          <ul class="beds d-flex gap-3">
+            <li>
+              <label for="due">2</label>
+              <input type="radio" name="beds" id="due" />
+            </li>
+            <li>
+              <label for="quattro">4</label>
+              <input type="radio" name="beds" id="quattro" />
+            </li>
+            <li>
+              <label for="sei">6</label>
+              <input type="radio" name="beds" id="sei" />
+            </li>
+            <li>
+              <label for="molti">più</label>
+              <input type="radio" name="beds" id="molti" />
+            </li>
+          </ul>
+
+          <hr />
+          <h2>Raggio:</h2>
+          <ul class="kmrange d-flex gap-3">
+            <li>
+              <label for="five">5km</label>
+              <input
+                @click="setKilometers"
+                type="radio"
+                name="kmvar"
+                id="five"
+              />
+            </li>
+            <li>
+              <label for="ten">10km</label>
+              <input
+                @click="setKilometers"
+                type="radio"
+                name="kmvar"
+                id="ten"
+              />
+            </li>
+            <li>
+              <label for="twenty">20km</label>
+              <input
+                @click="setKilometers"
+                type="radio"
+                name="kmvar"
+                id="twenty"
+                checked
+              />
+            </li>
+            <li>
+              <label for="fifty">50km</label>
+              <input
+                @click="setKilometers"
+                type="radio"
+                name="kmvar"
+                id="fifty"
+              />
+            </li>
+            <li>
+              <label for="hundred">100km</label>
+              <input
+                @click="setKilometers"
+                type="radio"
+                name="kmvar"
+                id="hundred"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -519,99 +571,151 @@ export default {
   components: {
     HeaderComponent,
     CardComponent,
-    FilterLargeComponent
-},
-        data(){
-            return{
-                store,
-                varkm: "20",  //base 20km
-                distanza: "",
-                categories: [],
-                services: [],
-                array1: [],
-                array2: [],
-                loading: true,
-                latitudine: "",
-                longitudine: "",
-                options: {
-                    idleTimePress: 100,
-                    minNumberOfCharacters: 0,
-                    searchOptions: {
-                        key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
-                        language: 'it-IT',
-                        limit: 5
-                    },
-                    autocompleteOptions: {
-                        key: 'mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh',
-                        language: 'it-IT'
-                    },
-                    noResultsMessage: 'No results found.'
-                },
-            }
+    FilterLargeComponent,
+  },
+  data() {
+    return {
+      store,
+      varkm: "20", //base 20km
+      varcat: "",
+      distanza: "",
+      categories: [],
+      services: [],
+      array1: [],
+      array2: [],
+      array3: [],
+      loading: true,
+      latitudine: "",
+      longitudine: "",
+      options: {
+        idleTimePress: 100,
+        minNumberOfCharacters: 0,
+        searchOptions: {
+          key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+          language: "it-IT",
+          limit: 5,
         },
-        // watch: {
-        //     // whenever question changes, this function will run
-        //     question(newQuestion, oldQuestion) {
-        //     if (newQuestion.includes('?')) {
-        //         this.getAnswer()
-        //     }
-        //     }
-        // },
-        methods: {
-            setKilometers(){
-                let km5 = document.getElementById("five");
-                let km10 = document.getElementById("ten");
-                let km20 = document.getElementById("twenty");
-                let km50 = document.getElementById("fifty");
-                let km100 = document.getElementById("hundred");
+        autocompleteOptions: {
+          key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+          language: "it-IT",
+        },
+        noResultsMessage: "No results found.",
+      },
+    };
+  },
+  methods: {
+    setKilometers() {
+      let km5 = document.getElementById("five");
+      let km10 = document.getElementById("ten");
+      let km20 = document.getElementById("twenty");
+      let km50 = document.getElementById("fifty");
+      let km100 = document.getElementById("hundred");
 
-                if (km5.checked) {
-                    console.log('5km selected');
-                    this.varkm = 5;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km10.checked){
-                    console.log('10km selected');
-                    this.varkm = 10;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km20.checked){
-                    console.log('20km selected');
-                    this.varkm = 20;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km50.checked){
-                    console.log('50km selected');
-                    this.varkm = 50;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-                else if(km100.checked){
-                    console.log('100km selected');
-                    this.varkm = 100;
-                    this.array2 = [];
-                    this.getProducts() 
-                }
-            },
-            functionOpener () {
-                document.getElementById("filter_open_closer").onchange = (e) => {
-                    let checked = e.target.checked;
-                    if (checked) {
-                        document.getElementById("smartnavop").style.opacity = "1";
-                        document.getElementById("smartnavop").style.height = "269px";
-                    } else {
-                        document.getElementById("smartnavop").style.opacity = "0";
-                        document.getElementById("smartnavop").style.height = "0px";
-                     }
-                }
-            },
-            initSearchBox(){
-                // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
-                let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
-                // console.log(ttSearchBox);
+      if (km5.checked) {
+        //                    console.log('5km selected');
+        this.varkm = 5;
+        this.array2 = [];
+        this.getProducts();
+      } else if (km10.checked) {
+        //                   console.log('10km selected');
+        this.varkm = 10;
+        this.array2 = [];
+        this.getProducts();
+      } else if (km20.checked) {
+        //                   console.log('20km selected');
+        this.varkm = 20;
+        this.array2 = [];
+        this.getProducts();
+      } else if (km50.checked) {
+        //                    console.log('50km selected');
+        this.varkm = 50;
+        this.array2 = [];
+        this.getProducts();
+      } else if (km100.checked) {
+        //                    console.log('100km selected');
+        this.varkm = 100;
+        this.array2 = [];
+        this.getProducts();
+      }
+    },
+    setCategories() {
+      let openspace = document.getElementById("open-space");
+      let interacasa = document.getElementById("intera-casa");
+      let appartamento = document.getElementById("appartamento");
+      let attico = document.getElementById("attico");
+      let villadicampagna = document.getElementById("villa-di-campagna");
+      let villaalmare = document.getElementById("villa-al-mare");
+      let Abitazioneinstileindustriale = document.getElementById(
+        "abitazione-in-stile-industriale"
+      );
+      let Abitazioneinstilecontemporaneo = document.getElementById(
+        "abitazione-in-stile-contemporaneo"
+      );
+      let villainstileromano = document.getElementById("villa-in-stile-romano");
+
+      if (openspace.checked) {
+        this.varcat = "";
+        console.log("openspace");
+        this.varcat = 1;
+        this.getProducts();
+      } else if (interacasa.checked) {
+        this.varcat = "";
+        console.log("interacasa");
+        this.varcat = 2;
+        this.getProducts();
+      } else if (appartamento.checked) {
+        this.varcat = "";
+        console.log("appartamento");
+        this.varcat = 3;
+        this.getProducts();
+      } else if (attico.checked) {
+        this.varcat = "";
+        console.log("attico");
+        this.varcat = 4;
+        this.getProducts();
+      } else if (villadicampagna.checked) {
+        this.varcat = "";
+        console.log("villadicampagna");
+        this.varcat = 5;
+        this.getProducts();
+      } else if (villaalmare.checked) {
+        this.varcat = "";
+        console.log("villaalmare");
+        this.varcat = 6;
+        this.getProducts();
+      } else if (Abitazioneinstileindustriale.checked) {
+        this.varcat = "";
+        console.log("Abitazioneinstileindustriale");
+        this.varcat = 7;
+        this.getProducts();
+      } else if (Abitazioneinstilecontemporaneo.checked) {
+        this.varcat = "";
+        console.log("Abitazioneinstilecontemporaneo");
+        this.varcat = 8;
+        this.getProducts();
+      } else if (villainstileromano.checked) {
+        this.varcat = "";
+        console.log("villainstileromano");
+        this.varcat = 9;
+        this.getProducts();
+      }
+    },
+    functionOpener() {
+      document.getElementById("filter_open_closer").onchange = (e) => {
+        let checked = e.target.checked;
+        if (checked) {
+          document.getElementById("smartnavop").style.opacity = "1";
+          document.getElementById("smartnavop").style.height = "269px";
+        } else {
+          document.getElementById("smartnavop").style.opacity = "0";
+          document.getElementById("smartnavop").style.height = "0px";
+        }
+      };
+    },
+    initSearchBox() {
+      // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+      let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+      // console.log(ttSearchBox);
 
       let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
       document.getElementById("search").appendChild(searchBoxHTML);
@@ -622,20 +726,20 @@ export default {
       });
 
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
-        console.log(data);
+        //       console.log(data);
         let lat = data.data.result.position.lat;
         this.latitudine = lat;
-        console.log("latitudine", this.latitudine);
+        // console.log("latitudine", this.latitudine);
 
         let lng = data.data.result.position.lng;
         this.longitudine = lng;
-        console.log("longitudine", this.longitudine);
+        // console.log("longitudine", this.longitudine);
 
         this.getProducts();
         this.array2 = [];
       });
-            },
-            initSearchBoxsmart() {
+    },
+    initSearchBoxsmart() {
       // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
       let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
       // console.log(ttSearchBox);
@@ -652,101 +756,119 @@ export default {
         console.log(data);
         let lat = data.data.result.position.lat;
         this.latitudine = lat;
-        console.log("latitudine", this.latitudine);
+        //      console.log("latitudine", this.latitudine);
 
         let lng = data.data.result.position.lng;
         this.longitudine = lng;
-        console.log("longitudine", this.longitudine);
+        //     console.log("longitudine", this.longitudine);
 
-                    this.getProducts();
-                    this.array2 = [];
-                })
-            },
-            getLatLongDist(lat2,long2){
-                let unit = "K";
-                    var radlat1 = Math.PI * this.latitudine/180; //lat1 aka latitudine mappa
-                    console.log('radlat1',radlat1);
+        this.getProducts();
+        this.array2 = [];
+      });
+    },
+    getLatLongDist(lat2, long2) {
+      let unit = "K";
+      var radlat1 = (Math.PI * this.latitudine) / 180; //lat1 aka latitudine mappa
+      //                 console.log('radlat1',radlat1);
 
-                    var radlat2 = Math.PI * lat2/180; //lat2 aka latitudine di ogni singolo appartamento
-                    console.log('radlat2',radlat2);
+      var radlat2 = (Math.PI * lat2) / 180; //lat2 aka latitudine di ogni singolo appartamento
+      //                  console.log('radlat2',radlat2);
 
-                    var theta = this.longitudine - long2; //long1(longitudine mappa) - long2(longitudine appartamento) 
-                    var radtheta = Math.PI * theta/180;
-                    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-                    if (dist > 1) {
-                        dist = 1;
-                    }
-                    dist = Math.acos(dist);
-                    dist = dist * 180/Math.PI;
-                    dist = dist * 60 * 1.1515;
-                    if (unit=="K") { dist = dist * 1.609344 }
+      var theta = this.longitudine - long2; //long1(longitudine mappa) - long2(longitudine appartamento)
+      var radtheta = (Math.PI * theta) / 180;
+      var dist =
+        Math.sin(radlat1) * Math.sin(radlat2) +
+        Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = (dist * 180) / Math.PI;
+      dist = dist * 60 * 1.1515;
+      if (unit == "K") {
+        dist = dist * 1.609344;
+      }
 
-                    this.distanza = "";
-                    this.distanza = dist;
-                    console.log('distanza variabile globale',this.distanza);
-                    return dist;
-            },
-            getProducts() {
-                axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
-                this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
-                console.log(this.array1);
-                this.array2 = [];
-                this.array1.forEach((item) => {
-                    let lat2 = item.lat;
-                    console.log('latitudine array item',lat2);
-                    let long2 = item.long;
-                    console.log('longitudine array item',lat2);
+      this.distanza = "";
+      this.distanza = dist;
+      //                 console.log('distanza variabile globale',this.distanza);
+      return dist;
+    },
+    getProducts() {
+      axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
+        this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
+        // console.log(this.array1);
+        this.array2 = [];
+        this.array1.forEach((item) => {
+          let lat2 = item.lat;
+          // console.log('latitudine array item',lat2);
+          let long2 = item.long;
+          // console.log('longitudine array item',lat2);
 
-                        this.getLatLongDist(lat2, long2)
+          this.getLatLongDist(lat2, long2);
 
-                        console.log('distanza dentro la funz',this.distanza);
-                        if (this.distanza <= this.varkm){ 
-                            console.log('sono ENTRO di 20km');
-                            this.array2.push(item);
-                            }
-                            else{
-                                console.log('sono OLTRE di 20km');
-                            }
-                    });
-                this.loading = false;
-                console.log('array filtrato', this.array2);
-            });
-            },
-            getServices(){
-                axios.get(`${this.store.apiBaseUrl}/services`).then((res) => {
-                this.services= res.data.results; //array 1 chiamata tutti gli appartamenti axios
-                console.log(this.services);
-            })
-            }
-        },
-        mounted() {
-            this.getServices();
-            this.getProducts();
-            this.initSearchBox();
-            this.initSearchBoxsmart();
-            },
-    }
+          // console.log('distanza dentro la funz',this.distanza);
+          if (this.distanza <= this.varkm) {
+            // console.log('sono ENTRO di 20km');
+            this.array2.push(item);
+          }
+          this.array3 = [];
+          console.log("categoria settata a:", this.varcat);
+        });
+        this.array2.forEach((item2) => {
+          if (item2.category_id == this.varcat) {
+            this.array3.push(item2);
+          }
+        });
+        console.log("afterarray3", this.array3);
+        if (this.array3.length == 0) {
+          console.log("no appartamenti");
+        }
+        this.loading = false;
+      });
+    },
+    getServices() {
+      axios.get(`${this.store.apiBaseUrl}/services`).then((res) => {
+        this.services = res.data.results; //array 1 chiamata tutti gli appartamenti axios
+        console.log(this.services);
+      });
+    },
+    getCategories() {
+      axios.get(`${this.store.apiBaseUrl}/categories`).then((res) => {
+        this.categories = res.data.results; //array 1 chiamata tutti gli appartamenti axios
+        console.log(this.categories);
+      });
+    },
+  },
+  mounted() {
+    this.getCategories();
+    this.getServices();
+    // this.getProducts();
+    this.initSearchBox();
+    this.initSearchBoxsmart();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
-
-.wholefilter{
-    background-color: rgb(204, 221, 221);
-    padding: 20px 40px;
-    h2{
-        margin-top: 10px;
-        text-transform: capitalize;
+.wholefilter {
+  background-color: rgb(204, 221, 221);
+  padding: 5px 20px 20px 20px;
+  border-radius: 20px;
+  h2 {
+    margin-top: 10px;
+    text-transform: capitalize;
+  }
+  li {
+    label {
+      font-size: 1.1rem;
     }
-    li{
-    label{
-        font-size: 1.1rem;
+    input {
+      margin: 0px 5px;
     }
-    input{
-        margin: 0px 5px;
-    }
-    }
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -766,7 +888,7 @@ export default {
 @media screen and (min-width: 800px) {
   .maincont {
     display: flex;
-    margin-top: 70px !important;
+    margin-top: 50px !important;
   }
 }
 
@@ -850,14 +972,19 @@ footer {
   padding-bottom: 10px;
   overflow-y: scroll;
 
-
   @keyframes cardapartment {
-  0%   { opacity: 0; width: 500px;}
-  100%   { opacity: 1; width: 100%;}
-}
+    0% {
+      opacity: 0;
+      width: 500px;
+    }
+    100% {
+      opacity: 1;
+      width: 100%;
+    }
+  }
 
   .card_apartment {
-    transition: ease-in-out 200ms ;
+    transition: ease-in-out 200ms;
     animation-name: cardapartment;
     animation-duration: 1s;
     border-radius: 20px;
