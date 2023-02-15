@@ -460,9 +460,15 @@
           <ul class="services d-flex flex-wrap gap-3">
             <li v-for="(service, index) in services">
               <label :for="service.slug">{{ service.title }}</label>
-              <input @click="setServices(service.id)" type="checkbox" name="wi-fi" :id="'service_'+service.id" />
+              <input
+                @click="setServices(service.id)"
+                type="checkbox"
+                name="wi-fi"
+                :id="'service_' + service.id"
+              />
             </li>
           </ul>
+          <button @click="filtriServizi()">Send</button>
 
           <hr />
           <h2>stanze:</h2>
@@ -722,21 +728,43 @@ export default {
 
       let addService = document.getElementById(`service_${service}`);
       console.log(addService);
-      if(addService.checked){
-        let serviceArr = {...this.services.filter(el=> el.id == service)};
+      if (addService.checked) {
+        let serviceArr = { ...this.services.filter((el) => el.id == service) };
         // console.log(serviceArr);
         let serviceObj = serviceArr[0];
         // console.log(serviceObj);
         this.filteredServices.push(serviceObj);
-      }else if(!addService.checked){
-        let serviceArr = {...this.services.filter(el=> el.id == service)};
+      } else if (!addService.checked) {
+        let serviceArr = { ...this.services.filter((el) => el.id == service) };
         // console.log(serviceArr);
         let serviceObj = serviceArr[0];
         // console.log(serviceObj);
-        this.filteredServices.splice(this.filteredServices.indexOf(serviceObj), 1);
+        this.filteredServices.splice(
+          this.filteredServices.indexOf(serviceObj),
+          1
+        );
       }
       console.log(this.filteredServices);
     },
+    filtriServizi() {
+      this.filteredServices.forEach((el) => {
+        // console.log(el);
+        this.array3.forEach((item) => {
+          //   console.log(item);
+          item.services.forEach((serviceapart) => {
+            //    console.log(serviceapart);
+            if (serviceapart.id == el.id) {
+              this.array3 = [];
+              this.array3.push(item);
+              console.log(item);
+            } else {
+              console.log("nessun appartamento");
+            }
+          });
+        });
+      });
+    },
+
     functionOpener() {
       document.getElementById("filter_open_closer").onchange = (e) => {
         let checked = e.target.checked;
