@@ -744,7 +744,7 @@ export default {
           this.filteredServices.indexOf(serviceObj),
           1
         );
-        // this.filtriServizi();
+        this.filtriServizi();
         this.getProducts();
       }
       console.log(this.filteredServices);
@@ -752,7 +752,7 @@ export default {
     filtriServizi() {
       this.filteredServices.forEach((el) => {
         // console.log(el);
-        this.array3.forEach((item) => {
+        this.array2.forEach((item) => {
           //   console.log(item);
           item.services.forEach((serviceapart) => {
             //    console.log(serviceapart);
@@ -760,8 +760,9 @@ export default {
               this.array3 = [];
               this.array3.push(item);
               console.log(item);
-            } else {
+            } else if(!this.filteredServices.includes(serviceapart)){
               console.log("nessun appartamento");
+              this.array3.splice(this.array3.indexOf(item), 1)
             }
           });
         });
@@ -884,8 +885,13 @@ export default {
           console.log("categoria settata a:", this.varcat);
         });
         this.array2.forEach((item2) => {
-          if (item2.category_id == this.varcat) {
-            this.array3.push(item2);
+          if ((item2.category_id == this.varcat)) {
+            item2.services.forEach((ser)=>{
+              if(this.filteredServices.includes(ser)){
+                  this.array3.push(item2);
+              }
+            })
+            // this.array3.push(item2);
           }
         });
         console.log("afterarray3", this.array3);
