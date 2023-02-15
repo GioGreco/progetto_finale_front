@@ -743,6 +743,7 @@ export default {
         let serviceObj = serviceArr[0];
         // console.log(serviceObj);
         this.filteredServices.push(serviceObj.id);
+        this.getProducts();
         // console.log(this.filteredServices);
         // this.filtriServizi();
       } else if (!addService.checked) {
@@ -891,9 +892,10 @@ export default {
         if(!(this.varcat == null)){
           this.array2 = this.array2.filter((item)=>item.category_id == this.varcat);
         }
-        // if(this.filteredServices.length > 0){
-        //   this.array2 = this.filterServices(this.array2, this.filteredServices);
-        // }
+        if(this.filteredServices.length > 0){
+          // this.array2 = this.filterServices(this.array2, this.filteredServices);
+          console.log()
+        }
         console.log(this.array2);
         this.loading = false;
       });
