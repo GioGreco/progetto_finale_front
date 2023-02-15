@@ -562,6 +562,8 @@
               />
             </li>
           </ul>
+          <input @change="setKilometers2" type="range" class="d-block" id="range" name="range" min="5" max="100" value="20" oninput="this.nextElementSibling.value = this.value">
+          <output>20</output> km
         </div>
       </div>
     </div>
@@ -619,6 +621,13 @@ export default {
     };
   },
   methods: {
+    setKilometers2() {
+      let range = document.getElementById('range');
+      console.log(parseInt(range.value));
+      this.varkm = parseInt(range.value);
+      this.array2 = [];
+      this.getProducts();
+    },
     setKilometers() {
       let km5 = document.getElementById("five");
       let km10 = document.getElementById("ten");
