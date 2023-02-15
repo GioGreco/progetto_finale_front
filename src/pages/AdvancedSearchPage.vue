@@ -468,7 +468,7 @@
               />
             </li>
           </ul>
-          <button @click="filtriServizi()">Send</button>
+          <button @click="">Send</button>
 
           <hr />
           <h2>stanze:</h2>
@@ -734,6 +734,7 @@ export default {
         let serviceObj = serviceArr[0];
         // console.log(serviceObj);
         this.filteredServices.push(serviceObj);
+        this.filtriServizi();
       } else if (!addService.checked) {
         let serviceArr = { ...this.services.filter((el) => el.id == service) };
         // console.log(serviceArr);
@@ -743,6 +744,7 @@ export default {
           this.filteredServices.indexOf(serviceObj),
           1
         );
+        this.filtriServizi();
       }
       console.log(this.filteredServices);
     },
