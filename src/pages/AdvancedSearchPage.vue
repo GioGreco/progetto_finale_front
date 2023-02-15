@@ -670,70 +670,8 @@ export default {
         this.varcat = category;
         this.getProducts();
       }
-
-      // if (openspace.checked) {
-      //   this.varcat = "";
-      //   console.log("openspace");
-      //   this.varcat = 1;
-      //   this.getProducts();
-      // } else if (interacasa.checked) {
-      //   this.varcat = "";
-      //   console.log("interacasa");
-      //   this.varcat = 2;
-      //   this.getProducts();
-      // } else if (appartamento.checked) {
-      //   this.varcat = "";
-      //   console.log("appartamento");
-      //   this.varcat = 3;
-      //   this.getProducts();
-      // } else if (attico.checked) {
-      //   this.varcat = "";
-      //   console.log("attico");
-      //   this.varcat = 4;
-      //   this.getProducts();
-      // } else if (villadicampagna.checked) {
-      //   this.varcat = "";
-      //   console.log("villadicampagna");
-      //   this.varcat = 5;
-      //   this.getProducts();
-      // } else if (villaalmare.checked) {
-      //   this.varcat = "";
-      //   console.log("villaalmare");
-      //   this.varcat = 6;
-      //   this.getProducts();
-      // } else if (Abitazioneinstileindustriale.checked) {
-      //   this.varcat = "";
-      //   console.log("Abitazioneinstileindustriale");
-      //   this.varcat = 7;
-      //   this.getProducts();
-      // } else if (Abitazioneinstilecontemporaneo.checked) {
-      //   this.varcat = "";
-      //   console.log("Abitazioneinstilecontemporaneo");
-      //   this.varcat = 8;
-      //   this.getProducts();
-      // } else if (villainstileromano.checked) {
-      //   this.varcat = "";
-      //   console.log("villainstileromano");
-      //   this.varcat = 9;
-      //   this.getProducts();
-      // }
     },
     setServices(service) {
-      // let wifi = document.getElementById("wi-fi");
-      // let ariaCondizionata = document.getElementById("aria-condizionata");
-      // let garage = document.getElementById("garage");
-      // let piscina = document.getElementById("piscina");
-      // let idromassaggio = document.getElementById("idromassaggio");
-      // let portineria = document.getElementById("portineria");
-      // let sauna = document.getElementById("sauna");
-      // let palestra = document.getElementById("palestra");
-      // let campoDaTennis = document.getElementById("campo-da-tennis");
-      // let campoDaGolf = document.getElementById("campo-da-golf");
-      // let giardino = document.getElementById("giardino");
-      // let patio = document.getElementById("patio");
-      // let vistaMare = document.getElementById("wi-fi");
-      // let vigilanzaNotturna = document.getElementById("wi-fi");
-
       let addService = document.getElementById(`service_${service}`);
       console.log(addService);
       if (addService.checked) {
@@ -913,15 +851,26 @@ export default {
       });
     },
     filterServices(apartments, requiredServices) {
-      apartments.filter((apartment) => {
-        // Verifica se l'appartamento dispone di tutti i servizi richiesti
-        requiredServices.every((requiredServiceId) => {
-          return apartment.services.some(
-            (service) => service.id === requiredServiceId
-          );
+       this.filteredServices.forEach((el) => {
+        // console.log(el);
+        this.array3.forEach((item) => {
+          //   console.log(item);
+          item.services.forEach((serviceapart) => {
+            //    console.log(serviceapart);
+            if (serviceapart.id == el.id) {
+              this.array3 = [];
+              this.array3.push(item);
+              console.log(item);
+            } else {
+              console.log("nessun appartamento");
+            }
+          });
         });
       });
-    },
+      console.log(this.array3);
+      if (this.array3.length == 0) {
+        console.log("no appartamenti con servizio ");
+      }
   },
   mounted() {
     this.getCategories();
