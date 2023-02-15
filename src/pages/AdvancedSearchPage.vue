@@ -317,7 +317,7 @@
       <div class="col-12 col-md-8">
         <div class="row gy-4">
           <div
-            v-if="this.array3.length == 0"
+            v-if="this.array3.length == 0 && this.varcat == 0"
             v-for="(apartment, index) in array2"
             :key="index"
             class="col-6 col-md-12 card_apartment"
@@ -822,7 +822,6 @@ export default {
         });
         console.log("afterarray3", this.array3);
         if (this.array3.length == 0) {
-          console.log("no appartamenti");
         }
         this.loading = false;
       });
