@@ -17,9 +17,9 @@
       </div>
 
       <div class="nav-btns d-none d-md-block d-flex">
-        <button class="me-3"><a href="http://127.0.0.1:8000/">Login</a></button>
+        <button class="me-3"><a target="_blank" href="http://127.0.0.1:8000/">Login</a></button>
         <button>
-          <a href="http://127.0.0.1:8000/register">Diventa un host</a>
+          <a target="_blank" href="http://127.0.0.1:8000/register">Diventa un host</a>
         </button>
       </div>
     </nav>
