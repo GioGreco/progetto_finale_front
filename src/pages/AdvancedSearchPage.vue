@@ -463,52 +463,77 @@
               <input
                 @click="setServices(service.id)"
                 type="checkbox"
+                class="service"
                 name="wi-fi"
                 :id="'service_' + service.id"
               />
             </li>
           </ul>
-          <button @click="">Send</button>
-
+          <button @click="reset()">reset</button>
           <hr />
           <h2>stanze:</h2>
           <ul class="stanze d-flex gap-3">
             <li>
               <label for="tre">3</label>
-              <input type="radio" name="stanze" id="tre" />
+              <input
+                type="radio"
+                class="stanze"
+                name="stanze"
+                id="camere_tre"
+                @click="setRooms3()"
+              />
             </li>
             <li>
               <label for="seii">6</label>
-              <input type="radio" name="stanze" id="seii" />
+              <input
+                type="radio"
+                class="stanze"
+                name="stanze"
+                id="camere_sei"
+                @click="setRooms6()"
+              />
             </li>
             <li>
               <label for="nove">9</label>
-              <input type="radio" name="stanze" id="nove" />
+              <input
+                type="radio"
+                class="stanze"
+                name="stanze"
+                id="camere_nove"
+                @click="setRooms9()"
+              />
             </li>
             <li>
               <label for="moltii">più</label>
-              <input type="radio" name="stanze" id="moltii" />
+              <input
+                type="radio"
+                class="stanze"
+                name="stanze"
+                id="camere_molti"
+                @click="setRoomsmore()"
+              />
             </li>
           </ul>
+          <button @click="resetrooms()">reset</button>
 
           <hr />
           <h2>letti:</h2>
           <ul class="beds d-flex gap-3">
             <li>
               <label for="due">2</label>
-              <input type="radio" name="beds" id="due" />
+              <input type="radio" name="beds" id="letti_due" />
             </li>
             <li>
               <label for="quattro">4</label>
-              <input type="radio" name="beds" id="quattro" />
+              <input type="radio" name="beds" id="letti_quattro" />
             </li>
             <li>
               <label for="sei">6</label>
-              <input type="radio" name="beds" id="sei" />
+              <input type="radio" name="beds" id="letti_sei" />
             </li>
             <li>
               <label for="molti">più</label>
-              <input type="radio" name="beds" id="molti" />
+              <input type="radio" name="beds" id="letti_molti" />
             </li>
           </ul>
 
@@ -614,6 +639,29 @@ export default {
     };
   },
   methods: {
+    reset() {
+      let filtriservizi = document.querySelectorAll(".service");
+      console.log(filtriservizi);
+      // for (let i = 0; i < filtriservizi.length; i++) {
+      //   filtriservizi[i] = false;
+      // }
+      filtriservizi.forEach((el) => {
+        el.checked = false;
+        this.filteredServices = [];
+        console.log(el);
+      });
+      this.getProducts();
+    },
+    resetrooms() {
+      let stanze = document.querySelectorAll(".stanze");
+      stanze.forEach((el) => {
+        el.checked = false;
+        console.log(el);
+      });
+      this.filtriServizi();
+      this.setServices();
+      this.getProducts();
+    },
     setKilometers() {
       let km5 = document.getElementById("five");
       let km10 = document.getElementById("ten");
@@ -711,21 +759,6 @@ export default {
       }
     },
     setServices(service) {
-      // let wifi = document.getElementById("wi-fi");
-      // let ariaCondizionata = document.getElementById("aria-condizionata");
-      // let garage = document.getElementById("garage");
-      // let piscina = document.getElementById("piscina");
-      // let idromassaggio = document.getElementById("idromassaggio");
-      // let portineria = document.getElementById("portineria");
-      // let sauna = document.getElementById("sauna");
-      // let palestra = document.getElementById("palestra");
-      // let campoDaTennis = document.getElementById("campo-da-tennis");
-      // let campoDaGolf = document.getElementById("campo-da-golf");
-      // let giardino = document.getElementById("giardino");
-      // let patio = document.getElementById("patio");
-      // let vistaMare = document.getElementById("wi-fi");
-      // let vigilanzaNotturna = document.getElementById("wi-fi");
-
       let addService = document.getElementById(`service_${service}`);
       console.log(addService);
       if (addService.checked) {
@@ -749,6 +782,26 @@ export default {
       }
       console.log(this.filteredServices);
     },
+    setRooms3() {
+      this.array3 = this.array3.filter((el) => el.room_number <= 3);
+      console.log(this.array3);
+    },
+    setRooms6() {
+      this.array3 = this.array3.filter(
+        (el) => el.room_number <= 6 && el.room_number > 3
+      );
+      console.log(this.array3);
+    },
+    setRooms9() {
+      this.array3 = this.array3.filter(
+        (el) => el.room_number <= 9 && el.room_number > 6
+      );
+      console.log(this.array3);
+    },
+    setRoomsmore() {
+      this.array3 = this.array3.filter((el) => el.room_number > 9);
+      console.log(this.array3);
+    },
     filtriServizi() {
       this.filteredServices.forEach((el) => {
         // console.log(el);
@@ -767,6 +820,10 @@ export default {
           });
         });
       });
+      console.log(this.array3);
+      if (this.array3.length == 0) {
+        console.log("no appartamenti con servizio ");
+      }
     },
 
     functionOpener() {
