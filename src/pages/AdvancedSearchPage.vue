@@ -603,14 +603,6 @@ export default {
       },
     };
   },
-  // watch: {
-  //     // whenever question changes, this function will run
-  //     question(newQuestion, oldQuestion) {
-  //     if (newQuestion.includes('?')) {
-  //         this.getAnswer()
-  //     }
-  //     }
-  // },
   methods: {
     setKilometers() {
       let km5 = document.getElementById("five");
