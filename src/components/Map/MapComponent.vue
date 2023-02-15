@@ -8,7 +8,7 @@
         props: {
             apartmentLocation: {
                 type: Object,
-                // required: true
+                required: true
             }
         },
         data(){
