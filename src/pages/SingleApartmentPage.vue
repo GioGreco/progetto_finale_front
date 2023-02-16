@@ -114,7 +114,7 @@
         <div class="map-position">
             <MapComponent :apartmentLocation="apartment"/>
         </div>
-        <div class="row g-0">
+        <div class="row g-0 container mx-auto">
             <div class="services col-12 col-md-6">
                 <h3 class="mb-4">A tua disposizione :</h3>
                 <div class="row">
