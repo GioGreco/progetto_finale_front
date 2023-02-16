@@ -119,7 +119,7 @@
                 <h3 class="mb-4">A tua disposizione :</h3>
                 <div class="row">
                     <div v-for="(service, index) in apartment.services" :key="index" class="col-6">
-                        <i class="fa-solid fa-wifi"></i>  {{ service.title }}
+                        <span v-html="service.img"></span><span>{{ service.title }}</span>
                     </div>
                 </div>
             </div>
@@ -170,6 +170,7 @@ import ContactFormComponent from '@/components/Mails/ContactFormComponent.vue';
                 axios.get(`${store.apiBaseUrl}/apartments/${this.$route.params.slug}`).then((response)=>{
                     if (response.data.success) {
                         this.apartment = response.data.results;
+                        console.log(this.apartment)
                         this.success = true;
                     } else {
                         this.$router.push({ name: "not-found" });
@@ -183,7 +184,7 @@ import ContactFormComponent from '@/components/Mails/ContactFormComponent.vue';
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '@/assets/styles/partials/_variables.scss' as *;
 
     #show-mobile{
@@ -326,7 +327,9 @@ import ContactFormComponent from '@/components/Mails/ContactFormComponent.vue';
             color: $sangria;
             font-weight: bolder;
         }
-        i{
+        span{
+            font-size: 1.2rem;
+            i{
             border: 2px solid $mauve;
             border-radius: 50%;
             text-align: center;
@@ -335,7 +338,8 @@ import ContactFormComponent from '@/components/Mails/ContactFormComponent.vue';
             color: $mauve;
             height: 30px;
             width: 30px;
-            margin-right: 3px;
+            margin-right: 8px;
+        }
         }
         .col-6{
             margin-bottom: 16px;
@@ -343,6 +347,7 @@ import ContactFormComponent from '@/components/Mails/ContactFormComponent.vue';
     }
     .contact-form{
         padding: 60px 100px;
+        font-size: 1.1rem;
         .contact-inner{
             background-color: $mauve;
             padding: 20px;
