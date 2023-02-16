@@ -10,7 +10,10 @@
       <div class="row">
         <div class="results-list col-md-8">
           <!-- se non si è ancora effettuata nessuna ricerca: -->
-          <div v-if="this.array2.length == 0" class="col-md-8">
+          <div
+            v-if="this.array2.length == 0 || this.sponsored.length == 0"
+            class="col-md-8"
+          >
             <h1>Cerca un appartamento</h1>
           </div>
           <!-- risultati per solo filtro città: -->
@@ -21,6 +24,19 @@
               :per-page="perPage"
               aria-controls="my-cards"
             ></b-pagination>
+
+            <div
+              class="card-container sponsored"
+              v-if="this.sponsored.length > 0"
+              v-for="(item, index) in sponsored"
+              :key="index"
+            >
+              <CardCarousel :apartament="item"></CardCarousel>
+              <div class="d-flex justify-content-end">
+                Contenuto sponsorizzato
+              </div>
+              <hr class="mt-2 mb-5" />
+            </div>
 
             <div
               class="card-container"
@@ -241,6 +257,7 @@ import axios from "axios";
 import HeaderComponent from "../components/HeaderComponent.vue";
 import CardComponent from "../components/AdvancedSearch/CardComponent.vue";
 import FilterLargeComponent from "../components/FilterLargeComponent.vue";
+import CardCarousel from "../components/Homepage/CardCarousel.vue";
 
 export default {
   name: "AdvancedSearchPage",
@@ -248,6 +265,7 @@ export default {
     HeaderComponent,
     CardComponent,
     FilterLargeComponent,
+    CardCarousel,
   },
   data() {
     return {
@@ -267,6 +285,7 @@ export default {
       array1: [],
       array2: [],
       array3: [],
+      sponsored: [],
       loading: true,
       latitudine: "",
       longitudine: "",
