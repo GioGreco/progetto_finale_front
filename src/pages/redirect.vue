@@ -21,6 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$rosegold: #ae8a86;
+$darkgrey: #646464;
 .page-loader {
   display: flex;
   justify-content: center;
@@ -30,7 +32,7 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: antiquewhite;
+  background-color: $darkgrey;
   z-index: 999;
 }
 .cube {
@@ -38,7 +40,7 @@ export default {
   height: 40px;
   margin-right: 10px;
   border-radius: 50%;
-  background-color: red;
+  background-color: $rosegold;
   &:first-child {
     animation: left 1s infinite;
   }
