@@ -17,11 +17,11 @@
           </div>
 
           <!-- contenitore nav a scomparsa mobile -->
-          <div id="search" class="my-3"></div>
+          <div id="search" class="d-block my-3"></div>
 
           <div class="navholder">
             <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
-            <div id="search" class="my-3"></div>
+            <div id="search" class="my-3">Prova</div>
 
             <h4 class="d-none d-md-block">Distanza dal centro:</h4>
 
@@ -170,17 +170,27 @@
             class="col-md-8"
           >
             <h1 class="d-none d-md-block">Cerca un appartamento</h1>
+            <div class="bg-icon d-none d-md-block">
+              <i class="fa-solid fa-earth-americas"></i>
+            </div>
           </div>
 
           <!-- risultati per solo filtro città: -->
           <div class="overflow-auto">
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="rows"
+              :per-page="perPage"
+              aria-controls="my-cards"
+            ></b-pagination>
+
             <div
               class="card-container sponsored"
               v-if="this.sponsored.length > 0"
               v-for="(item, index) in sponsored"
               :key="index"
             >
-              <CardCarousel :apartament="item"></CardCarousel>
+              <CardCarousel :apartament="item"> </CardCarousel>
               <div class="d-flex justify-content-end">
                 Contenuto sponsorizzato
               </div>
@@ -207,7 +217,7 @@
           </div>
         </div>
 
-        <!-- colonna filtri -->
+        <!-- colonna filtri desktop -->
         <div class="filter-list d-none d-md-block col-md-4 pt-4">
           <div class="d-none d-md-block page-title text-center">
             <h3>Ricerca avanzata</h3>
@@ -655,7 +665,6 @@ export default {
 
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
-
 .results-list {
   padding: 30px 20px;
   background-color: $white;
@@ -847,6 +856,16 @@ input[type="range"]:focus::-ms-fill-lower {
 }
 input[type="range"]:focus::-ms-fill-upper {
   background: $rosegold;
+}
+.bg-icon {
+  i {
+    position: absolute;
+    color: #afbdbb86;
+    font-size: 20rem;
+    top: 40%;
+    left: 40%;
+    transform: translate(-40%, -40%);
+  }
 }
 
 @media (max-width: 600px) {
