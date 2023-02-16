@@ -151,7 +151,7 @@
           </ul>
 
           <h4 class="d-none d-md-block">Servizi aggiuntivi:</h4>
-          <ul class="services d-flex flex-wrap gap-3">
+          <ul class="d-flex flex-wrap gap-3">
             <li v-for="(service, index) in services">
               <input
                 type="checkbox"
@@ -173,15 +173,30 @@
           <h4 class="d-none d-md-block">Stanze:</h4>
           <ul class="stanze d-flex gap-3">
             <li>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms1-3" />
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms1-3"
+              />
               <label for="tre">1-3</label>
             </li>
             <li>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms4-6" />
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms4-6"
+              />
               <label for="seii">4-6</label>
             </li>
             <li>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms7-9" />
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms7-9"
+              />
               <label for="nove">7-9</label>
             </li>
             <li>
@@ -347,13 +362,12 @@ export default {
       const rooms3 = document.getElementById("rooms1-3");
       const rooms6 = document.getElementById("rooms4-6");
       const rooms9 = document.getElementById("rooms7-9");
-      const rooms00 = document.getElementById('rooms10');
+      const rooms00 = document.getElementById("rooms10");
 
       rooms3.checked ? (this.minRooms = 2) : "";
       rooms6.checked ? (this.minRooms = 5) : "";
       rooms9.checked ? (this.minRooms = 8) : "";
       rooms00.checked ? (this.minRooms = 10) : "";
-
 
       // rooms00.checked ? this.minRooms = 3 : '';
 
@@ -364,7 +378,7 @@ export default {
       const beds3 = document.getElementById("beds1-2");
       const beds6 = document.getElementById("beds3-4");
       const beds9 = document.getElementById("beds5-6");
-      const beds00 = document.getElementById('beds7');
+      const beds00 = document.getElementById("beds7");
 
       beds3.checked ? (this.minBeds = 2) : "";
       beds6.checked ? (this.minBeds = 4) : "";
@@ -493,9 +507,12 @@ export default {
           console.log("sei entrato nel filtro Camere");
           console.log(this.array2);
           this.array2 = this.array2.filter(
-            (item) => item.room_number == this.minRooms || item.room_number == this.minRooms + 1 || item.room_number == this.minRooms - 1
+            (item) =>
+              item.room_number == this.minRooms ||
+              item.room_number == this.minRooms + 1 ||
+              item.room_number == this.minRooms - 1
           );
-        }else if(this.minRooms == 10){
+        } else if (this.minRooms == 10) {
           this.array2 = this.array2.filter(
             (item) => item.room_number >= this.minRooms
           );
@@ -506,13 +523,15 @@ export default {
           console.log("sei entrato nel filtro Letti");
           console.log(this.array2);
           this.array2 = this.array2.filter(
-            (item) => item.bed_number >= this.minBeds || item.bed_number == this.minBeds - 1
+            (item) =>
+              item.bed_number >= this.minBeds ||
+              item.bed_number == this.minBeds - 1
           );
-        }else if(this.minBeds == 7){
+        } else if (this.minBeds == 7) {
           this.array2 = this.array2.filter(
             (item) => item.bed_number >= this.minBeds
           );
-        };
+        }
         this.loading = false;
       });
     },
