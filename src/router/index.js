@@ -12,15 +12,15 @@ const routes = [
     name: "home",
     component: HomePage,
   },
-  {
-    path: "/search",
-    name: "search",
-    component: AdvancedSearchPage,
-  },
+  // {
+  //   path: "/search",
+  //   name: "search",
+  //   component: AdvancedSearchPage,
+  // },
   //test grafica search:
   {
-    path: "/working",
-    name: "working-search",
+    path: "/advancedSearch",
+    name: "advancedSearch",
     component: WorkingSearch,
   },
   {
