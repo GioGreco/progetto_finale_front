@@ -24,7 +24,7 @@
 
             <div
               class="card-container"
-              v-if="this.array2.length == 0 && this.varcat == 0"
+              v-if="this.array2.length > 0"
               v-for="(item, index) in array2"
               :key="index"
             >
@@ -116,16 +116,28 @@
               <label for="hundred">100km</label>
             </li>
           </ul>
+          <input
+            @change="setKilometers2"
+            type="range"
+            class="d-block"
+            id="range"
+            name="range"
+            min="5"
+            max="100"
+            value="20"
+            oninput="this.nextElementSibling.value = this.value"
+          />
+          <output>20</output> km
 
           <h4 class="d-none d-md-block">Tipo di alloggio:</h4>
 
           <ul class="category d-flex flex-wrap gap-3">
             <li v-for="(category, index) in categories" :key="index">
               <input
+                @click="setCategories(category.id)"
                 type="radio"
                 name="categoria"
-                :id="category.slug"
-                @click="setCategories"
+                :id="'category_' + category.id"
               />
               <label :for="category.slug" class="d-none d-md-inline-block">{{
                 category.name
@@ -141,8 +153,13 @@
           <h4 class="d-none d-md-block">Servizi aggiuntivi:</h4>
           <ul class="services d-flex flex-wrap gap-3">
             <li v-for="(service, index) in services">
-              <input type="checkbox" :name="service.title" :id="service.slug" />
-              <label :for="service.slug" class="d-none d-md-inline-block">{{
+              <input
+                type="checkbox"
+                :name="service.title"
+                :id="'service_' + service.id"
+                @click="setServices(service.id)"
+              />
+              <label :for="service.title" class="d-none d-md-inline-block">{{
                 service.title
               }}</label>
 
@@ -156,19 +173,24 @@
           <h4 class="d-none d-md-block">Stanze:</h4>
           <ul class="stanze d-flex gap-3">
             <li>
-              <input type="radio" name="stanze" id="tre" />
+              <input @click="setRooms" type="radio" name="stanze" id="rooms3" />
               <label for="tre">3</label>
             </li>
             <li>
-              <input type="radio" name="stanze" id="seii" />
+              <input @click="setRooms" type="radio" name="stanze" id="rooms6" />
               <label for="seii">6</label>
             </li>
             <li>
-              <input type="radio" name="stanze" id="nove" />
+              <input @click="setRooms" type="radio" name="stanze" id="rooms9" />
               <label for="nove">9</label>
             </li>
             <li>
-              <input type="radio" name="stanze" id="moltii" />
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms00"
+              />
               <label for="moltii">più</label>
             </li>
           </ul>
@@ -176,19 +198,19 @@
           <h4 class="d-none d-md-block">Letti:</h4>
           <ul class="beds d-flex gap-3">
             <li>
-              <input type="radio" name="beds" id="due" />
+              <input @click="setBeds" type="radio" name="beds" id="beds2" />
               <label for="due">2</label>
             </li>
             <li>
-              <input type="radio" name="beds" id="quattro" />
+              <input @click="setBeds" type="radio" name="beds" id="beds4" />
               <label for="quattro">4</label>
             </li>
             <li>
-              <input type="radio" name="beds" id="sei" />
+              <input @click="setBeds" type="radio" name="beds" id="beds6" />
               <label for="sei">6</label>
             </li>
             <li>
-              <input type="radio" name="beds" id="molti" />
+              <input @click="setBeds" type="radio" name="beds" id="beds00" />
               <label for="molti">più</label>
             </li>
           </ul>
