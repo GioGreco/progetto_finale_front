@@ -37,6 +37,7 @@ export default {
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  border-radius: 50%;
   background-color: red;
   &:first-child {
     animation: left 1s infinite;
