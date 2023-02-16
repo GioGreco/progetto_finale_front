@@ -17,9 +17,13 @@
       </div>
 
       <div class="nav-btns d-none d-md-block d-flex">
-        <button class="me-3"><a target="_blank" href="http://127.0.0.1:8000/">Login</a></button>
+        <button class="me-3">
+          <a target="_blank" href="http://127.0.0.1:8000/">Login</a>
+        </button>
         <button>
-          <a target="_blank" href="http://127.0.0.1:8000/register">Diventa un host</a>
+          <a target="_blank" href="http://127.0.0.1:8000/register"
+            >Diventa un host</a
+          >
         </button>
       </div>
     </nav>
@@ -79,9 +83,9 @@
               </div>
             </h1>
             <p class="white p-bottom">
-              Lorem ipsum dolor sit amet. Sed tempore cupiditate aut rerum sequi
-              et minima ducimus. Sed quis quae sit doloremque rerum et error qui
-              minus incidunt.
+              I nostri alloggi vengono selezionati da uno staff molto attento ed
+              esperto. Riusciamo infatti a garantire ai nostri ospiti un
+              atmosfera Luxury e tranquilla.
             </p>
           </div>
         </div>
@@ -101,8 +105,8 @@
               <div class="p-title p-bottom">La nostra garanzia</div>
             </h1>
             <p class="p-bottom">
-              Lorem ipsum dolor sit amet. Sed tempore cupiditate aut rerum sequi
-              et minima ducimus. Sed quis quae sit doloremque minus incidunt.
+              La nostra garanzia sereni o rimborsati offre al cliente un
+              esprienza che non trova da nessun altra parte.
             </p>
           </div>
         </div>
@@ -114,9 +118,9 @@
               <div class="p-title p-bottom emerald">Sempre al tuo fianco</div>
             </h1>
             <p class="white p-bottom">
-              Lorem ipsum dolor sit amet. Sed tempore cupiditate aut rerum sequi
-              et minima ducimus. Sed quis quae sit doloremque rerum et error qui
-              minus incidunt.
+              Il nostro staff di servizio ti affiancherà dal momento in cui
+              prenoterai fino al momento di check-out e sarà sempre al tuo
+              fianco per gestire qualsiasi problematica.
             </p>
           </div>
         </div>
