@@ -487,7 +487,12 @@
             </li>
             <li>
               <label for="moltii">più</label>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms00" />
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms00"
+              />
             </li>
           </ul>
 
@@ -562,7 +567,17 @@
               />
             </li>
           </ul>
-          <input @change="setKilometers2" type="range" class="d-block" id="range" name="range" min="5" max="100" value="20" oninput="this.nextElementSibling.value = this.value">
+          <input
+            @change="setKilometers2"
+            type="range"
+            class="d-block"
+            id="range"
+            name="range"
+            min="5"
+            max="100"
+            value="20"
+            oninput="this.nextElementSibling.value = this.value"
+          />
           <output>20</output> km
         </div>
       </div>
@@ -598,6 +613,7 @@ export default {
       servicesWaitingRoom: [],
       minRooms: null,
       minBeds: null,
+      maxBeds: null,
       array1: [],
       array2: [],
       array3: [],
@@ -622,7 +638,7 @@ export default {
   },
   methods: {
     setKilometers2() {
-      let range = document.getElementById('range');
+      let range = document.getElementById("range");
       console.log(parseInt(range.value));
       this.varkm = parseInt(range.value);
       this.array2 = [];
@@ -692,29 +708,30 @@ export default {
       }
       console.log(this.filteredServices);
     },
-    setRooms(){
-      const rooms3 = document.getElementById('rooms3');
-      const rooms6 = document.getElementById('rooms6');
-      const rooms9 = document.getElementById('rooms9');
+    setRooms() {
+      const rooms3 = document.getElementById("rooms3");
+      const rooms6 = document.getElementById("rooms6");
+      const rooms9 = document.getElementById("rooms9");
       // const rooms00 = document.getElementById('rooms00');
 
-      rooms3.checked ? this.minRooms = 3 : '';
-      rooms6.checked ? this.minRooms = 6 : '';
-      rooms9.checked ? this.minRooms = 9 : '';
+      rooms3.checked ? (this.minRooms = 3) : "";
+      rooms6.checked ? (this.minRooms = 6) : "";
+      rooms9.checked ? (this.minRooms = 9) : "";
+
       // rooms00.checked ? this.minRooms = 3 : '';
 
       console.log(this.minRooms);
       this.getProducts();
     },
-    setBeds(){
-      const beds3 = document.getElementById('beds2');
-      const beds6 = document.getElementById('beds4');
-      const beds9 = document.getElementById('beds6');
+    setBeds() {
+      const beds3 = document.getElementById("beds2");
+      const beds6 = document.getElementById("beds4");
+      const beds9 = document.getElementById("beds6");
       // const beds00 = document.getElementById('beds00');
 
-      beds3.checked ? this.minBeds = 2 : '';
-      beds6.checked ? this.minBeds = 4 : '';
-      beds9.checked ? this.minBeds = 6 : '';
+      beds3.checked ? (this.minBeds = 2) : "";
+      beds6.checked ? (this.minBeds = 4) : "";
+      beds9.checked ? (this.minBeds = 6) : "";
       // beds00.checked ? console.log('b00') : '';
 
       console.log(this.minBeds);
@@ -804,46 +821,52 @@ export default {
         console.log(this.array2);
         //filter by category
         if (!(this.varcat == null)) {
-          console.log('sei entrato nel filtro Categoria');
+          console.log("sei entrato nel filtro Categoria");
           this.array2 = this.array2.filter(
             (item) => item.category_id == this.varcat
           );
         }
         //filter by services
         if (this.filteredServices.length > 0) {
-          console.log('sei entrato nel filtro Servizi');
+          console.log("sei entrato nel filtro Servizi");
           // this.array2 = this.filterServices(this.array2, this.filteredServices);
-          this.array2.forEach((item)=>{
+          this.array2.forEach((item) => {
             this.filteredServicesVerification = [];
-              item.services.forEach((el)=>{
-                  this.filteredServicesVerification.push(el.id);
-              })
-              // console.log(this.filteredServices);
-              // console.log(this.filteredServices);
-              // console.log(this.filteredServicesVerification);
-              let verification = this.filteredServices.every(elem => this.filteredServicesVerification.includes(elem));
-              // console.log(verification);
-              if(verification){
-                this.servicesWaitingRoom.push(item);
-              }
-          })
+            item.services.forEach((el) => {
+              this.filteredServicesVerification.push(el.id);
+            });
+            // console.log(this.filteredServices);
+            // console.log(this.filteredServices);
+            // console.log(this.filteredServicesVerification);
+            let verification = this.filteredServices.every((elem) =>
+              this.filteredServicesVerification.includes(elem)
+            );
+            // console.log(verification);
+            if (verification) {
+              this.servicesWaitingRoom.push(item);
+            }
+          });
           console.log(this.servicesWaitingRoom);
           this.array2 = this.servicesWaitingRoom;
           this.servicesWaitingRoom = [];
         }
 
         //filter by rooms
-        if(!(this.minRooms == null)){
-          console.log('sei entrato nel filtro Camere');
+        if (!(this.minRooms == null)) {
+          console.log("sei entrato nel filtro Camere");
           console.log(this.array2);
-          this.array2 = this.array2.filter((item)=> item.room_number >= this.minRooms);
+          this.array2 = this.array2.filter(
+            (item) => item.room_number >= this.minRooms
+          );
         }
 
         //filter by beds
-        if(!(this.minBeds == null)){
-          console.log('sei entrato nel filtro Letti');
+        if (!(this.minBeds == null)) {
+          console.log("sei entrato nel filtro Letti");
           console.log(this.array2);
-          this.array2 = this.array2.filter((item)=> item.bed_number >= this.minBeds);
+          this.array2 = this.array2.filter(
+            (item) => item.bed_number >= this.minBeds
+          );
         }
         this.loading = false;
       });
@@ -859,16 +882,16 @@ export default {
         this.categories = res.data.results; //array 1 chiamata tutti gli appartamenti axios
         console.log(this.categories);
       });
-    }
     },
-    mounted() {
-      this.getCategories();
-      this.getServices();
-      // this.getProducts();
-      this.initSearchBox();
-      // this.initSearchBoxsmart();
-    },
-  }
+  },
+  mounted() {
+    this.getCategories();
+    this.getServices();
+    // this.getProducts();
+    this.initSearchBox();
+    // this.initSearchBoxsmart();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
