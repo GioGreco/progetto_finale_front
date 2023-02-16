@@ -96,9 +96,6 @@
   <div v-if="success" id="show-desktop">
     <div class="photo-album">
       <div class="pic-row d-flex justify-content-between">
-        <div class="pic-wrap" v-for="el in apartment.mediabooks">
-          <img :src="el.image" alt="" />
-        </div>
         <div class="pic-wrap">
           <img
             src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
@@ -322,7 +319,7 @@ export default {
       transition: width 0.8s ease-in-out;
 
       &:hover {
-        width: 60%;
+        width: 700px;
       }
 
       img {
