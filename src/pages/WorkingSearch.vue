@@ -173,45 +173,45 @@
           <h4 class="d-none d-md-block">Stanze:</h4>
           <ul class="stanze d-flex gap-3">
             <li>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms3" />
-              <label for="tre">3</label>
+              <input @click="setRooms" type="radio" name="stanze" id="rooms1-3" />
+              <label for="tre">1-3</label>
             </li>
             <li>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms6" />
-              <label for="seii">6</label>
+              <input @click="setRooms" type="radio" name="stanze" id="rooms4-6" />
+              <label for="seii">4-6</label>
             </li>
             <li>
-              <input @click="setRooms" type="radio" name="stanze" id="rooms9" />
-              <label for="nove">9</label>
+              <input @click="setRooms" type="radio" name="stanze" id="rooms7-9" />
+              <label for="nove">7-9</label>
             </li>
             <li>
               <input
                 @click="setRooms"
                 type="radio"
                 name="stanze"
-                id="rooms00"
+                id="rooms10"
               />
-              <label for="moltii">più</label>
+              <label for="moltii">10+</label>
             </li>
           </ul>
 
           <h4 class="d-none d-md-block">Letti:</h4>
           <ul class="beds d-flex gap-3">
             <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds2" />
-              <label for="due">2</label>
+              <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
+              <label for="due">1-2</label>
             </li>
             <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds4" />
-              <label for="quattro">4</label>
+              <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
+              <label for="quattro">3-4</label>
             </li>
             <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds6" />
-              <label for="sei">6</label>
+              <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
+              <label for="sei">5-6</label>
             </li>
             <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds00" />
-              <label for="molti">più</label>
+              <input @click="setBeds" type="radio" name="beds" id="beds7" />
+              <label for="molti">7+</label>
             </li>
           </ul>
         </div>
@@ -344,14 +344,16 @@ export default {
       console.log(this.filteredServices);
     },
     setRooms() {
-      const rooms3 = document.getElementById("rooms3");
-      const rooms6 = document.getElementById("rooms6");
-      const rooms9 = document.getElementById("rooms9");
-      // const rooms00 = document.getElementById('rooms00');
+      const rooms3 = document.getElementById("rooms1-3");
+      const rooms6 = document.getElementById("rooms4-6");
+      const rooms9 = document.getElementById("rooms7-9");
+      const rooms00 = document.getElementById('rooms10');
 
-      rooms3.checked ? (this.minRooms = 3) : "";
-      rooms6.checked ? (this.minRooms = 6) : "";
-      rooms9.checked ? (this.minRooms = 9) : "";
+      rooms3.checked ? (this.minRooms = 2) : "";
+      rooms6.checked ? (this.minRooms = 5) : "";
+      rooms9.checked ? (this.minRooms = 8) : "";
+      rooms00.checked ? (this.minRooms = 10) : "";
+
 
       // rooms00.checked ? this.minRooms = 3 : '';
 
@@ -359,15 +361,15 @@ export default {
       this.getProducts();
     },
     setBeds() {
-      const beds3 = document.getElementById("beds2");
-      const beds6 = document.getElementById("beds4");
-      const beds9 = document.getElementById("beds6");
-      // const beds00 = document.getElementById('beds00');
+      const beds3 = document.getElementById("beds1-2");
+      const beds6 = document.getElementById("beds3-4");
+      const beds9 = document.getElementById("beds5-6");
+      const beds00 = document.getElementById('beds7');
 
       beds3.checked ? (this.minBeds = 2) : "";
       beds6.checked ? (this.minBeds = 4) : "";
       beds9.checked ? (this.minBeds = 6) : "";
-      // beds00.checked ? console.log('b00') : '';
+      beds00.checked ? (this.minBeds = 7) : "";
 
       console.log(this.minBeds);
       this.getProducts();
@@ -487,22 +489,30 @@ export default {
         }
 
         //filter by rooms
-        if (!(this.minRooms == null)) {
+        if (!(this.minRooms == null) && this.minRooms < 10) {
           console.log("sei entrato nel filtro Camere");
           console.log(this.array2);
+          this.array2 = this.array2.filter(
+            (item) => item.room_number == this.minRooms || item.room_number == this.minRooms + 1 || item.room_number == this.minRooms - 1
+          );
+        }else if(this.minRooms == 10){
           this.array2 = this.array2.filter(
             (item) => item.room_number >= this.minRooms
           );
         }
 
         //filter by beds
-        if (!(this.minBeds == null)) {
+        if (!(this.minBeds == null) && this.minBeds < 7) {
           console.log("sei entrato nel filtro Letti");
           console.log(this.array2);
           this.array2 = this.array2.filter(
+            (item) => item.bed_number >= this.minBeds || item.bed_number == this.minBeds - 1
+          );
+        }else if(this.minBeds == 7){
+          this.array2 = this.array2.filter(
             (item) => item.bed_number >= this.minBeds
           );
-        }
+        };
         this.loading = false;
       });
     },

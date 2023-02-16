@@ -34,7 +34,7 @@
         @keyup.enter="search"
         placeholder="Inserisci una destinazione..."
       /> -->
-      <router-link class="btn ps-0" :to="{ name: 'search' }">
+      <router-link class="btn ps-0" :to="{ name: 'working-search' }">
         <button class="btn-search">
           <strong>Cerca un appartamento</strong>
         </button>
