@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <div class="page-loader">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
 </template>
 
 <script>
@@ -15,4 +20,45 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: antiquewhite;
+  z-index: 999;
+}
+.cube {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: red;
+  &:first-child {
+    animation: left 1s infinite;
+  }
+  &:last-child {
+    animation: right 1s infinite 0.5s;
+  }
+}
+@keyframes left {
+  40% {
+    transform: translateX(-60px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}
+@keyframes right {
+  40% {
+    transform: translateX(60px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}
+</style>

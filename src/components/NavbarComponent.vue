@@ -25,7 +25,7 @@ export default {
       navItems: [
         {
           name: "search",
-          path: "/search",
+          path: "/advancedSearch",
           html: '<i class="fa-solid fa-magnifying-glass"></i>',
         },
         {
