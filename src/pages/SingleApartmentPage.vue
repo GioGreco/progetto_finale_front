@@ -135,11 +135,7 @@
           <span>{{ apartment.bed_number }} posti letto</span>
         </p>
         <div class="description">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit,
-          nihil. Ab odit voluptatem, tenetur corporis repellat quis rerum maxime
-          fuga quibusdam, temporibus quisquam labore, impedit molestiae eaque
-          recusandae. Sit, quae delectus sint repellendus explicabo rerum
-          necessitatibus nemo similique suscipit provident.
+          <p>{{ apartment.descrizione }}</p>
         </div>
       </div>
       <div
