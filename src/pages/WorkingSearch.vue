@@ -24,7 +24,7 @@
 
             <div
               class="card-container"
-              v-if="this.array3.length == 0 && this.varcat == 0"
+              v-if="this.array2.length == 0 && this.varcat == 0"
               v-for="(item, index) in array2"
               :key="index"
             >
@@ -39,20 +39,20 @@
             </div>
 
             <!-- se non ci sono risultati: -->
-            <div v-else-if="this.array3.length == 0">
+            <div v-else-if="this.array2.length == 0">
               <h4>Nessun risultato</h4>
             </div>
           </div>
 
           <!-- array mostrato se array filtri categorie attivo -->
-          <div
+          <!-- <div
             class="card-container"
-            v-if="this.array3.length != 0"
-            v-for="(item, index) in array3"
+            v-if="this.array2.length != 0"
+            v-for="(item, index) in array2"
             :key="index"
           >
             <CardComponent :apartament="item"></CardComponent>
-          </div>
+          </div> -->
 
           <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
         </div>
@@ -203,24 +203,30 @@ import { store } from "../store";
 import axios from "axios";
 import HeaderComponent from "../components/HeaderComponent.vue";
 import CardComponent from "../components/AdvancedSearch/CardComponent.vue";
+import FilterLargeComponent from "../components/FilterLargeComponent.vue";
 
 export default {
-  name: "WorkingSearch",
+  name: "AdvancedSearchPage",
   components: {
     HeaderComponent,
     CardComponent,
-  },
-  props: {
-    apartament: Object,
+    FilterLargeComponent,
   },
   data() {
     return {
       store,
+      varroom: "",
       varkm: "20", //base 20km
-      varcat: "",
+      varcat: null,
       distanza: "",
       categories: [],
       services: [],
+      filteredServices: [],
+      filteredServicesVerification: [],
+      servicesWaitingRoom: [],
+      minRooms: null,
+      minBeds: null,
+      maxBeds: null,
       array1: [],
       array2: [],
       array3: [],
@@ -231,23 +237,26 @@ export default {
         idleTimePress: 100,
         minNumberOfCharacters: 0,
         searchOptions: {
-          //   key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
-          key: store.key,
+          key: "h7cAdo65F2uuetiST0o1pnUygRaWDuuX",
           language: "it-IT",
           limit: 5,
         },
         autocompleteOptions: {
-          //   key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
-          key: store.key,
+          key: "h7cAdo65F2uuetiST0o1pnUygRaWDuuX",
           language: "it-IT",
         },
         noResultsMessage: "No results found.",
       },
-      perPage: 3,
-      currentPage: 1,
     };
   },
   methods: {
+    setKilometers2() {
+      let range = document.getElementById("range");
+      console.log(parseInt(range.value));
+      this.varkm = parseInt(range.value);
+      this.array2 = [];
+      this.getProducts();
+    },
     setKilometers() {
       let km5 = document.getElementById("five");
       let km10 = document.getElementById("ten");
@@ -282,6 +291,77 @@ export default {
         this.getProducts();
       }
     },
+    setCategories(category) {
+      let addCategory = document.getElementById(`category_${category}`);
+      console.log(addCategory);
+
+      if (addCategory.checked) {
+        this.varcat = category;
+        this.getProducts();
+      }
+    },
+    setServices(service) {
+      let addService = document.getElementById(`service_${service}`);
+      console.log(addService);
+      if (addService.checked) {
+        let serviceArr = { ...this.services.filter((el) => el.id == service) };
+        let serviceObj = serviceArr[0];
+        this.filteredServices.push(serviceObj.id);
+        this.getProducts();
+        // this.filtriServizi();
+      } else if (!addService.checked) {
+        let serviceArr = { ...this.services.filter((el) => el.id == service) };
+        let serviceObj = serviceArr[0];
+        this.filteredServices.splice(
+          this.filteredServices.indexOf(serviceObj),
+          1
+        );
+        // this.filtriServizi();
+        this.getProducts();
+      }
+      console.log(this.filteredServices);
+    },
+    setRooms() {
+      const rooms3 = document.getElementById("rooms3");
+      const rooms6 = document.getElementById("rooms6");
+      const rooms9 = document.getElementById("rooms9");
+      // const rooms00 = document.getElementById('rooms00');
+
+      rooms3.checked ? (this.minRooms = 3) : "";
+      rooms6.checked ? (this.minRooms = 6) : "";
+      rooms9.checked ? (this.minRooms = 9) : "";
+
+      // rooms00.checked ? this.minRooms = 3 : '';
+
+      console.log(this.minRooms);
+      this.getProducts();
+    },
+    setBeds() {
+      const beds3 = document.getElementById("beds2");
+      const beds6 = document.getElementById("beds4");
+      const beds9 = document.getElementById("beds6");
+      // const beds00 = document.getElementById('beds00');
+
+      beds3.checked ? (this.minBeds = 2) : "";
+      beds6.checked ? (this.minBeds = 4) : "";
+      beds9.checked ? (this.minBeds = 6) : "";
+      // beds00.checked ? console.log('b00') : '';
+
+      console.log(this.minBeds);
+      this.getProducts();
+    },
+    functionOpener() {
+      document.getElementById("filter_open_closer").onchange = (e) => {
+        let checked = e.target.checked;
+        if (checked) {
+          document.getElementById("smartnavop").style.opacity = "1";
+          document.getElementById("smartnavop").style.height = "269px";
+        } else {
+          document.getElementById("smartnavop").style.opacity = "0";
+          document.getElementById("smartnavop").style.height = "0px";
+        }
+      };
+    },
     initSearchBox() {
       // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
       let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
@@ -306,7 +386,7 @@ export default {
         // console.log("longitudine", this.longitudine);
 
         this.getProducts();
-        this.array2 = [];
+        // this.array2 = [];
       });
     },
     getLatLongDist(lat2, long2) {
@@ -334,37 +414,72 @@ export default {
 
       this.distanza = "";
       this.distanza = dist;
-      // console.log('distanza variabile globale',this.distanza);
-      return dist;
+      //                 console.log('distanza variabile globale',this.distanza);
+      // return dist;
     },
     getProducts() {
       axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
-        this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
-        // console.log(this.array1);
+        this.array1 = [];
         this.array2 = [];
+        this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
         this.array1.forEach((item) => {
           let lat2 = item.lat;
-          // console.log('latitudine array item',lat2);
           let long2 = item.long;
-          // console.log('longitudine array item',lat2);
 
           this.getLatLongDist(lat2, long2);
-
-          // console.log('distanza dentro la funz',this.distanza);
           if (this.distanza <= this.varkm) {
-            // console.log('sono ENTRO di 20km');
             this.array2.push(item);
           }
-          this.array3 = [];
-          console.log("categoria settata a:", this.varcat);
         });
-        this.array2.forEach((item2) => {
-          if (item2.category_id == this.varcat) {
-            this.array3.push(item2);
-          }
-        });
-        console.log("afterarray3", this.array3);
-        if (this.array3.length == 0) {
+        console.log(this.array2);
+        //filter by category
+        if (!(this.varcat == null)) {
+          console.log("sei entrato nel filtro Categoria");
+          this.array2 = this.array2.filter(
+            (item) => item.category_id == this.varcat
+          );
+        }
+        //filter by services
+        if (this.filteredServices.length > 0) {
+          console.log("sei entrato nel filtro Servizi");
+          // this.array2 = this.filterServices(this.array2, this.filteredServices);
+          this.array2.forEach((item) => {
+            this.filteredServicesVerification = [];
+            item.services.forEach((el) => {
+              this.filteredServicesVerification.push(el.id);
+            });
+            // console.log(this.filteredServices);
+            // console.log(this.filteredServices);
+            // console.log(this.filteredServicesVerification);
+            let verification = this.filteredServices.every((elem) =>
+              this.filteredServicesVerification.includes(elem)
+            );
+            // console.log(verification);
+            if (verification) {
+              this.servicesWaitingRoom.push(item);
+            }
+          });
+          console.log(this.servicesWaitingRoom);
+          this.array2 = this.servicesWaitingRoom;
+          this.servicesWaitingRoom = [];
+        }
+
+        //filter by rooms
+        if (!(this.minRooms == null)) {
+          console.log("sei entrato nel filtro Camere");
+          console.log(this.array2);
+          this.array2 = this.array2.filter(
+            (item) => item.room_number >= this.minRooms
+          );
+        }
+
+        //filter by beds
+        if (!(this.minBeds == null)) {
+          console.log("sei entrato nel filtro Letti");
+          console.log(this.array2);
+          this.array2 = this.array2.filter(
+            (item) => item.bed_number >= this.minBeds
+          );
         }
         this.loading = false;
       });
@@ -381,86 +496,285 @@ export default {
         console.log(this.categories);
       });
     },
-    setCategories() {
-      let openspace = document.getElementById("open-space");
-      let interacasa = document.getElementById("intera-casa");
-      let appartamento = document.getElementById("appartamento");
-      let attico = document.getElementById("attico");
-      let villadicampagna = document.getElementById("villa-di-campagna");
-      let villaalmare = document.getElementById("villa-al-mare");
-      let Abitazioneinstileindustriale = document.getElementById(
-        "abitazione-in-stile-industriale"
-      );
-      let Abitazioneinstilecontemporaneo = document.getElementById(
-        "abitazione-in-stile-contemporaneo"
-      );
-      let villainstileromano = document.getElementById("villa-in-stile-romano");
-
-      if (openspace.checked) {
-        this.varcat = "";
-        console.log("openspace");
-        this.varcat = 1;
-        this.getProducts();
-      } else if (interacasa.checked) {
-        this.varcat = "";
-        console.log("interacasa");
-        this.varcat = 2;
-        this.getProducts();
-      } else if (appartamento.checked) {
-        this.varcat = "";
-        console.log("appartamento");
-        this.varcat = 3;
-        this.getProducts();
-      } else if (attico.checked) {
-        this.varcat = "";
-        console.log("attico");
-        this.varcat = 4;
-        this.getProducts();
-      } else if (villadicampagna.checked) {
-        this.varcat = "";
-        console.log("villadicampagna");
-        this.varcat = 5;
-        this.getProducts();
-      } else if (villaalmare.checked) {
-        this.varcat = "";
-        console.log("villaalmare");
-        this.varcat = 6;
-        this.getProducts();
-      } else if (Abitazioneinstileindustriale.checked) {
-        this.varcat = "";
-        console.log("Abitazioneinstileindustriale");
-        this.varcat = 7;
-        this.getProducts();
-      } else if (Abitazioneinstilecontemporaneo.checked) {
-        this.varcat = "";
-        console.log("Abitazioneinstilecontemporaneo");
-        this.varcat = 8;
-        this.getProducts();
-      } else if (villainstileromano.checked) {
-        this.varcat = "";
-        console.log("villainstileromano");
-        this.varcat = 9;
-        this.getProducts();
-      }
-    },
   },
   mounted() {
     this.getCategories();
     this.getServices();
+    // this.getProducts();
     this.initSearchBox();
-  },
-  computed: {
-    rows() {
-      return this.array2.length;
-    },
+    // this.initSearchBoxsmart();
   },
 };
+// import { store } from "../store";
+// import axios from "axios";
+// import HeaderComponent from "../components/HeaderComponent.vue";
+// import CardComponent from "../components/AdvancedSearch/CardComponent.vue";
+
+// export default {
+//   name: "WorkingSearch",
+//   components: {
+//     HeaderComponent,
+//     CardComponent,
+//   },
+//   props: {
+//     apartament: Object,
+//   },
+//   data() {
+//     return {
+//       store,
+//       varkm: "20", //base 20km
+//       varcat: "",
+//       distanza: "",
+//       categories: [],
+//       services: [],
+//       array1: [],
+//       array2: [],
+//       array3: [],
+//       loading: true,
+//       latitudine: "",
+//       longitudine: "",
+//       options: {
+//         idleTimePress: 100,
+//         minNumberOfCharacters: 0,
+//         searchOptions: {
+//           //   key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+//           key: store.key,
+//           language: "it-IT",
+//           limit: 5,
+//         },
+//         autocompleteOptions: {
+//           //   key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
+//           key: store.key,
+//           language: "it-IT",
+//         },
+//         noResultsMessage: "No results found.",
+//       },
+//       perPage: 3,
+//       currentPage: 1,
+//     };
+//   },
+//   methods: {
+//     setKilometers() {
+//       let km5 = document.getElementById("five");
+//       let km10 = document.getElementById("ten");
+//       let km20 = document.getElementById("twenty");
+//       let km50 = document.getElementById("fifty");
+//       let km100 = document.getElementById("hundred");
+
+//       if (km5.checked) {
+//         //                    console.log('5km selected');
+//         this.varkm = 5;
+//         this.array2 = [];
+//         this.getProducts();
+//       } else if (km10.checked) {
+//         //                   console.log('10km selected');
+//         this.varkm = 10;
+//         this.array2 = [];
+//         this.getProducts();
+//       } else if (km20.checked) {
+//         //                   console.log('20km selected');
+//         this.varkm = 20;
+//         this.array2 = [];
+//         this.getProducts();
+//       } else if (km50.checked) {
+//         //                    console.log('50km selected');
+//         this.varkm = 50;
+//         this.array2 = [];
+//         this.getProducts();
+//       } else if (km100.checked) {
+//         //                    console.log('100km selected');
+//         this.varkm = 100;
+//         this.array2 = [];
+//         this.getProducts();
+//       }
+//     },
+//     initSearchBox() {
+//       // let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+//       let ttSearchBox = new tt.plugins.SearchBox(tt.services, this.options);
+//       // console.log(ttSearchBox);
+
+//       let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+//       document.getElementById("search").appendChild(searchBoxHTML);
+//       // console.log(searchBoxHTML);
+
+//       ttSearchBox.on("tomtom.searchbox.resultsfound", function (data) {
+//         // console.log(data);
+//       });
+
+//       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
+//         //       console.log(data);
+//         let lat = data.data.result.position.lat;
+//         this.latitudine = lat;
+//         // console.log("latitudine", this.latitudine);
+
+//         let lng = data.data.result.position.lng;
+//         this.longitudine = lng;
+//         // console.log("longitudine", this.longitudine);
+
+//         this.getProducts();
+//         this.array2 = [];
+//       });
+//     },
+//     getLatLongDist(lat2, long2) {
+//       let unit = "K";
+//       var radlat1 = (Math.PI * this.latitudine) / 180; //lat1 aka latitudine mappa
+//       //                 console.log('radlat1',radlat1);
+
+//       var radlat2 = (Math.PI * lat2) / 180; //lat2 aka latitudine di ogni singolo appartamento
+//       //                  console.log('radlat2',radlat2);
+
+//       var theta = this.longitudine - long2; //long1(longitudine mappa) - long2(longitudine appartamento)
+//       var radtheta = (Math.PI * theta) / 180;
+//       var dist =
+//         Math.sin(radlat1) * Math.sin(radlat2) +
+//         Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+//       if (dist > 1) {
+//         dist = 1;
+//       }
+//       dist = Math.acos(dist);
+//       dist = (dist * 180) / Math.PI;
+//       dist = dist * 60 * 1.1515;
+//       if (unit == "K") {
+//         dist = dist * 1.609344;
+//       }
+
+//       this.distanza = "";
+//       this.distanza = dist;
+//       // console.log('distanza variabile globale',this.distanza);
+//       return dist;
+//     },
+//     getProducts() {
+//       axios.get(`${this.store.apiBaseUrl}/apartments`).then((res) => {
+//         this.array1 = res.data.results; //array 1 chiamata tutti gli appartamenti axios
+//         // console.log(this.array1);
+//         this.array2 = [];
+//         this.array1.forEach((item) => {
+//           let lat2 = item.lat;
+//           // console.log('latitudine array item',lat2);
+//           let long2 = item.long;
+//           // console.log('longitudine array item',lat2);
+
+//           this.getLatLongDist(lat2, long2);
+
+//           // console.log('distanza dentro la funz',this.distanza);
+//           if (this.distanza <= this.varkm) {
+//             // console.log('sono ENTRO di 20km');
+//             this.array2.push(item);
+//           }
+//           this.array3 = [];
+//           console.log("categoria settata a:", this.varcat);
+//         });
+//         this.array2.forEach((item2) => {
+//           if (item2.category_id == this.varcat) {
+//             this.array3.push(item2);
+//           }
+//         });
+//         console.log("afterarray3", this.array3);
+//         if (this.array3.length == 0) {
+//         }
+//         this.loading = false;
+//       });
+//     },
+//     getServices() {
+//       axios.get(`${this.store.apiBaseUrl}/services`).then((res) => {
+//         this.services = res.data.results; //array 1 chiamata tutti gli appartamenti axios
+//         console.log(this.services);
+//       });
+//     },
+//     getCategories() {
+//       axios.get(`${this.store.apiBaseUrl}/categories`).then((res) => {
+//         this.categories = res.data.results; //array 1 chiamata tutti gli appartamenti axios
+//         console.log(this.categories);
+//       });
+//     },
+//     setCategories() {
+//       let openspace = document.getElementById("open-space");
+//       let interacasa = document.getElementById("intera-casa");
+//       let appartamento = document.getElementById("appartamento");
+//       let attico = document.getElementById("attico");
+//       let villadicampagna = document.getElementById("villa-di-campagna");
+//       let villaalmare = document.getElementById("villa-al-mare");
+//       let Abitazioneinstileindustriale = document.getElementById(
+//         "abitazione-in-stile-industriale"
+//       );
+//       let Abitazioneinstilecontemporaneo = document.getElementById(
+//         "abitazione-in-stile-contemporaneo"
+//       );
+//       let villainstileromano = document.getElementById("villa-in-stile-romano");
+
+//       if (openspace.checked) {
+//         this.varcat = "";
+//         console.log("openspace");
+//         this.varcat = 1;
+//         this.getProducts();
+//       } else if (interacasa.checked) {
+//         this.varcat = "";
+//         console.log("interacasa");
+//         this.varcat = 2;
+//         this.getProducts();
+//       } else if (appartamento.checked) {
+//         this.varcat = "";
+//         console.log("appartamento");
+//         this.varcat = 3;
+//         this.getProducts();
+//       } else if (attico.checked) {
+//         this.varcat = "";
+//         console.log("attico");
+//         this.varcat = 4;
+//         this.getProducts();
+//       } else if (villadicampagna.checked) {
+//         this.varcat = "";
+//         console.log("villadicampagna");
+//         this.varcat = 5;
+//         this.getProducts();
+//       } else if (villaalmare.checked) {
+//         this.varcat = "";
+//         console.log("villaalmare");
+//         this.varcat = 6;
+//         this.getProducts();
+//       } else if (Abitazioneinstileindustriale.checked) {
+//         this.varcat = "";
+//         console.log("Abitazioneinstileindustriale");
+//         this.varcat = 7;
+//         this.getProducts();
+//       } else if (Abitazioneinstilecontemporaneo.checked) {
+//         this.varcat = "";
+//         console.log("Abitazioneinstilecontemporaneo");
+//         this.varcat = 8;
+//         this.getProducts();
+//       } else if (villainstileromano.checked) {
+//         this.varcat = "";
+//         console.log("villainstileromano");
+//         this.varcat = 9;
+//         this.getProducts();
+//       }
+//     },
+//   },
+//   mounted() {
+//     this.getCategories();
+//     this.getServices();
+//     this.initSearchBox();
+//   },
+//   computed: {
+//     rows() {
+//       return this.array2.length;
+//     },
+//   },
+// };
 </script>
 
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
 .results-list {
+  padding: 30px 20px;
+  z-index: 1000;
+  background-color: $white;
+  position: relative;
+  top: 0px;
+}
+
+.results-wrapper {
   border: 1px solid $darkgrey;
   border-radius: 20px;
   padding: 30px 20px;
