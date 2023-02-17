@@ -4,8 +4,7 @@
     </div>
     <form  class="text-start w-100 d-flex flex-column" @submit.prevent="handleSendForm">
         <div class="mb-3">
-            <label for="apartmentId" class="me-4">Id appartamento:</label>
-            <input id="apartment_id" class="border-0 border-bottom" name="apartment_id" type="text" disabled :value="apartmentId">
+            <input id="apartment_id" class="border-0 border-bottom" name="apartment_id" type="hidden" disabled :value="apartmentId">
         </div>
         <div class="mb-3">
             <input class="border-0 border-bottom w-100 d-block" type="text" name="name" id="name" placeholder="Il tuo nome" v-model="formData.name" :class="{ 'is-invalid': formData.errors.name }" required/>
