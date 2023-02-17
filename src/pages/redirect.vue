@@ -32,7 +32,7 @@ $darkgrey: #646464;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: $darkgrey;
+
   z-index: 999;
 }
 .cube {

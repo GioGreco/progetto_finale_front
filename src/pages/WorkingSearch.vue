@@ -45,6 +45,7 @@
                 <input
                   @click="setCategories(category.id)"
                   type="radio"
+                  class="radio"
                   name="categoria"
                   :id="'category_' + category.id"
                 />
@@ -62,6 +63,7 @@
               <li class="rosegold" v-for="(service, index) in services">
                 <input
                   type="checkbox"
+                  class="radio"
                   :name="service.title"
                   :id="'service_' + service.id"
                   @click="setServices(service.id)"
@@ -81,6 +83,7 @@
                 <input
                   @click="setRooms"
                   type="radio"
+                  class="radio"
                   name="stanze"
                   id="rooms1-3"
                 />
@@ -90,6 +93,7 @@
                 <input
                   @click="setRooms"
                   type="radio"
+                  class="radio"
                   name="stanze"
                   id="rooms4-6"
                 />
@@ -99,6 +103,7 @@
                 <input
                   @click="setRooms"
                   type="radio"
+                  class="radio"
                   name="stanze"
                   id="rooms7-9"
                 />
@@ -108,6 +113,7 @@
                 <input
                   @click="setRooms"
                   type="radio"
+                  class="radio"
                   name="stanze"
                   id="rooms10"
                 />
@@ -117,22 +123,49 @@
             <h4>Posti letto:</h4>
             <ul class="beds d-flex gap-3 my-4">
               <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
+                <input
+                  @click="setBeds"
+                  type="radio"
+                  name="beds"
+                  id="beds1-2"
+                  class="radio"
+                />
                 <label for="due">1-2</label>
               </li>
               <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
+                <input
+                  @click="setBeds"
+                  type="radio"
+                  name="beds"
+                  id="beds3-4"
+                  class="radio"
+                />
                 <label for="quattro">3-4</label>
               </li>
               <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
+                <input
+                  @click="setBeds"
+                  type="radio"
+                  name="beds"
+                  id="beds5-6"
+                  class="radio"
+                />
                 <label for="sei">5-6</label>
               </li>
               <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds7" />
+                <input
+                  @click="setBeds"
+                  type="radio"
+                  name="beds"
+                  id="beds7"
+                  class="radio"
+                />
                 <label for="molti">7+</label>
               </li>
             </ul>
+            <button type="submit" class="bottone_mio" @click="resetFiltri()">
+              Reset
+            </button>
           </div>
 
           <div class="btnopen">
@@ -260,6 +293,24 @@ export default {
     };
   },
   methods: {
+    resetFiltri() {
+      this.varcat = null;
+      this.filteredServices = [];
+      this.minBeds = null;
+      this.maxBeds = null;
+      this.minRooms = null;
+
+      let resetCategorie = document.querySelectorAll(".radio");
+      console.log(resetCategorie);
+      // for (let i = 0; i < filtriservizi.length; i++) {
+      //   filtriservizi[i] = false;
+      // }
+      resetCategorie.forEach((el) => {
+        el.checked = false;
+        console.log(el);
+      });
+      this.getProducts();
+    },
     functionOpener3() {
       document.getElementById("filter_open_closer").onchange = (a) => {
         let checked = a.target.checked;
@@ -496,19 +547,7 @@ export default {
       this.sponsored = [];
       this.sponsored = this.array2.filter((item) => item.sponsors.length > 0);
       this.array2 = this.array2.filter((item) => !(item.sponsors.length > 0));
-      // this.array2.forEach((item) => {
-      //   if (item.sponsors.length > 0) {
-      //     item.sponsors.forEach((el) => {
-      //       // console.log(el);
-      //       if (el.id == 1 || el.id == 2 || el.id == 3) {
-      //         this.sponsored.push(item);
-      //         const itemIndex = this.array2.indexOf(item);
-      //         const deleted = this.array2.splice(itemIndex, 1);
-      //       }
-      //     });
-      //   }
-      //   // console.log(item.sponsors);
-      // });
+
       console.log(this.sponsored);
     },
     getServices() {
@@ -922,6 +961,20 @@ input[type="range"]:focus::-ms-fill-upper {
     opacity: 0;
     color: $white;
     transition: all 200ms;
+  }
+}
+$mauve: #b7a8af;
+.bottone_mio {
+  background-color: $mauve;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  transition: all 0.5s;
+  &:hover {
+    opacity: 0.9;
   }
 }
 </style>
