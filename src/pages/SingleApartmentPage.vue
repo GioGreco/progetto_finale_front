@@ -15,14 +15,14 @@
           <span>{{ apartment.bed_number }} posti letto</span>
         </p>
         <div class="d-flex justify-content-between">
-            <div class="fs-5">
-              <i class="fa-solid fa-location-dot"></i> {{ apartment.address }}
-            </div>
-            <div class="price">
-                <h2>
-                    <span>{{ apartment.price }}</span> € / notte
-                </h2>
-            </div>
+          <div class="fs-5">
+            <i class="fa-solid fa-location-dot"></i> {{ apartment.address }}
+          </div>
+          <div class="price">
+            <h2>
+              <span>{{ apartment.price }}</span> € / notte
+            </h2>
+          </div>
         </div>
       </div>
     </div>
@@ -31,7 +31,10 @@
         <div class="d-flex justify-content-between gallery-tit">
           <h2 class="fw-bold">Galleria</h2>
         </div>
-        <div class="pics row">
+        <div class="img" v-if="apartment.mediabooks.length == 0">
+          <p>Nessuna foto caricata</p>
+        </div>
+        <div class="pics row" v-else>
           <div class="pics-wrap" v-for="el in apartment.mediabooks">
             <img :src="this.store.imgBasePath + el.img" alt="" />
           </div>
@@ -39,22 +42,28 @@
       </div>
       <div class="description">
         <h2 class="fw-bold">Descrizione</h2>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid voluptate ratione vero, accusamus aliquam iure quo quia quam fugiat tenetur beatae repellat magnam. Magni accusamus, quos cupiditate ad voluptates vel nisi ab aliquam esse architecto ullam molestias, qui, quidem in!</div>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+          voluptate ratione vero, accusamus aliquam iure quo quia quam fugiat
+          tenetur beatae repellat magnam. Magni accusamus, quos cupiditate ad
+          voluptates vel nisi ab aliquam esse architecto ullam molestias, qui,
+          quidem in!
+        </div>
       </div>
       <div class="services-mobile">
         <h2 class="fw-bold mb-3">Servizi</h2>
         <div class="d-flex flex-wrap">
-            <div
+          <div
             v-for="(service, index) in apartment.services"
             :key="index"
             class="col-6 mb-3"
-            >
+          >
             <span v-html="service.img"></span><span>{{ service.title }}</span>
           </div>
         </div>
       </div>
       <div class="location my-4">
-        <MapComponent :apartmentLocation="apartment"/>
+        <MapComponent :apartmentLocation="apartment" />
       </div>
       <div class="contact-form-mobile">
         <div
@@ -80,9 +89,11 @@
     </div>
   </div>
 
-
   <div v-if="success" id="show-desktop">
-    <div class="photo-album">
+    <div class="img text-center mt-5" v-if="apartment.mediabooks.length == 0">
+      <img :src="this.store.imgBasePath + apartment.cover_img" alt="" />
+    </div>
+    <div class="photo-album" v-else>
       <div class="pic-row d-flex justify-content-between">
         <div class="pic-wrap" v-for="el in apartment.mediabooks">
           <img :src="this.store.imgBasePath + el.img" alt="" />
@@ -214,8 +225,8 @@ export default {
   display: none;
   overflow: hidden;
   h2 {
-        color: $sangria;
-    }
+    color: $sangria;
+  }
 
   .cover-img {
     width: 100vw;
@@ -232,26 +243,26 @@ export default {
     padding: 30px 0;
     margin: 0 auto;
     border-bottom: 1px solid $darkgrey;
-    .utilities{
-        span{
-            &:not(:last-of-type)::after {
-            content: "";
-            display: inline-block;
-            height: 5px;
-            width: 5px;
-            border-radius: 50%;
-            background-color: $sangria;
-            margin: 0 5px 2px;
+    .utilities {
+      span {
+        &:not(:last-of-type)::after {
+          content: "";
+          display: inline-block;
+          height: 5px;
+          width: 5px;
+          border-radius: 50%;
+          background-color: $sangria;
+          margin: 0 5px 2px;
         }
-        }
+      }
     }
   }
 
   .gallery {
     padding: 30px 0;
-    .gallery-tit{
-        width: 90vw;
-        margin: 0 auto 10px;
+    .gallery-tit {
+      width: 90vw;
+      margin: 0 auto 10px;
     }
     .pics {
       margin-left: 10px;
@@ -272,7 +283,6 @@ export default {
           height: 100%;
           width: 100%;
           border-radius: 10px;
-
         }
       }
     }
@@ -286,8 +296,8 @@ export default {
     width: 90vw;
     margin: 0 auto;
     span {
-        font-size: 1.2rem;
-        i {
+      font-size: 1.2rem;
+      i {
         border: 2px solid $mauve;
         border-radius: 50%;
         text-align: center;
@@ -297,7 +307,7 @@ export default {
         height: 30px;
         width: 30px;
         margin-right: 8px;
-        }
+      }
     }
   }
 
@@ -305,41 +315,41 @@ export default {
     width: 90vw;
     margin: 0 auto;
     font-size: 1.1rem;
-  .contact-inner {
-    background-color: $mauve;
-    padding: 20px;
-    height: 100%;
-    border-radius: 20px;
-    text-align: center;
-    color: $sangria;
-    transition: all 5s ease;
-
-    h5 {
-      border-bottom: 1px solid white;
-      padding-bottom: 3px;
-      width: 85%;
-    }
-    span {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .mail-form {
-    }
-    .showFormBtn {
-      font-size: 2rem;
+    .contact-inner {
+      background-color: $mauve;
+      padding: 20px;
+      height: 100%;
+      border-radius: 20px;
+      text-align: center;
       color: $sangria;
-      background-color: $rosegold;
-      margin-top: 15px;
-      padding: 2px 25px;
-      border-radius: 30px;
-      cursor: pointer;
-      &:hover {
-        background-color: $sangria;
-        color: $white;
+      transition: all 5s ease;
+
+      h5 {
+        border-bottom: 1px solid white;
+        padding-bottom: 3px;
+        width: 85%;
+      }
+      span {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .mail-form {
+      }
+      .showFormBtn {
+        font-size: 2rem;
+        color: $sangria;
+        background-color: $rosegold;
+        margin-top: 15px;
+        padding: 2px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        &:hover {
+          background-color: $sangria;
+          color: $white;
+        }
       }
     }
   }
-}
 
   .price {
   }
