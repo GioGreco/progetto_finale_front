@@ -34,22 +34,21 @@ export default {
           path: "#",
           url: "/img/openspace.jpg",
           title: "Spazi infiniti",
-          description: `Un open-space è una nuova e moderna forma di vacanze che offre ai suoi ospiti un ambiente di vita aperto. Le caratteristiche principali di un open-space sono uno spazio abitativo unificato, una vasta area di intrattenimento e una gamma di opzioni per soddisfare tutti i gusti. L'open-space offre ai visitatori un'esperienza più intima, più autentica e più personale della vita di vacanza. Gli open-space sono un'opzione di vacanza di tendenza che offre ai visitatori un'esperienza piacevole e rilassante.`,
+          description: `Un open-space è una nuova e moderna forma di vacanze che offre ai suoi ospiti un ambiente di vita aperto.`,
         },
         {
           name: "Intere case",
           path: "#",
           url: "/img/intera-casa.jpg",
           title: "Come a casa tua",
-          description: `Se stai cercando un'esperienza di vacanza che ti faccia sentire come se fossi a casa tua, allora le case vacanza sono la scelta giusta per te. Questi alloggi sono ben arredati con comfort extra, come il WiFi gratuito e un televisore a schermo piatto. Potrai anche scegliere di stare all'aperto, goderti la natura e rilassarti sulle comode amache o nella piscina. Le case vacanza sono un ottimo modo per sentirsi come a casa, offrendo spazi confortevoli, moderni ed eleganti per far sentire a casa i loro ospiti.`,
+          description: `Se stai cercando un'esperienza di vacanza che ti faccia sentire come se fossi a casa tua, allora le case vacanza sono la scelta giusta per te.`,
         },
         {
           name: "Attici",
           path: "#",
           url: "/img/attico.jpg",
           title: "Viste incredibili",
-          description: `Gli Attici sono un'ottima scelta per coloro che desiderano trascorrere una vacanza indimenticabile. Queste case vacanza offrono un panorama mozzafiato che può essere ammirato da grandi finestre panoramiche, balconi e terrazze. Potrai godere di vari servizi aggiuntivi che contribuiranno a rendere la tua esperienza di vacanza ancora più piacevole. Le opzioni incluse possono includere un servizio di pulizia giornaliero, accesso a una piscina e servizi di ristorazione.
-Prenota una di queste case vacanza e trascorri del tempo indimenticabile con la tua famiglia e i tuoi amici.`,
+          description: `Prenota una di queste case vacanza e trascorri del tempo indimenticabile con la tua famiglia e i tuoi amici.`,
         },
       ],
     };
