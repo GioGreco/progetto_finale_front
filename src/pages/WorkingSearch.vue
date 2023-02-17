@@ -12,7 +12,7 @@
 
         <div class="filter-list col-md-4 pt-4">
           <div class="d-none d-md-block page-title text-center">
-            <h3>Ricerca avanzata</h3>
+            <h3>Ricerca avanzata aaaaa</h3>
             <hr />
           </div>
 
