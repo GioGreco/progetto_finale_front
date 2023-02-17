@@ -12,7 +12,7 @@
 
         <div class="filter-list col-md-4 pt-4">
           <div class="d-none d-md-block page-title text-center">
-            <h3>Ricerca avanzata aaaaa</h3>
+            <h3>Ricerca avanzata</h3>
             <hr />
           </div>
 
@@ -191,7 +191,7 @@
             </div>
 
             <!-- se non ci sono risultati: -->
-            <div v-if="noresults">
+            <div v-if="this.array2.length == 0 && this.varcat != null">
               <h5 class="mt-5">
                 Purtroppo al momento non sono disponibili soluzioni
                 corrispondenti alla tua ricerca.
