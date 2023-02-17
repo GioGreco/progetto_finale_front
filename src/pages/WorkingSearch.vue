@@ -238,7 +238,7 @@ export default {
       maxBeds: null,
       array1: [],
       array2: [],
-      array3: [],
+      // array3: [],
       sponsored: [],
       noresults: false,
       loading: true,
@@ -496,8 +496,8 @@ export default {
       //applica i filtri agli sponsorizzati e li rimuove dall'array2 per non farli visualizzare due volte in pagina
 
       this.array2.forEach((item) => {
-        // console.log(item.sponsors);
-        item.sponsors.forEach((el) => {
+        if(item.sponsors.length > 0){
+          item.sponsors.forEach((el) => {
           // console.log(el);
           if (el.id == 1 || el.id == 2 || el.id == 3) {
             this.sponsored.push(item);
@@ -505,6 +505,8 @@ export default {
             const deleted = this.array2.splice(itemIndex, 1);
           }
         });
+        }
+        // console.log(item.sponsors);
       });
     },
     getServices() {
