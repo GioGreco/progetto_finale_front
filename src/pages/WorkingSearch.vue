@@ -8,221 +8,15 @@
     <div class="container py-5">
       <div class="bottom-layer"></div>
       <div class="row">
-        <!-- comparsa filtri in alto in mobile -->
+        <!-- comparsa filtri in alto in mobile e a sx in desktop -->
 
-        <div class="filter-list d-block d-md-none pt-4">
+        <div class="filter-list col-md-4 pt-4">
           <div class="d-none d-md-block page-title text-center">
             <h3>Ricerca avanzata</h3>
             <hr />
           </div>
 
-          <!-- contenitore nav a scomparsa mobile -->
-          <div id="search" class="d-block my-3"></div>
-
-          <div class="navholder">
-            <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
-            <div id="search" class="my-3">Prova</div>
-
-            <h4 class="d-none d-md-block">Distanza dal centro:</h4>
-
-            <input
-              @change="setKilometers2"
-              type="range"
-              class="d-block mb-md-3 mt-md-4"
-              id="range"
-              name="range"
-              min="5"
-              max="100"
-              value="20"
-              oninput="this.nextElementSibling.value = this.value"
-            />
-            <output>20</output> km
-
-            <h4>Tipo di alloggio:</h4>
-
-            <ul class="category d-flex flex-wrap gap-3 my-4">
-              <li
-                class="rosegold"
-                v-for="(category, index) in categories"
-                :key="index"
-              >
-                <input
-                  @click="setCategories(category.id)"
-                  type="radio"
-                  name="categoria"
-                  :id="'category_' + category.id"
-                />
-                <label :for="category.slug" class="d-none d-md-inline-block">{{
-                  category.name
-                }}</label>
-
-                <!-- versione mobile: -->
-                <span class="d-block d-md-none checkmark2">
-                  <span class="checkedicon" v-html="category.img"></span>
-                </span>
-              </li>
-            </ul>
-
-            <h4>Servizi aggiuntivi:</h4>
-            <ul class="d-flex flex-wrap gap-3 my-4">
-              <li class="rosegold" v-for="(service, index) in services">
-                <input
-                  type="checkbox"
-                  :name="service.title"
-                  :id="'service_' + service.id"
-                  @click="setServices(service.id)"
-                />
-                <label :for="service.title" class="d-none d-md-inline-block">{{
-                  service.title
-                }}</label>
-
-                <!-- versione mobile: -->
-                <span class="d-block d-md-none checkmark3">
-                  <span class="checkedicon2" v-html="service.img"></span>
-                </span>
-              </li>
-            </ul>
-
-            <h4>Stanze:</h4>
-            <ul class="stanze d-flex gap-3 my-4">
-              <li>
-                <input
-                  @click="setRooms"
-                  type="radio"
-                  name="stanze"
-                  id="rooms1-3"
-                />
-                <label for="tre">1-3</label>
-              </li>
-              <li>
-                <input
-                  @click="setRooms"
-                  type="radio"
-                  name="stanze"
-                  id="rooms4-6"
-                />
-                <label for="seii">4-6</label>
-              </li>
-              <li>
-                <input
-                  @click="setRooms"
-                  type="radio"
-                  name="stanze"
-                  id="rooms7-9"
-                />
-                <label for="nove">7-9</label>
-              </li>
-              <li>
-                <input
-                  @click="setRooms"
-                  type="radio"
-                  name="stanze"
-                  id="rooms10"
-                />
-                <label for="moltii">10+</label>
-              </li>
-            </ul>
-
-            <h4>Posti letto:</h4>
-            <ul class="beds d-flex gap-3 my-4">
-              <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
-                <label for="due">1-2</label>
-              </li>
-              <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
-                <label for="quattro">3-4</label>
-              </li>
-              <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
-                <label for="sei">5-6</label>
-              </li>
-              <li>
-                <input @click="setBeds" type="radio" name="beds" id="beds7" />
-                <label for="molti">7+</label>
-              </li>
-            </ul>
-          </div>
-          <div class="btnopen">
-            <div class="contain3">
-              <div
-                @click="functionOpener()"
-                type="checkbox"
-                name="filter_open_closer"
-                id="filter_open_closer"
-                checked
-              ></div>
-
-              <span class="checkmark3down"
-                ><i class="fa-solid fa-chevron-down"></i
-              ></span>
-              <span class="checkmark3upper"
-                ><i class="fa-solid fa-chevron-up"></i
-              ></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="results-list col-12 col-md-8">
-          <!-- se non si è ancora effettuata nessuna ricerca: -->
-          <div
-            v-if="this.array2.length == 0 && this.sponsored.length == 0"
-            class="col-md-8"
-          >
-            <h1 class="d-none d-md-block">Cerca un appartamento</h1>
-            <div class="bg-icon d-none d-md-block">
-              <i class="fa-solid fa-earth-americas"></i>
-            </div>
-          </div>
-
-          <!-- risultati per solo filtro città: -->
-          <div class="overflow-auto">
-            <b-pagination
-              v-model="currentPage"
-              :total-rows="rows"
-              :per-page="perPage"
-              aria-controls="my-cards"
-            ></b-pagination>
-
-            <div
-              class="card-container sponsored"
-              v-if="this.sponsored.length > 0"
-              v-for="(item, index) in sponsored"
-              :key="index"
-            >
-              <CardCarousel :apartament="item"> </CardCarousel>
-              <div class="d-flex justify-content-end">
-                Contenuto sponsorizzato
-              </div>
-              <hr class="mt-2 mb-5" />
-            </div>
-
-            <div
-              class="card-container"
-              v-if="this.array2.length > 0"
-              v-for="(item, index) in array2"
-              :key="index"
-            >
-              <CardComponent id="my-cards" :apartament="item"></CardComponent>
-              <hr class="my-4" />
-            </div>
-
-            <!-- se non ci sono risultati: -->
-            <div v-if="noresults">
-              <h5 class="mt-5">
-                Purtroppo al momento non sono disponibili soluzioni
-                corrispondenti alla tua ricerca.
-              </h5>
-            </div>
-          </div>
-        </div>
-
-        <!-- colonna filtri desktop -->
-        <div class="filter-list d-none d-md-block col-md-4 pt-4">
-          <div class="d-none d-md-block page-title text-center">
-            <h3>Ricerca avanzata</h3>
-            <hr />
-          </div>
+          <!-- contenitore nav a scomparsa mobile ? -->
 
           <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
           <div id="search" class="my-3"></div>
@@ -347,6 +141,184 @@
             </li>
           </ul>
         </div>
+
+        <div class="results-list col-12 col-md-8">
+          <!-- se non si è ancora effettuata nessuna ricerca: -->
+          <div
+            v-if="this.array2.length == 0 && this.sponsored.length == 0"
+            class="col-md-8"
+          >
+            <h1 class="d-none d-md-block">Cerca un appartamento</h1>
+            <div class="bg-icon d-none d-md-block">
+              <i class="fa-solid fa-earth-americas"></i>
+            </div>
+          </div>
+
+          <!-- risultati per solo filtro città: -->
+          <div>
+            <div
+              class="card-container sponsored"
+              v-if="this.sponsored.length > 0"
+              v-for="(item, index) in sponsored"
+              :key="index"
+            >
+              <CardCarousel :apartament="item"> </CardCarousel>
+              <div class="d-flex justify-content-end">
+                Contenuto sponsorizzato
+              </div>
+              <hr class="mt-2 mb-5" />
+            </div>
+
+            <div
+              class="card-container"
+              v-if="this.array2.length > 0"
+              v-for="(item, index) in array2"
+              :key="index"
+            >
+              <CardComponent id="my-cards" :apartament="item"></CardComponent>
+              <hr class="my-4" />
+            </div>
+
+            <!-- se non ci sono risultati: -->
+            <div v-if="noresults">
+              <h5 class="mt-5">
+                Purtroppo al momento non sono disponibili soluzioni
+                corrispondenti alla tua ricerca.
+              </h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- colonna filtri desktop -->
+        <!-- <div class="filter-list d-none d-md-block col-md-4 pt-4">
+          <div class="d-none d-md-block page-title text-center">
+            <h3>Ricerca avanzata</h3>
+            <hr />
+          </div>
+
+          <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
+          <div id="search" class="my-3"></div>
+
+          <h4 class="d-none d-md-block">Distanza dal centro:</h4>
+
+          <input
+            @change="setKilometers2"
+            type="range"
+            class="d-block mb-md-3 mt-md-4"
+            id="range"
+            name="range"
+            min="5"
+            max="100"
+            value="20"
+            oninput="this.nextElementSibling.value = this.value"
+          />
+          <output>20</output> km
+
+          <h4>Tipo di alloggio:</h4>
+
+          <ul class="category d-flex flex-wrap gap-3 my-4">
+            <li
+              class="rosegold"
+              v-for="(category, index) in categories"
+              :key="index"
+            >
+              <input
+                @click="setCategories(category.id)"
+                type="radio"
+                name="categoria"
+                :id="'category_' + category.id"
+              />
+              <label :for="category.slug" class="d-none d-md-inline-block">{{
+                category.name
+              }}</label>
+
+         
+              <span class="d-block d-md-none checkmark2">
+                <span class="checkedicon" v-html="category.img"></span>
+              </span>
+            </li>
+          </ul>
+
+          <h4>Servizi aggiuntivi:</h4>
+          <ul class="d-flex flex-wrap gap-3 my-4">
+            <li class="rosegold" v-for="(service, index) in services">
+              <input
+                type="checkbox"
+                :name="service.title"
+                :id="'service_' + service.id"
+                @click="setServices(service.id)"
+              />
+              <label :for="service.title" class="d-none d-md-inline-block">{{
+                service.title
+              }}</label>
+
+            
+              <span class="d-block d-md-none checkmark3">
+                <span class="checkedicon2" v-html="service.img"></span>
+              </span>
+            </li>
+          </ul>
+
+          <h4>Stanze:</h4>
+          <ul class="stanze d-flex gap-3 my-4">
+            <li>
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms1-3"
+              />
+              <label for="tre">1-3</label>
+            </li>
+            <li>
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms4-6"
+              />
+              <label for="seii">4-6</label>
+            </li>
+            <li>
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms7-9"
+              />
+              <label for="nove">7-9</label>
+            </li>
+            <li>
+              <input
+                @click="setRooms"
+                type="radio"
+                name="stanze"
+                id="rooms10"
+              />
+              <label for="moltii">10+</label>
+            </li>
+          </ul>
+
+          <h4>Posti letto:</h4>
+          <ul class="beds d-flex gap-3 my-4">
+            <li>
+              <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
+              <label for="due">1-2</label>
+            </li>
+            <li>
+              <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
+              <label for="quattro">3-4</label>
+            </li>
+            <li>
+              <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
+              <label for="sei">5-6</label>
+            </li>
+            <li>
+              <input @click="setBeds" type="radio" name="beds" id="beds7" />
+              <label for="molti">7+</label>
+            </li>
+          </ul>
+        </div> -->
       </div>
     </div>
   </main>
@@ -710,8 +682,8 @@ export default {
   z-index: -1;
 }
 .filter-list {
-  padding-left: 25px;
-  border-left: 1px solid $raindrop;
+  padding-right: 25px;
+  border-right: 1px solid $raindrop;
 }
 
 h3 {
@@ -860,11 +832,11 @@ input[type="range"]:focus::-ms-fill-upper {
 .bg-icon {
   i {
     position: absolute;
-    color: #afbdbb86;
+    color: #afbdbb70;
     font-size: 20rem;
     top: 40%;
-    left: 40%;
-    transform: translate(-40%, -40%);
+    left: 50%;
+    transform: translate(-40%, -50%);
   }
 }
 
