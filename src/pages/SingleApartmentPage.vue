@@ -28,8 +28,8 @@
     </div>
     <div>
       <div class="gallery">
-        <div class="d-flex justify-content-between">
-          <h3>Galleria</h3>
+        <div class="d-flex justify-content-between gallery-tit">
+          <h2 class="fw-bold">Galleria</h2>
         </div>
         <div class="pics row">
           <div class="pics-wrap" v-for="el in apartment.mediabooks">
@@ -254,6 +254,7 @@ export default {
         margin: 0 auto 10px;
     }
     .pics {
+      margin-left: 10px;
       flex-wrap: nowrap;
       overflow-x: scroll;
       -ms-overflow-style: none;
@@ -261,7 +262,7 @@ export default {
       &::-webkit-scrollbar {
         display: none;
       }
-      .pic-wrap {
+      .pics-wrap {
         width: 40vw;
         height: 15vh;
         margin: 0 5px;
