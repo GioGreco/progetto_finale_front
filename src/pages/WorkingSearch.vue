@@ -583,7 +583,7 @@ export default {
           console.log(this.array2);
           this.array2 = this.array2.filter(
             (item) =>
-              item.bed_number >= this.minBeds ||
+              item.bed_number == this.minBeds ||
               item.bed_number == this.minBeds - 1
           );
         } else if (this.minBeds == 7) {
