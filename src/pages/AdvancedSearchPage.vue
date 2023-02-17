@@ -30,22 +30,6 @@
                 </span>
               </span>
             </li>
-            <!-- <li class="contain emerald">
-              <input type="radio" name="categoria" id="appartamento" />
-              <span class="checkmark">
-                <span class="checkedicon"
-                  ><i class="fa-solid fa-city"></i>
-                </span>
-              </span>
-            </li>
-            <li class="contain emerald">
-              <input type="radio" name="categoria" id="attico" />
-              <span class="checkmark">
-                <span class="checkedicon"
-                  ><i class="fa-solid fa-people-roof"></i>
-                </span>
-              </span>
-            </li> -->
             <li class="contain emerald">
               <input type="radio" name="categoria" id="villa_campagna" />
               <span class="checkmark">
@@ -88,6 +72,7 @@
             </li>
           </ul>
         </div>
+        
         <div class="smartnav servizi">
           <ul>
             <li class="contain sangria">
@@ -372,67 +357,6 @@
               </div>
             </router-link>
           </div>
-          <!-- <div v-else-if="this.array3.length == 0">
-            <h4>Nessun risultato</h4>
-          </div> -->
-
-          <!-- array mostrato se array filtri attivo -->
-          <!-- <div
-            v-if="this.array3.length != 0"
-            v-for="(apartment, index) in array3"
-            :key="index"
-            class="col-6 col-md-12 card_apartment"
-          >
-            <router-link :to="`/apartment/${apartment.slug}`">
-              <div class="imgcont">
-                <a href="#" class="cardapartments row">
-                  <div class="col-12 col-md-6">
-                    <img
-                      id="imgeneric"
-                      :src="`${store.imgBasePath}${apartment.cover_img}`"
-                      alt=""
-                    />
-                  </div>
-
-                  <div class="col-12 col-md-6">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="text_infob">
-                          <h1>{{ apartment.title }}</h1>
-                          <h3>
-                            <i class="fa-solid fa-location-dot"></i>
-                            {{ apartment.address }}
-                          </h3>
-                          <h3>
-                            <i class="fa-solid fa-euro-sign"></i>
-                            {{ apartment.price }}/Notte
-                          </h3>
-                          <div class="d-flex">
-                            <h4>
-                              <i class="fa-solid fa-bed"></i>
-                              {{ apartment.bed_number }}
-                            </h4>
-                            <h4>
-                              <i class="fa-solid fa-door-open"></i>
-                              {{ apartment.room_number }}
-                            </h4>
-                            <h4>
-                              <i class="fa-solid fa-toilet"></i>
-                              {{ apartment.bath_number }}
-                            </h4>
-                            <h4>
-                              <i class="fa-brands fa-codepen"></i>
-                              {{ apartment.mq_value }}
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </router-link>
-          </div> -->
         </div>
       </div>
       <div v-if="this.array2.length == 0" class="col-12 col-md-8">

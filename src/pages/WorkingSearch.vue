@@ -21,125 +21,137 @@
           <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
           <div id="search" class="my-3"></div>
 
-          <h4 class="d-none d-md-block">Distanza dal centro:</h4>
+          <div id="navheig">
+            <h4 class="d-none d-md-block">Distanza dal centro:</h4>
+            <input
+              @change="setKilometers2"
+              type="range"
+              class="d-block mb-md-3 mt-md-4"
+              id="range"
+              name="range"
+              min="5"
+              max="100"
+              value="20"
+              oninput="this.nextElementSibling.value = this.value"
+            />
+            <output>20</output> km
+            <h4>Tipo di alloggio:</h4>
+            <ul class="category d-flex flex-wrap gap-3 my-4">
+              <li
+                class="rosegold"
+                v-for="(category, index) in categories"
+                :key="index"
+              >
+                <input
+                  @click="setCategories(category.id)"
+                  type="radio"
+                  name="categoria"
+                  :id="'category_' + category.id"
+                />
+                <label :for="category.slug" class="d-none d-md-inline-block">{{
+                  category.name
+                }}</label>
+                <!-- versione mobile: -->
+                <span class="d-block d-md-none checkmark2">
+                  <span class="checkedicon" v-html="category.img"></span>
+                </span>
+              </li>
+            </ul>
+            <h4>Servizi aggiuntivi:</h4>
+            <ul class="d-flex flex-wrap gap-3 my-4">
+              <li class="rosegold" v-for="(service, index) in services">
+                <input
+                  type="checkbox"
+                  :name="service.title"
+                  :id="'service_' + service.id"
+                  @click="setServices(service.id)"
+                />
+                <label :for="service.title" class="d-none d-md-inline-block">{{
+                  service.title
+                }}</label>
+                <!-- versione mobile: -->
+                <span class="d-block d-md-none checkmark3">
+                  <span class="checkedicon2" v-html="service.img"></span>
+                </span>
+              </li>
+            </ul>
+            <h4>Stanze:</h4>
+            <ul class="stanze d-flex gap-3 my-4">
+              <li>
+                <input
+                  @click="setRooms"
+                  type="radio"
+                  name="stanze"
+                  id="rooms1-3"
+                />
+                <label for="tre">1-3</label>
+              </li>
+              <li>
+                <input
+                  @click="setRooms"
+                  type="radio"
+                  name="stanze"
+                  id="rooms4-6"
+                />
+                <label for="seii">4-6</label>
+              </li>
+              <li>
+                <input
+                  @click="setRooms"
+                  type="radio"
+                  name="stanze"
+                  id="rooms7-9"
+                />
+                <label for="nove">7-9</label>
+              </li>
+              <li>
+                <input
+                  @click="setRooms"
+                  type="radio"
+                  name="stanze"
+                  id="rooms10"
+                />
+                <label for="moltii">10+</label>
+              </li>
+            </ul>
+            <h4>Posti letto:</h4>
+            <ul class="beds d-flex gap-3 my-4">
+              <li>
+                <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
+                <label for="due">1-2</label>
+              </li>
+              <li>
+                <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
+                <label for="quattro">3-4</label>
+              </li>
+              <li>
+                <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
+                <label for="sei">5-6</label>
+              </li>
+              <li>
+                <input @click="setBeds" type="radio" name="beds" id="beds7" />
+                <label for="molti">7+</label>
+              </li>
+            </ul>
+          </div>
 
-          <input
-            @change="setKilometers2"
-            type="range"
-            class="d-block mb-md-3 mt-md-4"
-            id="range"
-            name="range"
-            min="5"
-            max="100"
-            value="20"
-            oninput="this.nextElementSibling.value = this.value"
-          />
-          <output>20</output> km
-
-          <h4>Tipo di alloggio:</h4>
-
-          <ul class="category d-flex flex-wrap gap-3 my-4">
-            <li
-              class="rosegold"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
+          <div class="btnopen">
+            <div class="contain3">
               <input
-                @click="setCategories(category.id)"
-                type="radio"
-                name="categoria"
-                :id="'category_' + category.id"
-              />
-              <label :for="category.slug" class="d-none d-md-inline-block">{{
-                category.name
-              }}</label>
-
-              <!-- versione mobile: -->
-              <span class="d-block d-md-none checkmark2">
-                <span class="checkedicon" v-html="category.img"></span>
-              </span>
-            </li>
-          </ul>
-
-          <h4>Servizi aggiuntivi:</h4>
-          <ul class="d-flex flex-wrap gap-3 my-4">
-            <li class="rosegold" v-for="(service, index) in services">
-              <input
+                @click="functionOpener3()"
                 type="checkbox"
-                :name="service.title"
-                :id="'service_' + service.id"
-                @click="setServices(service.id)"
+                name="filter_open_closer"
+                id="filter_open_closer"
               />
-              <label :for="service.title" class="d-none d-md-inline-block">{{
-                service.title
-              }}</label>
+              <span class="checkmark3down"
+                ><i class="fa-solid fa-chevron-down"></i
+              ></span>
+              <span class="checkmark3upper"
+                ><i class="fa-solid fa-chevron-up"></i
+              ></span>
+            </div>
+           </div>
 
-              <!-- versione mobile: -->
-              <span class="d-block d-md-none checkmark3">
-                <span class="checkedicon2" v-html="service.img"></span>
-              </span>
-            </li>
-          </ul>
-
-          <h4>Stanze:</h4>
-          <ul class="stanze d-flex gap-3 my-4">
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms1-3"
-              />
-              <label for="tre">1-3</label>
-            </li>
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms4-6"
-              />
-              <label for="seii">4-6</label>
-            </li>
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms7-9"
-              />
-              <label for="nove">7-9</label>
-            </li>
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms10"
-              />
-              <label for="moltii">10+</label>
-            </li>
-          </ul>
-
-          <h4>Posti letto:</h4>
-          <ul class="beds d-flex gap-3 my-4">
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
-              <label for="due">1-2</label>
-            </li>
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
-              <label for="quattro">3-4</label>
-            </li>
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
-              <label for="sei">5-6</label>
-            </li>
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds7" />
-              <label for="molti">7+</label>
-            </li>
-          </ul>
         </div>
 
         <div class="results-list col-12 col-md-8">
@@ -188,137 +200,6 @@
             </div>
           </div>
         </div>
-
-        <!-- colonna filtri desktop -->
-        <!-- <div class="filter-list d-none d-md-block col-md-4 pt-4">
-          <div class="d-none d-md-block page-title text-center">
-            <h3>Ricerca avanzata</h3>
-            <hr />
-          </div>
-
-          <h4 class="d-none d-md-block">Scegli una destinazione:</h4>
-          <div id="search" class="my-3"></div>
-
-          <h4 class="d-none d-md-block">Distanza dal centro:</h4>
-
-          <input
-            @change="setKilometers2"
-            type="range"
-            class="d-block mb-md-3 mt-md-4"
-            id="range"
-            name="range"
-            min="5"
-            max="100"
-            value="20"
-            oninput="this.nextElementSibling.value = this.value"
-          />
-          <output>20</output> km
-
-          <h4>Tipo di alloggio:</h4>
-
-          <ul class="category d-flex flex-wrap gap-3 my-4">
-            <li
-              class="rosegold"
-              v-for="(category, index) in categories"
-              :key="index"
-            >
-              <input
-                @click="setCategories(category.id)"
-                type="radio"
-                name="categoria"
-                :id="'category_' + category.id"
-              />
-              <label :for="category.slug" class="d-none d-md-inline-block">{{
-                category.name
-              }}</label>
-
-         
-              <span class="d-block d-md-none checkmark2">
-                <span class="checkedicon" v-html="category.img"></span>
-              </span>
-            </li>
-          </ul>
-
-          <h4>Servizi aggiuntivi:</h4>
-          <ul class="d-flex flex-wrap gap-3 my-4">
-            <li class="rosegold" v-for="(service, index) in services">
-              <input
-                type="checkbox"
-                :name="service.title"
-                :id="'service_' + service.id"
-                @click="setServices(service.id)"
-              />
-              <label :for="service.title" class="d-none d-md-inline-block">{{
-                service.title
-              }}</label>
-
-            
-              <span class="d-block d-md-none checkmark3">
-                <span class="checkedicon2" v-html="service.img"></span>
-              </span>
-            </li>
-          </ul>
-
-          <h4>Stanze:</h4>
-          <ul class="stanze d-flex gap-3 my-4">
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms1-3"
-              />
-              <label for="tre">1-3</label>
-            </li>
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms4-6"
-              />
-              <label for="seii">4-6</label>
-            </li>
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms7-9"
-              />
-              <label for="nove">7-9</label>
-            </li>
-            <li>
-              <input
-                @click="setRooms"
-                type="radio"
-                name="stanze"
-                id="rooms10"
-              />
-              <label for="moltii">10+</label>
-            </li>
-          </ul>
-
-          <h4>Posti letto:</h4>
-          <ul class="beds d-flex gap-3 my-4">
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds1-2" />
-              <label for="due">1-2</label>
-            </li>
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds3-4" />
-              <label for="quattro">3-4</label>
-            </li>
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds5-6" />
-              <label for="sei">5-6</label>
-            </li>
-            <li>
-              <input @click="setBeds" type="radio" name="beds" id="beds7" />
-              <label for="molti">7+</label>
-            </li>
-          </ul>
-        </div> -->
       </div>
     </div>
   </main>
@@ -380,6 +261,18 @@ export default {
     };
   },
   methods: {
+    functionOpener3() {
+      document.getElementById("filter_open_closer").onchange = (a) => {
+        let checked = a.target.checked;
+        if (checked) {
+          document.getElementById("navheig").style.opacity = "1"
+          document.getElementById("navheig").style.height = "630px";
+        } else {
+          document.getElementById("navheig").style.opacity = "0";
+          document.getElementById("navheig").style.height = "0px";
+        }
+      };
+    },
     setKilometers2() {
       let range = document.getElementById("range");
       console.log(parseInt(range.value));
@@ -643,6 +536,84 @@ export default {
   position: relative;
   top: 0px;
 }
+
+@media screen and (max-width: 800px) {
+  #navheig{
+  overflow: hidden;
+  height: 0px;
+  transition: ease-in-out 250ms all;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .btnopen{
+    display: none;
+  }
+}
+
+//classi bottone opener
+.btnopen {
+  height: 20px;
+  width: 300px;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 0px 0px 20px 20px;
+  transition: all 200ms;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0);
+  a {
+    color: $grey;
+    width: 100%;
+  }
+  .contain3 {
+  justify-content: center;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  // border-radius: 50%;
+  background-color: $emerald;
+  transition: all 200ms;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  #filter_open_closer {
+    opacity: 0;
+    cursor: pointer;
+    z-index: 100;
+    left: 0;
+    height: 300px;
+    width: 300px;
+  }
+
+  .checkmark3down {
+  position: absolute;
+  left: auto;
+  top: -2px;
+  color: $white;
+  transition: all 200ms;
+}
+.checkmark3upper {
+  position: absolute;
+  left: auto;
+  top: -2;
+  opacity: 0;
+  color: $white;
+  transition: all 200ms;
+}
+}
+}
+
+.contain3 input:checked ~ .checkmark3upper {
+  opacity: 1;
+}
+.contain3 input:checked ~ .checkmark3down {
+  opacity: 0;
+}
+
 
 .results-wrapper {
   border: 1px solid $darkgrey;
