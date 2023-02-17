@@ -5,10 +5,7 @@
   <div v-if="success" id="show-mobile">
     <div>
       <div class="cover-img">
-        <img
-          src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-          alt=""
-        />
+        <img :src="this.store.imgBasePath + apartment.cover_img" alt="" />
       </div>
       <div class="address">
         <h2>{{ apartment.title }}</h2>
@@ -21,59 +18,10 @@
       <div class="gallery">
         <div class="d-flex justify-content-between">
           <h3>Galleria</h3>
-          <span>See all</span>
         </div>
         <div class="pics row">
-          <div>
-            <img src="" alt="" />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
-          </div>
-          <div class="pic-wrap">
-            <img
-              src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-              alt=""
-            />
+          <div class="pics-wrap" v-for="el in apartment.mediabooks">
+            <img :src="this.store.imgBasePath + el.img" alt="" />
           </div>
         </div>
       </div>
@@ -96,29 +44,8 @@
   <div v-if="success" id="show-desktop">
     <div class="photo-album">
       <div class="pic-row d-flex justify-content-between">
-        <div class="pic-wrap">
-          <img
-            src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-            alt=""
-          />
-        </div>
-        <div class="pic-wrap">
-          <img
-            src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-            alt=""
-          />
-        </div>
-        <div class="pic-wrap">
-          <img
-            src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-            alt=""
-          />
-        </div>
-        <div class="pic-wrap">
-          <img
-            src="https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg"
-            alt=""
-          />
+        <div class="pic-wrap" v-for="el in apartment.mediabooks">
+          <img :src="this.store.imgBasePath + el.img" alt="" />
         </div>
       </div>
       <div class="bottom-layer"></div>
