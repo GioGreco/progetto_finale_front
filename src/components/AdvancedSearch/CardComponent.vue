@@ -52,13 +52,10 @@ export default {
 .card-item {
   width: 100%;
 }
-.card_apartment {
-  transition: ease-in-out 200ms;
-  animation-name: cardapartment;
-  animation-duration: 1s;
-}
 
 img {
+  height: 200px;
+  width: 100%;
   background-size: cover;
 }
 
