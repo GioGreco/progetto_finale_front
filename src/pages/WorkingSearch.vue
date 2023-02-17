@@ -495,18 +495,17 @@ export default {
       //applica i filtri agli sponsorizzati e li rimuove dall'array2 per non farli visualizzare due volte in pagina
 
       this.array2.forEach((item) => {
-        // console.log(item.sponsors);
-        item.sponsors.forEach((el) => {
-          // console.log(el);
-          if (el.id == 1 || el.id == 2 || el.id == 3) {
-            this.sponsored.push(item);
-            if (this.sponsored.includes(item.id)) {
-              let itemIndex = this.array2.indexOf(item);
-              let deleted = this.array2.splice(itemIndex, 1);
-              this.sponsored.splice(itemIndex, 1);
+        if (item.sponsors.length > 0) {
+          item.sponsors.forEach((el) => {
+            // console.log(el);
+            if (el.id == 1 || el.id == 2 || el.id == 3) {
+              this.sponsored.push(item);
+              const itemIndex = this.array2.indexOf(item);
+              const deleted = this.array2.splice(itemIndex, 1);
             }
-          }
-        });
+          });
+        }
+        // console.log(item.sponsors);
       });
     },
     getServices() {
