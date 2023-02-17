@@ -150,8 +150,7 @@
                 ><i class="fa-solid fa-chevron-up"></i
               ></span>
             </div>
-           </div>
-
+          </div>
         </div>
 
         <div class="results-list col-12 col-md-8">
@@ -238,7 +237,7 @@ export default {
       maxBeds: null,
       array1: [],
       array2: [],
-      // array3: [],
+      array3: [],
       sponsored: [],
       noresults: false,
       loading: true,
@@ -265,7 +264,7 @@ export default {
       document.getElementById("filter_open_closer").onchange = (a) => {
         let checked = a.target.checked;
         if (checked) {
-          document.getElementById("navheig").style.opacity = "1"
+          document.getElementById("navheig").style.opacity = "1";
           document.getElementById("navheig").style.height = "630px";
         } else {
           document.getElementById("navheig").style.opacity = "0";
@@ -496,17 +495,18 @@ export default {
       //applica i filtri agli sponsorizzati e li rimuove dall'array2 per non farli visualizzare due volte in pagina
 
       this.array2.forEach((item) => {
-        if(item.sponsors.length > 0){
-          item.sponsors.forEach((el) => {
+        // console.log(item.sponsors);
+        item.sponsors.forEach((el) => {
           // console.log(el);
           if (el.id == 1 || el.id == 2 || el.id == 3) {
             this.sponsored.push(item);
-            const itemIndex = this.array2.indexOf(item);
-            const deleted = this.array2.splice(itemIndex, 1);
+            if (this.sponsored.includes(item.id)) {
+              let itemIndex = this.array2.indexOf(item);
+              let deleted = this.array2.splice(itemIndex, 1);
+              this.sponsored.splice(itemIndex, 1);
+            }
           }
         });
-        }
-        // console.log(item.sponsors);
       });
     },
     getServices() {
@@ -540,15 +540,15 @@ export default {
 }
 
 @media screen and (max-width: 800px) {
-  #navheig{
-  overflow: hidden;
-  height: 0px;
-  transition: ease-in-out 250ms all;
+  #navheig {
+    overflow: hidden;
+    height: 0px;
+    transition: ease-in-out 250ms all;
   }
 }
 
 @media screen and (min-width: 800px) {
-  .btnopen{
+  .btnopen {
     display: none;
   }
 }
@@ -568,45 +568,45 @@ export default {
     width: 100%;
   }
   .contain3 {
-  justify-content: center;
-  height: 20px;
-  width: 100%;
-  display: flex;
-  position: relative;
-  // border-radius: 50%;
-  background-color: $emerald;
-  transition: all 200ms;
+    justify-content: center;
+    height: 20px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    // border-radius: 50%;
+    background-color: $emerald;
+    transition: all 200ms;
 
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  #filter_open_closer {
-    opacity: 0;
     cursor: pointer;
-    z-index: 100;
-    left: 0;
-    height: 300px;
-    width: 300px;
-  }
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    #filter_open_closer {
+      opacity: 0;
+      cursor: pointer;
+      z-index: 100;
+      left: 0;
+      height: 300px;
+      width: 300px;
+    }
 
-  .checkmark3down {
-  position: absolute;
-  left: auto;
-  top: -2px;
-  color: $white;
-  transition: all 200ms;
-}
-.checkmark3upper {
-  position: absolute;
-  left: auto;
-  top: -2;
-  opacity: 0;
-  color: $white;
-  transition: all 200ms;
-}
-}
+    .checkmark3down {
+      position: absolute;
+      left: auto;
+      top: -2px;
+      color: $white;
+      transition: all 200ms;
+    }
+    .checkmark3upper {
+      position: absolute;
+      left: auto;
+      top: -2;
+      opacity: 0;
+      color: $white;
+      transition: all 200ms;
+    }
+  }
 }
 
 .contain3 input:checked ~ .checkmark3upper {
@@ -615,7 +615,6 @@ export default {
 .contain3 input:checked ~ .checkmark3down {
   opacity: 0;
 }
-
 
 .results-wrapper {
   border: 1px solid $darkgrey;
