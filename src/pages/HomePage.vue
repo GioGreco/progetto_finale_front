@@ -72,7 +72,7 @@
       <p class="subtitle">pensiamo noi a tutto.</p>
     </div>
 
-    <div class="my-container">
+    <div class="my-container pb-5">
       <div class="row gx-md-0 d-flex">
         <div class="col-12 col-md-4 bg-mauve">
           <div class="p-container">
@@ -134,8 +134,6 @@ import HighlightCarouselComponent from "@/components/Homepage/HighlightCarouselC
 import CategoriesComponent from "@/components/Homepage/CategoriesComponent.vue";
 import { store } from "../store";
 
-// import axios from "axios";
-
 export default {
   name: "HomePage",
   components: {
@@ -144,25 +142,10 @@ export default {
   },
   data() {
     return {
-      // address: "",
-      // addressEndpoint:
-      //   "https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&view=Unified&key=*****",
-      // key: "mjOVKpgWnl7gsw0eNKkVguzisLjLZGIh",
       store,
     };
   },
   methods: {
-    // searchAddress() {
-    //   const encodedAddress = encodeURIComponent(this.address);
-    //   axios
-    //     .get(`https://api.tomtom.com/search/2/geocode/${encodedAddress}.json`, {
-    //       params: { key: this.key },
-    //     })
-    //     .then((response) => {
-    //       console.log(response.data);
-    //     });
-    //   this.address = "";
-    // },
     search() {
       this.$emit("filteredApartments");
     },

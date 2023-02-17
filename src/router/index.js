@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "@/pages/HomePage.vue";
-import AdvancedSearchPage from "@/pages/AdvancedSearchPage.vue";
 import SingleApartmentPage from "@/pages/SingleApartmentPage.vue";
 import redirect from "@/pages/redirect.vue";
 import NotFound from "@/pages/NotFound.vue";
 import WorkingSearch from "@/pages/WorkingSearch.vue";
+import CreditsPage from "@/pages/CreditsPage.vue";
 
 const routes = [
   {
@@ -12,12 +12,6 @@ const routes = [
     name: "home",
     component: HomePage,
   },
-  // {
-  //   path: "/search",
-  //   name: "search",
-  //   component: AdvancedSearchPage,
-  // },
-  //test grafica search:
   {
     path: "/advancedSearch",
     name: "advancedSearch",
@@ -37,6 +31,11 @@ const routes = [
     path: "/redirect",
     name: "redirect",
     component: redirect,
+  },
+  {
+    path: "/credits",
+    name: "credits",
+    component: CreditsPage,
   },
 ];
 

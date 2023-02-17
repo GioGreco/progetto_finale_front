@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="categoriesWrapper" class="d-flex flex-column vw-100">
+    <div id="categoriesWrapper" class="d-flex flex-column">
       <div
         v-for="(category, index) in homeCategories"
         :key="index"
@@ -60,6 +60,7 @@ export default {
 @use "../../assets/styles/main.scss" as *;
 
 #categoriesWrapper {
+  overflow: hidden;
   .category {
     height: 70vh;
     position: relative;
