@@ -1,14 +1,14 @@
 <template>
-  <router-link :to="`/apartment/${apartament.slug}`">
-    <div class="card-item d-flex">
-      <div class="col-4">
+  <router-link class="d-flex justify-content-center" :to="`/apartment/${apartament.slug}`">
+    <div class="card-item row">
+      <div class="col-12 col-md-4 col-lg-4 d-flex justify-content-center mb-3">
         <img
           :src="`${store.imgBasePath}${apartament.cover_img}`"
           :alt="apartament.title"
         />
       </div>
 
-      <div class="info col-8 ps-4">
+      <div class="info col-12 col-md-8 col-lg-8 ps-4">
         <h4>
           <strong>{{ apartament.title }}</strong>
         </h4>
