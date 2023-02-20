@@ -46,7 +46,7 @@ export default {
         key: "h7cAdo65F2uuetiST0o1pnUygRaWDuuX",
         container: this.$refs.mapRef,
         center: focus,
-        zoom: 10,
+        zoom: 15,
       });
       map.addControl(new tt.FullscreenControl());
       map.addControl(new tt.NavigationControl());
