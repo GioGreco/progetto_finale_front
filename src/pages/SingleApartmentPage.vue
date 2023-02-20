@@ -65,7 +65,7 @@
       <div class="location my-4">
         <MapComponent :apartmentLocation="apartment" />
       </div>
-      <div class="contact-form-mobile">
+      <div class="contact-form-mobile mb-5">
         <div
           class="contact-inner d-flex flex-column justify-content-between align-items-center"
         >

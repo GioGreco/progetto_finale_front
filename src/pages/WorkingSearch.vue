@@ -199,7 +199,7 @@
           </div>
 
           <!-- risultati per solo filtro città: -->
-          <div>
+          <div class="containerbody">
             <div
               class="card-container sponsored"
               v-show="this.sponsored.length > 0"
@@ -594,6 +594,10 @@ export default {
   }
 }
 
+.containerbody{
+  min-height: calc(100vh - 450px);
+}
+
 //classi bottone opener
 .btnopen {
   height: 20px;
@@ -695,7 +699,7 @@ export default {
   z-index: -1;
 }
 .filter-list {
-  padding-right: 25px;
+  // padding-right: 25px;
   border-right: 1px solid $raindrop;
 }
 
