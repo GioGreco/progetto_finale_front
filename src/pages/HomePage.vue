@@ -234,11 +234,11 @@ section {
 h1 {
   color: $rosegold;
   font-weight: 700;
-  font-size: 3.5rem;
+  font-size: 2.8rem;
 }
 
 p {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
 }
 
 .bg-mauve {
